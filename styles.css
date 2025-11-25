@@ -1,229 +1,118 @@
-/* -------------------------------------------------------
-   RESET + BASE
---------------------------------------------------------*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ====================== */
+/*       GLOBAL           */
+/* ====================== */
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f172a;
-  color: #fff;
-  overflow-x: hidden;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-/* -------------------------------------------------------
-   TOPBAR
---------------------------------------------------------*/
+/* ====================== */
+/*       LAYOUT           */
+/* ====================== */
+
+main {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--layout-padding-top) var(--layout-padding-x) var(--layout-padding-bottom);
+}
+
+.section {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 var(--layout-padding-x) var(--section-padding-bottom);
+}
+
+/* ====================== */
+/*        TOPBAR          */
+/* ====================== */
+
 .topbar {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--topbar-padding-top) var(--topbar-padding-x) var(--topbar-padding-bottom);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #141f33;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--gap-nav);
 }
 
-.logo {
-  font-size: 1.2rem;
-  font-weight: 600;
+/* ====================== */
+/*          HERO          */
+/* ====================== */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+  gap: var(--gap-hero);
+  padding-top: var(--layout-padding-top);
 }
 
-nav a {
-  color: #fff;
-  margin-left: 1rem;
-  text-decoration: none;
-  font-size: 0.9rem;
-  opacity: 0.9;
+.hero-actions {
+  display: flex;
+  gap: var(--gap-hero-actions);
 }
 
-nav a:hover {
-  opacity: 1;
-}
-
-/* -------------------------------------------------------
-   PAGE LAYOUT
---------------------------------------------------------*/
-.container,
-.app-layout {
-  width: 100%;
-  max-width: 480px;
-  margin: auto;
-  padding: 1rem;
-}
-
-/* -------------------------------------------------------
-   PANELS
---------------------------------------------------------*/
-.panel {
-  background: #16233b;
-  padding: 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
-  margin-bottom: 1rem;
-}
-
-/* -------------------------------------------------------
-   TEXTES
---------------------------------------------------------*/
-h1, h2 {
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.muted {
-  color: #94a3b8;
-}
-
-/* -------------------------------------------------------
-   INPUTS
---------------------------------------------------------*/
-label {
-  font-size: 0.9rem;
-  margin-top: 0.7rem;
-  display: block;
-}
-
-input, select {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.35rem;
-  border-radius: 10px;
-  border: none;
-  background: #1e2b45;
-  color: #fff;
-  font-size: 0.95rem;
-}
-
-/* -------------------------------------------------------
-   MOT DE PASSE : ŒIL 👁
---------------------------------------------------------*/
-.password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  padding-right: 2.3rem;
-}
-
-.btn-eye {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  color: #fff;
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-.btn-eye:hover {
-  opacity: 1;
-}
-
-/* -------------------------------------------------------
-   BOUTONS
---------------------------------------------------------*/
-.btn,
-.btn-outline {
-  width: 100%;
-  padding: 0.8rem;
-  border-radius: 10px;
-  margin-top: 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-}
+/* ====================== */
+/*         BUTTONS        */
+/* ====================== */
 
 .btn {
-  background: #3b82f6;
-  border: none;
-  color: white;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
 }
 
-.btn:hover {
-  background: #2563eb;
+.btn.small {
+  padding: var(--btn-small-padding-y) var(--btn-small-padding-x);
 }
 
-.btn-outline {
-  background: transparent;
-  border: 1px solid #3b82f6;
-  color: #3b82f6;
+/* ====================== */
+/*          INPUTS        */
+/* ====================== */
+
+input,
+select {
+  padding: var(--input-padding-y) var(--input-padding-x);
+  border-radius: var(--radius-input);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
 }
 
-.btn-outline:hover {
-  background: rgba(59, 130, 246, 0.1);
+/* ====================== */
+/*     VIRTUAL CARD       */
+/* ====================== */
+
+.virtual-card {
+  max-width: var(--virtual-card-max-width);
+  padding: var(--virtual-card-padding-y) var(--virtual-card-padding-x);
+  border-radius: var(--virtual-card-radius);
+  background: var(--bg-soft);
+  color: #fff;
 }
 
-/* -------------------------------------------------------
-   RESPONSIVE TABLETTE + PC
---------------------------------------------------------*/
-@media (min-width: 600px) {
-  .container,
-  .app-layout {
-    max-width: 600px;
-  }
-
-  nav a {
-    font-size: 1rem;
-  }
-
-  .panel {
-    padding: 1.5rem;
-  }
+.virtual-card-status {
+  display: inline-block;
+  padding: .12rem .6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.6);
 }
 
-@media (min-width: 900px) {
-  .container,
-  .app-layout {
-    max-width: 750px;
-  }
-
-  h1, h2 {
-    font-size: 1.6rem;
-  }
-}
-/* Corrige l'affichage de la topbar sur iPhone */
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 0.6rem 1rem !important;
-  background: #141f33;
+.virtual-card-status.active {
+  color: var(--success);
+  border-color: var(--success);
 }
 
-/* Réduit l'espace avant le bloc Connexion */
-#authPanel {
-  margin-top: 0.3rem !important;
-}
-
-/* Réduit aussi la hauteur interne du panel */
-#authPanel.panel,
-#authPanel .panel {
-  padding: 1rem !important;
-}
-
-/* Sur petit écran (iPhone) on compresse encore plus */
-@media (max-width: 480px) {
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .panel {
-    padding: 1rem !important;
-  }
-
-  input, select {
-    height: 40px;
-    font-size: 0.9rem;
-  }
-
-  .btn, .btn-outline {
-    padding: 0.7rem;
-    font-size: 0.95rem;
-  }
+.virtual-card-status.frozen {
+  color: var(--danger);
+  border-color: var(--danger);
 }
