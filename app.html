@@ -2,123 +2,118 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Application - Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banque Digitale Africaine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></<script src="firebase-config.js"></script>
-<script src="firebase-config.js"></script>
-<script defer src="app.js"></script>
 </head>
+
 <body class="app">
+
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
       <a href="index.html">Accueil</a>
-      <button id="logoutBtn" class="btn btn-outline small" style="display:none;">Déconnexion</button>
     </nav>
   </header>
 
   <main class="app-layout">
-    <section class="auth-panel" id="authPanel">
-      <h1>Connexion / Création de compte</h1>
-      <p class="muted">Crée ton compte pour accéder à ton tableau de bord.</p>
+
+    <!-- Connexion / Inscription -->
+    <section class="panel" id="authPanel">
+      <h2>Connexion / Création de compte</h2>
+      <p class="muted small">Crée ton compte pour accéder à ton tableau de bord.</p>
 
       <label>Email</label>
-      <input id="emailInput" type="email" placeholder="ex: toi@<label>Mot de passe</label>
-<label>Mot de passe</label>
-<div class="password-wrapper">
-  <input id="passwordInput" type="password" placeholder="Minimum 6 caractères" />
-  <button type="button" id="togglePassword" class="btn-eye" aria-label="Afficher ou masquer le mot de passe">
-    👁
-  </button>
-</div>
+      <input id="emailInput" type="email" placeholder="ex: toi@mail.com" />
 
-      <div class="row gap">
-        <button id="signupBtn" class="btn btn-primary">Créer un compte</button>
+      <label>Mot de passe</label>
+      <div class="password-wrapper">
+        <input id="passwordInput" type="password" placeholder="Minimum 6 caractères" />
+        <button type="button" id="togglePassword" class="btn-eye">👁</button>
+      </div>
+
+      <div class="row" style="margin-top: 1rem;">
+        <button id="createAccountBtn" class="btn btn-primary">Créer un compte</button>
         <button id="loginBtn" class="btn btn-outline">Connexion</button>
       </div>
 
       <p id="authMessage" class="message"></p>
     </section>
 
-    <section class="dashboard" id="dashboard" style="display:none;">
-      <div class="dashboard-header">
-        <div>
-          <h1>Tableau de bord</h1>
-          <p class="muted">Bienvenue, <span id="userEmail"></span></p>
-          <p class="muted">Rôle : <span id="userRole">client</span> &mdash;
-            Statut KYC : <span id="userKycStatus" class="badge badge-kyc">none</span>
-          </p>
-        </div>
-        <div class="balance-card">
-          <span class="label">Solde principal</span>
-          <span class="amount"><span id="walletBalance">0</span> XAF</span>
-        </div>
-      </div>
+    <!-- Tableau de bord -->
+    <section class="panel" id="dashboardPanel" style="display:none;">
+      <h2>Tableau de bord</h2>
+      <p id="userWelcome"></p>
+      <p id="userRole"></p>
+      <p id="mainBalance"></p>
 
-      <div class="grid grid-2 stretch">
-        <section class="panel">
-          <h2>Nouvelle opération interne</h2>
-          <label>Libellé</label>
-          <select id="txLabel">
-            <option value="">-- Sélectionne un libellé --</option>
-            <option value="Cash-in mobile money">Cash-in mobile money</option>
-            <option value="Virement interne">Virement interne</option>
-            <option value="Paiement marchand">Paiement marchand</option>
-          </select>
-          <label>Montant (XAF)</label>
-          <input id="txAmount" type="number" step="100" placeholder="Ex: 5000" />
-          <button id="addTxBtn" class="btn btn-primary btn-full">Enregistrer l’opération</button>
-          <p id="txMessage" class="message"></p>
-        </section>
+      <hr />
 
-        <section class="panel" id="kycPanel">
-          <h2>Vérification d’identité (KYC)</h2>
-          <label>Type de document</label>
-          <select id="kycDocType">
-            <option value="cni">Carte Nationale d’Identité</option>
-            <option value="passport">Passeport</option>
-            <option value="permis">Permis de conduire</option>
-          </select>
+      <!-- Opération interne -->
+      <section class="panel">
+        <h2>Nouvelle opération interne</h2>
 
-          <label>Document d’identité (photo / scan)</label>
-          <input id="kycDocFile" type="file" accept="image/*,.pdf" />
+        <label>Libellé</label>
+        <select id="txLabel">
+          <option value="Cash-in mobile money">Cash-in mobile money</option>
+          <option value="Virement interne">Virement interne</option>
+          <option value="Paiement marchand">Paiement marchand</option>
+        </select>
 
-          <label>Selfie de vérification</label>
-          <input id="kycSelfieFile" type="file" accept="image/*" />
+        <label>Montant (XAF)</label>
+        <input id="txAmount" type="number" placeholder="Ex: 5000" />
 
-          <button id="sendKycBtn" class="btn btn-outline btn-full">Envoyer mon dossier KYC</button>
-          <p id="kycMessage" class="message"></p>
-        </section>
-      </div>
+        <button id="saveTxBtn" class="btn btn-primary">Enregistrer l’opération</button>
+        <p id="txMessage" class="message"></p>
+      </section>
 
+      <!-- KYC -->
+      <section class="panel" id="kycPanel">
+        <h2>Vérification d’identité (KYC)</h2>
 
+        <label>Type de document</label>
+        <select id="kycDocType">
+          <option value="cni">Carte Nationale d’Identité</option>
+          <option value="passport">Passeport</option>
+          <option value="permis">Permis de conduire</option>
+        </select>
+
+        <label>Document d’identité (photo / scan)</label>
+        <input id="kycDocFile" type="file" accept="image/*" />
+
+        <label>Selfie de vérification</label>
+        <input id="kycSelfieFile" type="file" accept="image/*" />
+
+        <button id="sendKycBtn" class="btn btn-primary">Envoyer</button>
+        <p id="kycMessage" class="message"></p>
+      </section>
+
+      <!-- Carte virtuelle -->
       <section class="panel">
         <h2>Carte virtuelle</h2>
         <div id="virtualCardBox" class="virtual-card-box">
           <p class="muted small">Aucune carte virtuelle créée pour l’instant.</p>
         </div>
-        <div class="row gap" style="margin-top: .8rem;">
+
+        <div class="row" style="margin-top:.8rem;">
           <button id="createVirtualCardBtn" class="btn btn-primary">Générer une carte</button>
           <button id="toggleVirtualCardStatusBtn" class="btn btn-outline">Geler / Dégeler</button>
         </div>
+
         <p id="virtualCardMessage" class="message"></p>
       </section>
 
       <section class="panel">
         <h2>Historique des opérations</h2>
-        <div id="txHistory" class="tx-history empty">
-          <p class="muted small">Aucune opération pour l’instant.</p>
-        </div>
+        <div id="historyList" class="history"></div>
       </section>
+
     </section>
+
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine — version pilote.
-  </footer>
+  <script src="firebase-config.js"></script>
+  <script src="app.js" defer></script>
+
 </body>
 </html>
