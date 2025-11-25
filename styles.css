@@ -34,20 +34,16 @@
   padding: 0;
 }
 
-/* FIX GLOBAL PAGE BLANCHE */
-html, body {
-  min-height: 100%;
-  height: auto !important;
-  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
-  overflow-x: hidden;
+html,
+body {
+  height: 100%;
 }
 
 body {
   font-family: var(--font-main);
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  display: flex;
-  flex-direction: column;
 }
 
 /* =========================
@@ -62,13 +58,11 @@ body.app {
 }
 
 main {
-  width: 100%;
-  flex-grow: 1; 
+  flex: 1 0 auto;
 }
 
-/* Footer toujours collé */
 .footer {
-  margin-top: auto;
+  flex-shrink: 0;
   padding: 1.3rem 1.5rem 1.6rem;
   text-align: center;
   font-size: .8rem;
@@ -84,23 +78,35 @@ main {
 .topbar {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.4rem 1.5rem 0.5rem;
+  padding: .9rem 1.5rem 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  gap: 1.2rem;
 }
 
 .logo {
   font-weight: 700;
   font-size: 1.05rem;
-  line-height: 1.2;
 }
 
+body.landing .logo {
+  position: relative;
+  font-size: 0;
+}
+
+body.landing .logo::before {
+  content: "Banque\A Digitale\A Africaine";
+  white-space: pre;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Navigation */
 .nav {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: .9rem;
-  justify-content: flex-end;
 }
 
 .nav a {
@@ -109,8 +115,65 @@ main {
   text-decoration: none;
 }
 
+.nav a:hover {
+  color: #f9fafb;
+}
+
 /* =========================
-   BOUTONS
+   TOPBAR LANDING
+   ========================= */
+
+body.landing .topbar {
+  align-items: flex-start;
+}
+
+body.landing .nav {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .9rem;
+}
+
+body.landing .nav a:not(.btn) {
+  font-size: .92rem;
+}
+
+body.landing .nav .btn.btn-outline {
+  padding-inline: 1.4rem;
+}
+
+body.landing .nav .btn.btn-primary {
+  flex-basis: 100%;
+  max-width: 260px;
+  margin-top: .3rem;
+}
+
+/* =========================
+   TOPBAR APP
+   ========================= */
+
+body.app .topbar {
+  max-width: 1120px;
+  padding: .9rem 1.5rem;
+  align-items: center;
+}
+
+body.app .nav {
+  margin-left: auto;
+  gap: 1rem;
+}
+
+body.app .nav a {
+  font-size: .9rem;
+}
+
+body.app .nav .btn {
+  padding-inline: 1.2rem;
+}
+
+/* =========================
+   BUTTONS
    ========================= */
 
 .btn {
@@ -119,11 +182,14 @@ main {
   font-size: .9rem;
   font-weight: 500;
   border: 1px solid transparent;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform .08s ease, box-shadow .12s ease, background .15s ease,
+    border-color .15s ease, color .15s ease;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -132,34 +198,46 @@ main {
   box-shadow: 0 12px 30px rgba(37,99,235,0.7);
 }
 
+.btn-primary:hover {
+  background: linear-gradient(135deg,#1d4ed8,#1d4ed8);
+  transform: translateY(-1px);
+}
+
 .btn-outline {
   background: transparent;
   color: #e5e7eb;
-  border: 1px solid rgba(148,163,184,0.5);
+  border-color: rgba(148,163,184,0.5);
 }
 
+.btn-outline:hover {
+  border-color: rgba(248,250,252,0.9);
+  background: rgba(15,23,42,0.8);
+}
+
+.btn-full { width: 100%; }
+
 /* =========================
-   HERO
+   HERO HOME
    ========================= */
 
 .hero {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.4rem 1.5rem 2.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.8rem;
+  grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+  gap: 1.6rem;
 }
 
 .hero-text h1 {
-  font-size: 2.2rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-bottom: .9rem;
 }
 
 .hero-text p {
   color: var(--muted);
-  margin-bottom: .7rem;
+  max-width: 32rem;
 }
 
 .hero-actions {
@@ -169,28 +247,123 @@ main {
   flex-wrap: wrap;
 }
 
+.hero-note {
+  font-size: .8rem;
+  color: var(--muted);
+}
+
 .hero-card {
   background: radial-gradient(circle at top,#1d4ed8,#020617 75%);
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   padding: 1.4rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(148,163,184,0.4);
 }
 
+.card-balance {
+  background: rgba(15,23,42,0.7);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.card-label {
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.card-amount {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: .3rem 0 .15rem;
+}
+
+.card-sub {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.card-items {
+  display: grid;
+  gap: .6rem;
+}
+
+.card-item {
+  background: rgba(15,23,42,0.8);
+  border-radius: 14px;
+  padding: .7rem .9rem;
+  border: 1px solid rgba(148,163,184,0.3);
+}
+
 /* =========================
-   SECTION STANDARD
+   SECTIONS
    ========================= */
 
 .section {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 2.5rem;
+  padding: 0 1.5rem 2.5rem;
 }
 
 .section-alt {
-  background: radial-gradient(circle at top,#020617,#020617 70%,#000 95%);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 80%);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 1.2rem;
+}
+
+.feature {
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.feature h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.feature p {
+  font-size: .86rem;
+  color: var(--muted);
+}
+
+/* =========================
+   KYC SECTION
+   ========================= */
+
+.kyc-card {
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.list {
+  padding-left: 1.1rem;
+  font-size: .86rem;
+  color: var(--muted);
+}
+
+.list.small {
+  font-size: .8rem;
 }
 
 /* =========================
@@ -198,28 +371,20 @@ main {
    ========================= */
 
 @media (max-width: 900px) {
-
   .hero {
     grid-template-columns: 1fr;
   }
-
-  /* carte de solde EN HAUT comme avant */
-  .hero-card {
-    order: -1;
-  }
+  .hero-card{ order:-1 }
 }
 
 @media (max-width: 640px) {
-
-  .topbar {
-    padding: 1.2rem 1rem 0.5rem;
+  body.landing .topbar {
+    flex-direction: row;
   }
-
-  .hero {
-    padding: 1rem;
-  }
-
   .hero-text h1 {
     font-size: 1.7rem;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
 }
