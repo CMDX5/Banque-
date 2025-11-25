@@ -238,3 +238,21 @@ body.landing {
   font-size: 0.85rem;
   color: var(--muted);
 }
+/* --- Corrige la grosse page blanche en bas --- */
+
+/* S'assure que toute la page a le fond sombre */
+html {
+  background: #020617;
+}
+
+/* Page application (app.html) pleine hauteur écran */
+body.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Le contenu prend la place, le footer reste en bas */
+.app-layout {
+  flex: 1;
+}
