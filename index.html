@@ -4,22 +4,26 @@
   <meta charset="UTF-8" />
   <title>Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Chemin corrigé pour GitHub Pages -->
-  <link rel="stylesheet" href="Banque-/styles.css">
+
+  <!-- CSS chargé depuis ton vrai dossier Banque- -->
+  <link rel="stylesheet" href="https://cmdx5.github.io/Banque-/styles.css">
 </head>
+
 <body class="landing">
+
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
       <a href="#features">Fonctionnalités</a>
       <a href="#kyc">Sécurité & KYC</a>
-      <a href="app.html" class="btn btn-outline">Se connecter</a>
-      <a href="app.html" class="btn btn-primary">Créer un compte</a>
+
+      <!-- Liens corrigés vers ton APP -->
+      <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-outline">Se connecter</a>
+      <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-primary">Créer un compte</a>
     </nav>
   </header>
 
-  <!-- … ici reste ton contenu existant (sections, hero, etc. tel que tu l’avais) … -->
-
+  <!-- SECTION KYC FIXÉE -->
   <section id="kyc" class="section">
     <div class="section-inner">
       <div class="kyc-text">
@@ -28,27 +32,33 @@
           Dès l'ouverture du compte, nous collectons les informations nécessaires
           pour rester conformes aux exigences KYC (Know Your Customer).
         </p>
+
         <ul class="list">
-          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none/pending/approved</strong>.</li>
-          <li>Collecte de document d'identité + selfie de manière sécurisée.</li>
-          <li>Suivi de l'état KYC, prêt pour un back-office conformité.</li>
+          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none / pending / approved</strong>.</li>
+          <li>Collecte sécurisée du document d'identité + selfie.</li>
+          <li>Suivi d'état KYC, prêt pour un back-office conformité.</li>
         </ul>
       </div>
+
       <div class="kyc-card">
         <h3>Exemple de dossier KYC</h3>
         <ul class="list small">
           <li>Type de document : Passeport</li>
-          <li>Fichiers stockés : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
-          <li>Statut : <strong>pending</strong> (en attente de validation)</li>
-          <li>Assignation future : analyste conformité / partenaire bancaire</li>
+          <li>Stockage : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
+          <li>Statut : <strong>pending</strong></li>
+          <li>Assignation future : analyste conformité</li>
         </ul>
-        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
+
+        <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-primary btn-full">
+          Commencer mon KYC
+        </a>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine &mdash; Pilote technique, prêt pour l'industrialisation.</p>
+    <p>&copy; 2025 Banque Digitale Africaine — Pilote technique.</p>
   </footer>
+
 </body>
 </html>
