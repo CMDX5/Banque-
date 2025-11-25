@@ -34,16 +34,20 @@
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
+/* FIX GLOBAL PAGE BLANCHE */
+html, body {
+  min-height: 100%;
+  height: auto !important;
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-main);
-  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
@@ -58,11 +62,13 @@ body.app {
 }
 
 main {
-  flex: 1 0 auto;
+  width: 100%;
+  flex-grow: 1; 
 }
 
+/* Footer toujours collé */
 .footer {
-  flex-shrink: 0;
+  margin-top: auto;
   padding: 1.3rem 1.5rem 1.6rem;
   text-align: center;
   font-size: .8rem;
@@ -78,108 +84,29 @@ main {
 .topbar {
   max-width: 1120px;
   margin: 0 auto;
-  padding: .9rem 1.5rem 0;
+  padding: 1.4rem 1.5rem 0.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 1.2rem;
 }
 
-/* Logo horizontal par défaut (app.html) */
 .logo {
   font-weight: 700;
   font-size: 1.05rem;
+  line-height: 1.2;
 }
-
-/* Logo vertical spécialement pour la landing (3 lignes) */
-body.landing .logo {
-  position: relative;
-  font-size: 0; /* on masque le texte original visuellement */
-}
-
-body.landing .logo::before {
-  content: "Banque\A Digitale\A Africaine";
-  white-space: pre;
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-/* Navigation générique */
 
 .nav {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: .9rem;
+  justify-content: flex-end;
 }
 
 .nav a {
   font-size: .9rem;
   color: var(--muted);
   text-decoration: none;
-}
-
-.nav a:hover {
-  color: #f9fafb;
-}
-
-/* =========================
-   TOPBAR – VARIANTE LANDING
-   ========================= */
-
-body.landing .topbar {
-  align-items: flex-start;
-}
-
-/* nav qui se place à droite et s’adapte sur mobile */
-body.landing .nav {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: .9rem;
-}
-
-/* liens simples (Fonctionnalités / Sécurité & KYC) */
-body.landing .nav a:not(.btn) {
-  font-size: .92rem;
-}
-
-/* bouton Se connecter */
-body.landing .nav .btn.btn-outline {
-  padding-inline: 1.4rem;
-}
-
-/* bouton Créer un compte : prend toute la ligne sur mobile */
-body.landing .nav .btn.btn-primary {
-  flex-basis: 100%;
-  max-width: 260px;
-  margin-top: .3rem;
-}
-
-/* =========================
-   TOPBAR – VARIANTE APP
-   (Connexion + Dashboard)
-   ========================= */
-
-body.app .topbar {
-  max-width: 1120px;
-  padding: .9rem 1.5rem;
-  align-items: center;
-}
-
-body.app .nav {
-  margin-left: auto;
-  gap: 1rem;
-}
-
-/* le lien “Accueil” en haut à droite */
-body.app .nav a {
-  font-size: .9rem;
-}
-
-/* bouton Déconnexion dans app.html */
-body.app .nav .btn {
-  padding-inline: 1.2rem;
 }
 
 /* =========================
@@ -192,14 +119,11 @@ body.app .nav .btn {
   font-size: .9rem;
   font-weight: 500;
   border: 1px solid transparent;
-  cursor: pointer;
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-decoration: none;
-  transition: transform .08s ease, box-shadow .12s ease, background .15s ease,
-    border-color .15s ease, color .15s ease;
-  white-space: nowrap;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -208,65 +132,34 @@ body.app .nav .btn {
   box-shadow: 0 12px 30px rgba(37,99,235,0.7);
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg,#1d4ed8,#1d4ed8);
-  transform: translateY(-1px);
-}
-
 .btn-outline {
   background: transparent;
   color: #e5e7eb;
-  border-color: rgba(148,163,184,0.5);
-}
-
-.btn-outline:hover {
-  border-color: rgba(248,250,252,0.9);
-  background: rgba(15,23,42,0.8);
-}
-
-.btn-full {
-  width: 100%;
-}
-
-/* petit bouton oeil mot de passe */
-
-.password-wrapper {
-  position: relative;
-}
-
-.btn-eye {
-  position: absolute;
-  right: .6rem;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1.1rem;
+  border: 1px solid rgba(148,163,184,0.5);
 }
 
 /* =========================
-   HERO – PAGE D’ACCUEIL
+   HERO
    ========================= */
 
 .hero {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.4rem 1.5rem 2.5rem;
+  padding: 1.5rem;
   display: grid;
-  grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
-  gap: 1.6rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
 }
 
 .hero-text h1 {
-  font-size: 2.1rem;
-  line-height: 1.15;
-  margin-bottom: .9rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
 .hero-text p {
   color: var(--muted);
-  max-width: 32rem;
+  margin-bottom: .7rem;
 }
 
 .hero-actions {
@@ -276,366 +169,28 @@ body.app .nav .btn {
   flex-wrap: wrap;
 }
 
-.hero-note {
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-/* Hero card de droite */
-
 .hero-card {
   background: radial-gradient(circle at top,#1d4ed8,#020617 75%);
-  border-radius: var(--radius-lg);
+  border-radius: 22px;
   padding: 1.4rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(148,163,184,0.4);
 }
 
-.card-balance {
-  background: rgba(15,23,42,0.7);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  margin-bottom: 1rem;
-}
-
-.card-label {
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.card-amount {
-  font-size: 1.7rem;
-  font-weight: 700;
-  margin: .3rem 0 .15rem;
-}
-
-.card-sub {
-  font-size: .75rem;
-  color: var(--muted);
-}
-
-.card-items {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: .6rem;
-}
-
-.card-item {
-  background: rgba(15,23,42,0.8);
-  border-radius: 14px;
-  padding: .7rem .9rem;
-  border: 1px solid rgba(148,163,184,0.3);
-}
-
-.card-item-title {
-  display: block;
-  font-size: .85rem;
-  font-weight: 600;
-}
-
-.card-item-text {
-  display: block;
-  font-size: .78rem;
-  color: var(--muted);
-}
-
 /* =========================
-   SECTIONS D’ACCUEIL
+   SECTION STANDARD
    ========================= */
 
 .section {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 1.5rem 2.5rem;
-}
-
-.section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1.4rem;
+  padding: 2rem 1.5rem 2.5rem;
 }
 
 .section-alt {
-  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 80%);
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 2.5rem;
-}
-
-/* Grilles génériques */
-
-.grid {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2,minmax(0,1fr));
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  gap: 1.2rem;
-}
-
-.grid.stretch > * {
-  align-self: stretch;
-}
-
-/* cartes de fonctionnalités */
-
-.feature {
-  background: var(--bg-soft);
-  border-radius: var(--radius-md);
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-}
-
-.feature h3 {
-  margin-top: 0;
-  font-size: 1rem;
-}
-
-.feature p {
-  font-size: .86rem;
-  color: var(--muted);
-}
-
-/* KYC section */
-
-.kyc-card {
-  background: var(--bg-soft);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.2rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-}
-
-.list {
-  padding-left: 1.1rem;
-  font-size: .86rem;
-  color: var(--muted);
-}
-
-.list.small {
-  font-size: .8rem;
-}
-
-/* =========================
-   FORMULAIRES (APP)
-   ========================= */
-
-.auth-panel,
-.dashboard .panel {
-  background: var(--bg-soft);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.3rem 1.3rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-}
-
-.auth-panel h1 {
-  margin-top: 0;
-  font-size: 1.3rem;
-}
-
-label {
-  font-size: .82rem;
-  color: var(--muted);
-  display: block;
-  margin-top: .8rem;
-  margin-bottom: .18rem;
-}
-
-input,
-select {
-  width: 100%;
-  padding: .55rem .65rem;
-  border-radius: 10px;
-  border: 1px solid rgba(31,41,55,0.9);
-  background: #020617;
-  color: var(--text);
-  font-size: .86rem;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(37,99,235,0.7);
-}
-
-.row {
-  display: flex;
-  align-items: center;
-}
-
-.row.gap {
-  gap: .6rem;
-  margin-top: .9rem;
-}
-
-.message {
-  margin-top: .6rem;
-  font-size: .8rem;
-  min-height: 1.2rem;
-}
-
-.muted {
-  color: var(--muted);
-}
-
-.muted.small {
-  font-size: .78rem;
-}
-
-/* =========================
-   APP LAYOUT & DASHBOARD
-   ========================= */
-
-.app-layout {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 1.5rem 2.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-/* bloc login + dashboard */
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 1.2rem;
-}
-
-.balance-card {
-  background: radial-gradient(circle at top,var(--accent),#020617 75%);
-  border-radius: 18px;
-  padding: .7rem 1rem;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(129,140,248,0.6);
-}
-
-.balance-card .label {
-  font-size: .75rem;
-  color: var(--muted);
-}
-
-.balance-card .amount {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: .1rem .6rem;
-  border-radius: 999px;
-  font-size: .72rem;
-  border: 1px solid transparent;
-  margin-left: .3rem;
-}
-
-.badge-kyc {
-  background: rgba(148,163,184,0.1);
-  border-color: rgba(148,163,184,0.5);
-}
-
-/* Historique transactions */
-
-.tx-history {
-  font-size: .82rem;
-  border-radius: 12px;
-  border: 1px dashed rgba(55,65,81,0.7);
-  padding: .8rem;
-  max-height: 260px;
-  overflow-y: auto;
-}
-
-.tx-history .tx-item {
-  display: flex;
-  justify-content: space-between;
-  padding: .35rem .1rem;
-}
-
-.tx-history .tx-label {
-  color: var(--muted);
-}
-
-.tx-history .tx-amount {
-  font-weight: 600;
-}
-
-.tx-history .tx-amount.pos {
-  color: var(--success);
-}
-
-.tx-history .tx-amount.neg {
-  color: var(--danger);
-}
-
-.tx-history .tx-date {
-  font-size: .7rem;
-  color: var(--muted);
-}
-
-/* Carte virtuelle */
-
-.virtual-card-box {
-  margin-top: .6rem;
-}
-
-.virtual-card {
-  border-radius: 18px;
-  padding: 1rem 1.2rem;
-  background: radial-gradient(circle at top left,#1d4ed8,#020617 70%);
-  border: 1px solid rgba(129,140,248,0.6);
-  box-shadow: var(--shadow-card);
-  font-size: .86rem;
-}
-
-.virtual-card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.virtual-card-brand {
-  font-size: .78rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: rgba(191,219,254,0.95);
-}
-
-.virtual-card-holder {
-  margin-top: .15rem;
-  font-size: .9rem;
-}
-
-.virtual-card-pan {
-  margin-top: .9rem;
-  font-size: 1.1rem;
-  letter-spacing: .22em;
-}
-
-.virtual-card-status {
-  padding: .15rem .65rem;
-  border-radius: 999px;
-  font-size: .72rem;
-}
-
-.virtual-card-status.active {
-  background: rgba(22,163,74,0.18);
-  color: #bbf7d0;
-}
-
-.virtual-card-status.frozen {
-  background: rgba(239,68,68,0.18);
-  color: #fecaca;
+  background: radial-gradient(circle at top,#020617,#020617 70%,#000 95%);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 /* =========================
@@ -643,49 +198,28 @@ select:focus {
    ========================= */
 
 @media (max-width: 900px) {
+
   .hero {
     grid-template-columns: 1fr;
   }
 
+  /* carte de solde EN HAUT comme avant */
   .hero-card {
     order: -1;
-  }
-
-  .topbar {
-    padding-top: 1rem;
   }
 }
 
 @media (max-width: 640px) {
-  body.landing .topbar {
-    flex-direction: row;
+
+  .topbar {
+    padding: 1.2rem 1rem 0.5rem;
   }
 
-  body.landing .logo::before {
-    font-size: 1rem;
-  }
-
-  body.landing .nav {
-    justify-content: flex-end;
+  .hero {
+    padding: 1rem;
   }
 
   .hero-text h1 {
     font-size: 1.7rem;
-  }
-
-  .section {
-    padding-inline: 1.1rem;
-  }
-
-  .app-layout {
-    padding-inline: 1.1rem;
-  }
-
-  .dashboard-header {
-    flex-direction: column;
-  }
-
-  .grid-2 {
-    grid-template-columns: 1fr;
   }
 }
