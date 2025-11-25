@@ -94,7 +94,7 @@ main {
 /* Logo vertical spécialement pour la landing (3 lignes) */
 body.landing .logo {
   position: relative;
-  font-size: 0; /* on masque le texte original visuellement */
+  font-size: 0; /* masque le texte original visuellement */
 }
 
 body.landing .logo::before {
@@ -641,8 +641,9 @@ select:focus {
     grid-template-columns: 1fr;
   }
 
+  /* ⬇️ la carte reste SOUS le texte sur mobile */
   .hero-card {
-    order: -1;
+    margin-top: 1.4rem;
   }
 
   .topbar {
