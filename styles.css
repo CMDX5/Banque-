@@ -1,6 +1,3 @@
-/* ============================
-   VARIABLES & RESET
-============================ */
 :root {
   --bg: #020617;
   --bg-soft: #0b1220;
@@ -24,15 +21,16 @@ html, body {
 }
 
 body {
-  background: radial-gradient(circle at top left,#1e293b,#020617 60%);
+  background: radial-gradient(circle at top left, #1e293b, #020617 60%);
   color: var(--text);
   font-family: system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
 /* ============================
-   TOPBAR (sans logo)
+   TOPBAR (original + fixes)
 ============================ */
+
 .topbar {
   width: 100%;
   padding: 1rem;
@@ -48,9 +46,10 @@ body {
   font-weight: 600;
 }
 
-/* supprime le logo rond */
+/* supprime définitivement le logo rond */
 .logo::before {
   display: none !important;
+  content: none !important;
 }
 
 .nav {
@@ -69,8 +68,9 @@ body {
 }
 
 /* ============================
-   LAYOUT
+   LAYOUT PRINCIPAL
 ============================ */
+
 main, .app-layout {
   width: 100%;
   max-width: 1100px;
@@ -78,9 +78,6 @@ main, .app-layout {
   padding: 1.5rem;
 }
 
-/* ============================
-   PANELS
-============================ */
 .panel,
 .auth-panel,
 .dashboard .panel {
@@ -93,37 +90,138 @@ main, .app-layout {
 }
 
 /* ============================
-   FORMULAIRE (connexion)
+   SECTION HERO
 ============================ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 2.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.hero-text p {
+  max-width: 420px;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero-card {
+  background: var(--bg-soft);
+  padding: 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: var(--shadow);
+}
+
+.card-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.card-amount {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card-items {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* ============================
+   SECTIONS
+============================ */
+
+.section {
+  margin-top: 3rem;
+}
+
+.section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.feature,
+.kyc-card {
+  background: var(--bg-panel);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: var(--shadow);
+}
+
+.list {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  color: var(--muted);
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+.footer {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ============================
+   CONNECT (CONNEXION)
+============================ */
+
 #authPanel {
   max-width: 420px;
-  margin: 2rem auto 3rem;
+  margin: 2rem auto;
 }
 
 #authPanel label {
-  font-size: 0.88rem;
-  color: var(--muted);
-  margin-bottom: 0.25rem;
   display: block;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
 }
 
 #authPanel input {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.8rem;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
   background: #0b1220;
+  border: 1px solid rgba(255,255,255,0.08);
   color: var(--text);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
 }
 
-/* Champ mot de passe */
 .password-wrapper {
   position: relative;
 }
 
 .password-wrapper input {
-  padding-right: 2.5rem;
+  padding-right: 2.4rem;
 }
 
 .btn-eye {
@@ -137,26 +235,29 @@ main, .app-layout {
   font-size: 1.2rem;
 }
 
-/* Boutons */
+#authPanel .row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* ============================
+   BOUTONS (ORIGINAUX)
+============================ */
+
 .btn,
 .btn-outline {
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.9rem;
   border-radius: 12px;
-  margin-top: 0.6rem;
   text-align: center;
   cursor: pointer;
-  font-size: 1rem;
 }
 
 .btn {
   background: var(--accent);
   border: none;
-  color: #fff;
-}
-
-.btn:hover {
-  background: var(--accent-strong);
+  color: white;
 }
 
 .btn-outline {
@@ -165,111 +266,57 @@ main, .app-layout {
   color: var(--accent);
 }
 
-.btn-outline:hover {
-  background: rgba(59,130,246,0.1);
-}
-
-/* place les boutons l'un sous l'autre */
-#authPanel .row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
 /* ============================
-   DASHBOARD
+   RESPONSIVE (fixes)
 ============================ */
-.app-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
 
-.balance-card {
-  background: #0b1220;
-  padding: 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.07);
-}
-
-.badge-kyc {
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
-  background: rgba(59,130,246,0.2);
-  color: var(--accent);
-}
-
-/* ============================
-   RESPONSIVE
-============================ */
-@media (min-width: 800px) {
-  .app-layout {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .grid {
+/* corrige débordement */
+@media (max-width: 860px) {
+  .hero,
+  .grid,
+  .grid-2 {
     grid-template-columns: 1fr !important;
   }
 
-  #authPanel {
-    margin-top: 1rem;
+  .hero-card {
+    margin-top: 1.5rem;
+  }
+}
+
+/* corrige affichage topbar mobile */
+@media (max-width: 480px) {
+  .topbar {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+
+  .logo {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.7rem;
   }
 }
 
 /* ============================
-   FOOTER FIX (pas de page blanche)
+   FIX PAGE BLANCHE EN BAS
 ============================ */
-body.landing {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+
+body.landing,
+body.app {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+main {
+  flex: 1 0 auto !important;
 }
 
 .footer {
-  margin-top: auto;
-  padding: 1rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-/* --- Corrige la grosse page blanche en bas --- */
-
-/* S'assure que toute la page a le fond sombre */
-html {
-  background: #020617;
-}
-
-/* Page application (app.html) pleine hauteur écran */
-body.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Le contenu prend la place, le footer reste en bas */
-.app-layout {
-  flex: 1;
-}
-/* Meilleure barre du haut sur mobile */
-@media (max-width: 480px) {
-  .topbar {
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-  }
-
-  .logo {
-    font-size: 1rem;
-    white-space: nowrap;     /* Garde "Banque Digitale Africaine" sur une seule ligne */
-  }
-
-  .nav {
-    gap: 0.6rem;
-    font-size: 0.9rem;
-  }
+  margin-top: auto !important;
 }
