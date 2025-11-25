@@ -5,8 +5,134 @@
   <title>Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- CSS chargé depuis ton vrai dossier Banque- -->
-  <link rel="stylesheet" href="https://cmdx5.github.io/Banque-/styles.css">
+  <!-- Style minimum directement dans la page pour ne plus avoir du noir & blanc -->
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --primary: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body.landing {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      font-weight: 600;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline {
+      border-color: #d1d5db;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .section {
+      padding: 2.5rem 1.25rem;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .kyc-card, .kyc-text {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    }
+
+    .kyc-card h3 {
+      margin-top: 0;
+    }
+
+    .list {
+      padding-left: 1.1rem;
+    }
+
+    .list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .list.small {
+      font-size: 0.9rem;
+    }
+
+    .btn-full {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-inner {
+        grid-template-columns: 1.4fr 1fr;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <!-- Et on charge EN PLUS ton CSS complet du projet Banque- -->
+  <link rel="stylesheet" href="https://cmdx5.github.io/Banque-/styles.css" />
 </head>
 
 <body class="landing">
@@ -16,14 +142,11 @@
     <nav class="nav">
       <a href="#features">Fonctionnalités</a>
       <a href="#kyc">Sécurité & KYC</a>
-
-      <!-- Liens corrigés vers ton APP -->
       <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-outline">Se connecter</a>
       <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-primary">Créer un compte</a>
     </nav>
   </header>
 
-  <!-- SECTION KYC FIXÉE -->
   <section id="kyc" class="section">
     <div class="section-inner">
       <div class="kyc-text">
@@ -32,11 +155,10 @@
           Dès l'ouverture du compte, nous collectons les informations nécessaires
           pour rester conformes aux exigences KYC (Know Your Customer).
         </p>
-
         <ul class="list">
           <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none / pending / approved</strong>.</li>
-          <li>Collecte sécurisée du document d'identité + selfie.</li>
-          <li>Suivi d'état KYC, prêt pour un back-office conformité.</li>
+          <li>Collecte de document d'identité + selfie de manière sécurisée.</li>
+          <li>Suivi de l'état KYC, prêt pour un back-office conformité.</li>
         </ul>
       </div>
 
@@ -44,11 +166,10 @@
         <h3>Exemple de dossier KYC</h3>
         <ul class="list small">
           <li>Type de document : Passeport</li>
-          <li>Stockage : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
-          <li>Statut : <strong>pending</strong></li>
-          <li>Assignation future : analyste conformité</li>
+          <li>Fichiers stockés : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
+          <li>Statut : <strong>pending</strong> (en attente de validation)</li>
+          <li>Assignation future : analyste conformité / partenaire bancaire</li>
         </ul>
-
         <a href="https://cmdx5.github.io/Banque-/app.html" class="btn btn-primary btn-full">
           Commencer mon KYC
         </a>
@@ -57,7 +178,7 @@
   </section>
 
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine — Pilote technique.</p>
+    <p>&copy; 2025 Banque Digitale Africaine — Pilote technique, prêt pour l'industrialisation.</p>
   </footer>
 
 </body>
