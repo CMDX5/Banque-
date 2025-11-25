@@ -503,3 +503,7 @@ label {
   width: 100%;
   justify-content: center;
 }
+/* Enlever le logo rond à gauche */
+.logo::before {
+  display: none !important;
+}
