@@ -4,8 +4,17 @@
   <meta charset="UTF-8" />
   <title>Application - Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Chemin corrigé pour GitHub Pages -->
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="firebase-config.js"></script>
+
+  <!-- Firebase (CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+  <!-- Fichiers de ton projet à la racine -->
+  <script src="firebase-config.js"></script>
   <script defer src="app.js"></script>
 </head>
 
@@ -19,18 +28,20 @@
   </header>
 
   <main class="app-layout">
-    <!-- SECTION CONNEXION -->
+    <!-- PANEL CONNEXION -->
     <section class="auth-panel" id="authPanel">
       <h1>Connexion / Création de compte</h1>
       <p class="muted">Crée ton compte pour accéder à ton tableau de bord.</p>
 
-      <label for="emailInput">Email</label>
+      <label>Email</label>
       <input id="emailInput" type="email" placeholder="ex: toi@mail.com" />
 
-      <label for="passwordInput">Mot de passe</label>
+      <label>Mot de passe</label>
       <div class="password-wrapper">
         <input id="passwordInput" type="password" placeholder="Minimum 6 caractères" />
-        <button type="button" id="togglePassword" class="btn-eye">👁</button>
+        <button type="button" id="togglePassword" class="btn-eye" aria-label="Afficher ou masquer le mot de passe">
+          👁
+        </button>
       </div>
 
       <div class="row gap">
@@ -41,17 +52,21 @@
       <p id="authMessage" class="message"></p>
     </section>
 
-    <!-- SECTION TABLEAU DE BORD -->
+    <!-- DASHBOARD -->
     <section class="dashboard" id="dashboard" style="display:none;">
       <div class="dashboard-header">
         <div>
           <h1>Tableau de bord</h1>
-          <p class="muted">Bienvenue, <span id="userEmail"></span></p>
           <p class="muted">
-            Rôle : <span id="userRole">client</span> — Statut KYC :
+            Bienvenue, <span id="userEmail"></span>
+          </p>
+          <p class="muted">
+            Rôle : <span id="userRole">client</span> &mdash;
+            Statut KYC :
             <span id="userKycStatus" class="badge badge-kyc">none</span>
           </p>
         </div>
+
         <div class="balance-card">
           <span class="label">Solde principal</span>
           <span class="amount"><span id="walletBalance">0</span> XAF</span>
@@ -59,13 +74,16 @@
       </div>
 
       <div class="grid grid-2 stretch">
+        <!-- Nouvelle opération interne -->
         <section class="panel">
           <h2>Nouvelle opération interne</h2>
+
           <label>Libellé</label>
           <select id="txLabel">
-            <option value="cashin">Cash-in mobile money</option>
-            <option value="virement">Virement interne</option>
-            <option value="paiement">Paiement marchand</option>
+            <option value="">-- Sélectionne un libellé --</option>
+            <option value="Cash-in mobile money">Cash-in mobile money</option>
+            <option value="Virement interne">Virement interne</option>
+            <option value="Paiement marchand">Paiement marchand</option>
           </select>
 
           <label>Montant (XAF)</label>
@@ -75,8 +93,10 @@
           <p id="txMessage" class="message"></p>
         </section>
 
+        <!-- KYC -->
         <section class="panel" id="kycPanel">
           <h2>Vérification d’identité (KYC)</h2>
+
           <label>Type de document</label>
           <select id="kycDocType">
             <option value="cni">Carte Nationale d’Identité</option>
@@ -95,6 +115,22 @@
         </section>
       </div>
 
+      <!-- Carte virtuelle -->
+      <section class="panel">
+        <h2>Carte virtuelle</h2>
+        <div id="virtualCardBox" class="virtual-card-box">
+          <p class="muted small">Aucune carte virtuelle créée pour l’instant.</p>
+        </div>
+
+        <div class="row gap" style="margin-top: .8rem;">
+          <button id="createVirtualCardBtn" class="btn btn-primary">Générer une carte</button>
+          <button id="toggleVirtualCardStatusBtn" class="btn btn-outline">Geler / Dégeler</button>
+        </div>
+
+        <p id="virtualCardMessage" class="message"></p>
+      </section>
+
+      <!-- Historique -->
       <section class="panel">
         <h2>Historique des opérations</h2>
         <div id="txHistory" class="tx-history empty">
