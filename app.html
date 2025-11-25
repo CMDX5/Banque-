@@ -2,8 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion – Banque Digitale Africaine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Chemin compatible GitHub Pages -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -18,7 +20,7 @@
 
   <main class="app-layout">
 
-    <!-- Connexion / Inscription -->
+    <!-- 🔵 Connexion / Création compte -->
     <section class="panel" id="authPanel">
       <h2>Connexion / Création de compte</h2>
       <p class="muted small">Crée ton compte pour accéder à ton tableau de bord.</p>
@@ -40,16 +42,17 @@
       <p id="authMessage" class="message"></p>
     </section>
 
-    <!-- Tableau de bord -->
+    <!-- 🔵 Tableau de bord -->
     <section class="panel" id="dashboardPanel" style="display:none;">
       <h2>Tableau de bord</h2>
+
       <p id="userWelcome"></p>
       <p id="userRole"></p>
       <p id="mainBalance"></p>
 
       <hr />
 
-      <!-- Opération interne -->
+      <!-- Nouvelle opération interne -->
       <section class="panel">
         <h2>Nouvelle opération interne</h2>
 
@@ -67,7 +70,7 @@
         <p id="txMessage" class="message"></p>
       </section>
 
-      <!-- KYC -->
+      <!-- 🔵 KYC -->
       <section class="panel" id="kycPanel">
         <h2>Vérification d’identité (KYC)</h2>
 
@@ -88,7 +91,7 @@
         <p id="kycMessage" class="message"></p>
       </section>
 
-      <!-- Carte virtuelle -->
+      <!-- 🔵 Carte virtuelle -->
       <section class="panel">
         <h2>Carte virtuelle</h2>
         <div id="virtualCardBox" class="virtual-card-box">
@@ -103,6 +106,7 @@
         <p id="virtualCardMessage" class="message"></p>
       </section>
 
+      <!-- 🔵 Historique -->
       <section class="panel">
         <h2>Historique des opérations</h2>
         <div id="historyList" class="history"></div>
@@ -112,8 +116,9 @@
 
   </main>
 
+  <!-- Scripts Firebase + app -->
   <script src="firebase-config.js"></script>
-  <script src="app.js" defer></script>
+  <script defer src="app.js"></script>
 
 </body>
 </html>
