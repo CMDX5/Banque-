@@ -261,3 +261,51 @@ input, select {
   .panel { padding: 1rem; }
   .row { flex-direction: column; }
 }
+/* ---------------------------------------------
+   AJUSTEMENT TAILLE FORMULAIRE MOBILE
+----------------------------------------------*/
+
+/* Réduit la largeur du formulaire */
+#authPanel {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 1.3rem;
+}
+
+/* Réduit la hauteur des champs */
+#authPanel input {
+  height: 42px;
+  font-size: 15px;
+}
+
+/* Réduit la taille du panel */
+.panel {
+  padding: 1.2rem;
+}
+
+/* Réduit l'espace entre les sections */
+.app-layout {
+  padding-top: 0.5rem;
+}
+
+/* Le formulaire ne prend plus trop de place */
+.password-wrapper input {
+  height: 42px;
+  font-size: 15px;
+}
+
+/* Boutons plus compactes */
+.btn {
+  padding: 0.65rem 1rem;
+  font-size: 15px;
+}
+
+/* Colle tout au-dessus sur petit écran */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0.8rem;
+  }
+  #authPanel {
+    margin-top: 0.5rem;
+  }
+}
