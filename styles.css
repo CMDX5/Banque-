@@ -1,150 +1,234 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
+/* Global styles for the Banque Digitale Africaine landing & app */
 
-<body>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #020617;
+  color: #ffffff;
+}
 
-  <!-- TOPBAR -->
-  <header>
-    <div class="logo">
-      Banque<br>
-      Digitale<br>
-      Africaine
-    </div>
+/* Layout Containers */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
 
-    <nav>
-      <a href="#features">Fonctionnalités</a>
-      <a href="#kyc">Sécurité & KYC</a>
-      <a href="app.html" class="btn btn-outline">Se connecter</a>
-      <a href="app.html" class="btn btn-primary">Créer un compte</a>
-    </nav>
-  </header>
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+}
 
-  <!-- HERO -->
-  <div class="hero">
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
-    <h1>La banque digitale Africaine pour tous</h1>
+.nav a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
 
-    <p>
-      Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
-      tout en restant conforme aux exigences KYC & réglementaires.
-    </p>
+.btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 
-    <div class="hero-actions">
-      <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
-      <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
-    </div>
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0px 12px 30px rgba(37, 99, 235, 0.45);
+}
 
-    <p class="hero-note">
-      Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
-    </p>
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #e2e8f0;
+  background: transparent;
+}
 
-    <!-- CARTE SOLDE -->
-    <div class="hero-card">
+/* Hero Section */
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.5rem;
+}
 
-      <div class="card-balance">
-        <div class="card-label">Solde disponible</div>
-        <div class="card-amount">1 250 000 XAF</div>
-        <div class="card-sub">Dernière opération : +75 000 XAF (Cash-in mobile money)</div>
-      </div>
+.hero-text h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
 
-      <div class="card-item">
-        <span class="card-item-title">Compte 100% en ligne</span>
-        <span class="card-item-text">Ouverture rapide et validation instantanée.</span>
-      </div>
+.hero-text p {
+  max-width: 460px;
+  color: #cbd5e1;
+}
 
-      <div class="card-item">
-        <span class="card-item-title">Carte & paiements</span>
-        <span class="card-item-text">Carte virtuelle, transferts, paiements marchands.</span>
-      </div>
+.hero-actions {
+  margin: 1.3rem 0;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
 
-      <div class="card-item">
-        <span class="card-item-title">Sécurité bancaire</span>
-        <span class="card-item-text">Chiffrement des données & conformité.</span>
-      </div>
+.hero-card {
+  background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
+  padding: 1.3rem;
+  border-radius: 20px;
+  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
 
-    </div>
-  </div>
+.card-balance {
+  background: rgba(15, 23, 42, 0.7);
+  padding: 1rem;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
 
-  <!-- FEATURES -->
-  <section id="features" class="section">
-    <h2>Ce que nous offrons dès aujourd'hui</h2>
+.card-label {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
 
-    <div class="grid">
+.card-amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
 
-      <div class="feature">
-        <h3>Compte courant numérique</h3>
-        <p>
-          Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.
-        </p>
-      </div>
+.card-sub {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
 
-      <div class="feature">
-        <h3>Wallet & sous-comptes</h3>
-        <p>
-          Créez plusieurs poches : épargne, projets, business.
-        </p>
-      </div>
+.card-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
-      <div class="feature">
-        <h3>Historique & suivi</h3>
-        <p>
-          Toutes vos opérations consultables de manière claire et structurée.
-        </p>
-      </div>
+.card-item {
+  background: rgba(15, 23, 42, 0.8);
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-      <div class="feature">
-        <h3>Infrastructure bancaire sécurisée</h3>
-        <p>
-          Authentification sécurisée, stockage crypté, conformité bancaire et traitement opérationnel.
-        </p>
-      </div>
+.card-item-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
 
-    </div>
-  </section>
+.card-item-text {
+  font-size: 0.78rem;
+  color: #a7b2c3;
+}
 
-  <!-- KYC -->
-  <section id="kyc" class="section section-alt">
-    <h2>KYC & conformité intégrés</h2>
+/* Sections */
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+}
 
-    <div class="grid">
+.section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
 
-      <div>
-        <p>
-          À l'ouverture du compte, nous collectons les informations nécessaires pour rester
-          conformes aux exigences KYC (Know Your Customer).
-        </p>
-        <ul>
-          <li>Statut KYC : none → pending → approved</li>
-          <li>Document + selfie requis</li>
-          <li>Processus sécurisé & automatisé</li>
-        </ul>
-      </div>
+.grid {
+  display: grid;
+  gap: 1.2rem;
+}
 
-      <div class="kyc-card">
-        <h3>Exemple de dossier KYC</h3>
-        <ul>
-          <li>Type de document : Passeport</li>
-          <li>Pièces fournies : document + selfie</li>
-          <li>Statut : pending (en attente de validation)</li>
-          <li>Assignation future : analyste conformité / partenaire bancaire</li>
-        </ul>
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
 
-        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
-      </div>
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
 
-    </div>
-  </section>
+.feature {
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Banque Digitale Africaine — Projet pilote.
-  </footer>
+.feature h3 {
+  font-size: 1rem;
+}
 
-</body>
-</html>
+.feature p {
+  font-size: 0.86rem;
+  color: #94a3b8;
+}
+
+/* KYC Card */
+.kyc-card {
+  background: rgba(15, 23, 42, 0.9);
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.list {
+  padding-left: 1.1rem;
+  color: #a7b2c3;
+}
+
+.list.small {
+  font-size: 0.82rem;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.6rem 1rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/************ Responsive ************/
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-card {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .grid-3, .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
