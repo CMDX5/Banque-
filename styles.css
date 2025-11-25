@@ -229,3 +229,39 @@
     </div>
 </body>
 </html>
+/* ============================================
+   FIX GLOBAL — SUPPRESSION DE LA PAGE BLANCHE
+   ============================================ */
+
+/* Le body doit occuper au minimum l'écran sans forcer PLUS */
+body.landing,
+body.app {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Le contenu s'adapte sans laisser d'espace */
+main {
+    flex: 1 0 auto !important;
+    display: block !important;
+    padding-bottom: 1rem; /* petite marge douce, pas de blanc */
+}
+
+/* Le footer colle toujours en bas */
+.footer {
+    margin-top: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+/* Empêche la création d’un espace fantôme sur mobile */
+html, body {
+    height: auto !important;
+    overflow-x: hidden;
+}
+
+/* Corrige les sections trop grandes */
+.section,
+.section-alt {
+    padding-bottom: 2rem !important;
+}
