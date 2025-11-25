@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Espace client — Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Banque Digitale Africaine — Espace client</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="firebase-config.js"></script>
+  <script defer src="app.js"></script>
 </head>
 
 <body class="app">
@@ -12,75 +14,76 @@
   <!-- TOPBAR -->
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
-
     <nav class="nav">
       <a href="index.html">Accueil</a>
-      <a href="#" id="logoutBtn" class="btn btn-outline">Déconnexion</a>
+      <button id="logout-btn" class="btn btn-outline">Déconnexion</button>
     </nav>
   </header>
 
-  <!-- CONTENU -->
-  <main class="app-layout">
-
-    <!-- PANNEAU DE CONNEXION -->
-    <section class="auth-panel" id="login-panel">
+  <main>
+    <!-- AUTH PANEL -->
+    <section id="auth-section" class="auth-panel" style="display: none;">
       <h1>Connexion</h1>
+      <p class="muted small">Accédez à votre espace sécurisé.</p>
 
       <label>Adresse e-mail</label>
-      <input type="email" id="email" placeholder="ex: toi@mail.com" />
+      <input type="email" id="email">
 
       <label>Mot de passe</label>
       <div class="password-wrapper">
-        <input type="password" id="password" placeholder="Minimum 6 caractères" />
+        <input type="password" id="password">
         <button class="btn-eye" onclick="togglePassword()">👁️</button>
       </div>
 
-      <div class="row gap" style="margin-top:1rem;">
-        <button class="btn btn-primary btn-full" onclick="login()">Se connecter</button>
-        <button class="btn btn-outline btn-full" onclick="createAccount()">Créer un compte</button>
+      <div class="row gap">
+        <button id="login-btn" class="btn btn-primary">Se connecter</button>
+        <button id="register-btn" class="btn btn-outline">Créer un compte</button>
       </div>
 
-      <p class="message" id="loginMessage"></p>
+      <div id="auth-message" class="message"></div>
     </section>
 
-    <!-- TABLEAU DE BORD -->
-    <section class="dashboard" id="dashboard" style="display:none;">
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="app-layout" style="display: none;">
 
       <div class="dashboard-header">
-        <div>
-          <h2>Tableau de bord</h2>
-          <p>Bienvenue, <span id="userEmail"></span></p>
-          <p>Rôle : client — Statut KYC :
-            <span class="badge badge-kyc" id="kycStatus">none</span>
-          </p>
-        </div>
-
         <div class="balance-card">
           <div class="label">Solde principal</div>
-          <div class="amount" id="mainBalance">0 XAF</div>
+          <div id="balance" class="amount">0 XAF</div>
+        </div>
+
+        <div>
+          <p>
+            Rôle : <strong id="role">client</strong>
+            <span id="kyc-badge" class="badge badge-kyc">none</span>
+          </p>
+          <p class="muted small">Statut KYC mis à jour automatiquement.</p>
         </div>
       </div>
 
-      <!-- FORMULAIRE D’OPÉRATION -->
+      <!-- FORMULAIRE OPÉRATION -->
       <div class="panel">
         <h3>Nouvelle opération interne</h3>
 
         <label>Libellé</label>
-        <select id="txLabel">
+        <select id="op-label">
           <option value="">-- Sélectionne un libellé --</option>
-          <option value="Salaire">Salaire</option>
-          <option value="Achat">Achat</option>
-          <option value="Transfert">Transfert</option>
+          <option value="Dépôt mobile money">Dépôt mobile money</option>
+          <option value="Transfert interne">Transfert interne</option>
+          <option value="Paiement marchand">Paiement marchand</option>
         </select>
 
         <label>Montant (XAF)</label>
-        <input type="number" id="txAmount" placeholder="Ex: 5000" />
+        <input type="number" id="op-amount" placeholder="Ex: 5000">
 
-        <button class="btn btn-primary btn-full" onclick="addTransaction()">
-          Enregistrer l'opération
-        </button>
+        <button id="op-submit" class="btn btn-primary btn-full">Enregistrer l’opération</button>
+        <div id="op-message" class="message"></div>
+      </div>
 
-        <p class="message" id="txMessage"></p>
+      <!-- HISTORIQUE -->
+      <div class="panel">
+        <h3>Historique des transactions</h3>
+        <div id="tx-history" class="tx-history"></div>
       </div>
 
       <!-- KYC -->
@@ -88,34 +91,34 @@
         <h3>Vérification d’identité (KYC)</h3>
 
         <label>Type de document</label>
-        <select id="kycType">
-          <option>Carte Nationale d’Identité</option>
-          <option>Passeport</option>
+        <select id="kyc-type">
+          <option value="Carte Nationale d’Identité">Carte Nationale d’Identité</option>
+          <option value="Passeport">Passeport</option>
         </select>
 
         <label>Document d’identité (photo / scan)</label>
-        <input type="file" id="docFile" />
+        <input type="file" id="kyc-doc">
 
         <label>Selfie de vérification</label>
-        <input type="file" id="selfieFile" />
+        <input type="file" id="kyc-selfie">
 
-        <button class="btn btn-primary btn-full" onclick="submitKYC()">
-          Envoyer mon dossier KYC
-        </button>
-
-        <p class="message" id="kycMessage"></p>
+        <button id="kyc-submit" class="btn btn-primary btn-full">Envoyer mes documents</button>
+        <div id="kyc-message" class="message"></div>
       </div>
 
-      <!-- Carte virtuelle -->
-      <div class="virtual-card-box">
+      <!-- CARTE VIRTUELLE -->
+      <div class="panel virtual-card-box">
+        <h3>Carte virtuelle</h3>
         <div class="virtual-card">
           <div class="virtual-card-row">
-            <span class="virtual-card-brand">VIRTUAL CARD</span>
-            <span class="virtual-card-status active">ACTIVE</span>
+            <div class="virtual-card-brand">VIRTUAL CARD</div>
+            <div id="card-status" class="virtual-card-status active">ACTIVE</div>
           </div>
 
-          <div class="virtual-card-holder" id="cardName">Client Banque Africaine</div>
-          <div class="virtual-card-pan">4321 5678 9012 3456</div>
+          <div class="virtual-card-holder" id="card-holder">—</div>
+          <div class="virtual-card-pan" id="card-pan">0000 0000 0000 0000</div>
+
+          <button id="freeze-card-btn" class="btn btn-outline btn-full">Geler la carte</button>
         </div>
       </div>
 
@@ -123,14 +126,9 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Espace client.
   </footer>
-
-  <!-- SCRIPT -->
-  <script src="firebase-config.js"></script>
-  <script src="app.js"></script>
 
 </body>
 </html>
