@@ -4,26 +4,29 @@
   <meta charset="UTF-8" />
   <title>Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- ton CSS global -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body class="landing">
-
+  <!-- Barre du haut -->
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
       <a href="#features">Fonctionnalités</a>
-      <a href="#kyc">Sécurité & KYC</a>
+      <a href="#kyc">Sécurité &amp; KYC</a>
       <a href="app.html" class="btn btn-outline">Se connecter</a>
+      <a href="app.html" class="btn btn-primary">Créer un compte</a>
     </nav>
   </header>
 
+  <!-- Hero principal -->
   <main class="hero">
     <section class="hero-text">
       <h1>La banque digitale d'Afrique pour tous</h1>
       <p>
         Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
-        tout en restant conforme aux exigences KYC & réglementaires.
+        tout en restant conforme aux exigences KYC &amp; réglementaires.
       </p>
 
       <div class="hero-actions">
@@ -50,7 +53,7 @@
           <span class="card-item-text">Ouverture de compte sans agence, avec validation KYC.</span>
         </div>
         <div class="card-item">
-          <span class="card-item-title">Carte & paiements</span>
+          <span class="card-item-title">Carte &amp; paiements</span>
           <span class="card-item-text">Carte virtuelle, paiements marchands et transferts.</span>
         </div>
         <div class="card-item">
@@ -61,6 +64,7 @@
     </section>
   </main>
 
+  <!-- Fonctionnalités -->
   <section id="features" class="section">
     <h2>Ce que nous offrons dès aujourd'hui</h2>
 
@@ -71,30 +75,31 @@
       </article>
 
       <article class="feature">
-        <h3>Wallet & sous-comptes</h3>
+        <h3>Wallet &amp; sous-comptes</h3>
         <p>Un wallet principal + la possibilité de créer des poches dédiées : épargne, projet, business.</p>
       </article>
 
       <article class="feature">
-        <h3>Historique & suivi</h3>
+        <h3>Historique &amp; suivi</h3>
         <p>Chaque opération est enregistrée dans un journal de transactions structuré.</p>
       </article>
 
       <article class="feature">
         <h3>Infrastructure bancaire sécurisée</h3>
-        <p>Authentification sécurisée, stockage crypté, conformité et traitement opérationnel.</p>
+        <p>Authentification sécurisée, stockage crypté, conformité bancaire et traitement opérationnel.</p>
       </article>
     </div>
   </section>
 
+  <!-- KYC -->
   <section id="kyc" class="section section-alt">
-    <h2>KYC & conformité intégrés</h2>
+    <h2>KYC &amp; conformité intégrés</h2>
 
     <div class="grid grid-2">
       <div>
         <p>
-          Dès l'ouverture du compte, nous collectons les informations nécessaires pour rester conformes
-          aux exigences KYC (Know Your Customer).
+          Dès l'ouverture du compte, nous collectons les informations nécessaires
+          pour rester conformes aux exigences KYC (Know Your Customer).
         </p>
         <ul class="list">
           <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none/pending/approved</strong>.</li>
@@ -105,22 +110,20 @@
 
       <div class="kyc-card">
         <h3>Exemple de dossier KYC</h3>
-
         <ul class="list small">
           <li>Type de document : Passeport</li>
-          <li>Pièces stockées : document + selfie</li>
-          <li>Statut : <strong>pending</strong></li>
+          <li>Pièces stockées : document d'identité + selfie</li>
+          <li>Statut : <strong>pending</strong> (en attente de validation)</li>
           <li>Assignation future : analyste conformité / partenaire bancaire</li>
         </ul>
-
         <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine — Version pilote.</p>
+    <p>&copy; 2025 Banque Digitale Africaine &mdash; Version pilote.</p>
   </footer>
-
 </body>
 </html>
