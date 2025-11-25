@@ -1,509 +1,240 @@
+/* ============================
+   VARIABLES & RESET
+============================ */
 :root {
-  --bg: #060714;
-  --bg-soft: #0b0d1f;
-  --bg-softer: #101327;
+  --bg: #020617;
+  --bg-soft: #0b1220;
+  --bg-panel: #111827;
   --accent: #3b82f6;
-  --accent-soft: rgba(59,130,246,0.12);
   --accent-strong: #1d4ed8;
   --text: #f9fafb;
   --muted: #9ca3af;
-  --danger: #f97373;
-  --success: #22c55e;
-  --border-subtle: #1f2937;
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-pill: 999px;
-  --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
-  --shadow-card: 0 20px 55px rgba(15,23,42,0.9);
-  --shadow-soft-2: 0 10px 35px rgba(15,23,42,0.75);
+  --radius: 16px;
+  --shadow: 0 10px 35px rgba(0,0,0,0.45);
 }
 
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
   height: 100%;
 }
 
-/* Base */
-
 body {
-  background:
-    radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%),
-    radial-gradient(circle at top right, rgba(59,130,246,0.1), transparent 55%),
-    radial-gradient(circle at bottom left, rgba(34,197,94,0.08), transparent 60%),
-    radial-gradient(circle at bottom right, rgba(244,63,94,0.08), transparent 60%),
-    linear-gradient(135deg, #020617, #020617 35%, #020617 100%);
+  background: radial-gradient(circle at top left,#1e293b,#020617 60%);
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
 
-/* Layouts de base */
+/* ============================
+   TOPBAR (sans logo)
+============================ */
+.topbar {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15,23,42,0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
-body.landing, body.app {
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* supprime le logo rond */
+.logo::before {
+  display: none !important;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: var(--text);
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+/* ============================
+   LAYOUT
+============================ */
+main, .app-layout {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+/* ============================
+   PANELS
+============================ */
+.panel,
+.auth-panel,
+.dashboard .panel {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: var(--shadow);
+}
+
+/* ============================
+   FORMULAIRE (connexion)
+============================ */
+#authPanel {
+  max-width: 420px;
+  margin: 2rem auto 3rem;
+}
+
+#authPanel label {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+#authPanel input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0b1220;
+  color: var(--text);
+  margin-bottom: 0.7rem;
+}
+
+/* Champ mot de passe */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 2.5rem;
+}
+
+.btn-eye {
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+/* Boutons */
+.btn,
+.btn-outline {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
+  margin-top: 0.6rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+}
+
+.btn:hover {
+  background: var(--accent-strong);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: rgba(59,130,246,0.1);
+}
+
+/* place les boutons l'un sous l'autre */
+#authPanel .row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* ============================
+   DASHBOARD
+============================ */
+.app-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.balance-card {
+  background: #0b1220;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.badge-kyc {
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(59,130,246,0.2);
+  color: var(--accent);
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (min-width: 800px) {
+  .app-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #authPanel {
+    margin-top: 1rem;
+  }
+}
+
+/* ============================
+   FOOTER FIX (pas de page blanche)
+============================ */
+body.landing {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-main {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.5rem 1.5rem 3rem;
-}
-
-/* Topbar */
-
-.topbar {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.logo {
-  font-weight: 650;
-  font-size: 1.1rem;
-  letter-spacing: .02em;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-
-.logo::before {
-  content: "";
-  width: 26px;
-  height: 26px;
-  border-radius: 9px;
-  background:
-    radial-gradient(circle at 30% 20%, #a5b4fc, transparent 55%),
-    radial-gradient(circle at 70% 80%, #22c55e, transparent 55%),
-    radial-gradient(circle at 10% 90%, #38bdf8, transparent 55%),
-    #020617;
-  box-shadow:
-    0 0 0 1px rgba(148,163,184,0.7),
-    0 10px 25px rgba(0,0,0,0.7);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-}
-
-.nav a {
-  font-size: .84rem;
-  color: var(--muted);
-  text-decoration: none;
-  padding: .35rem .65rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  transition: border-color .18s ease, color .18s ease, background-color .18s ease;
-}
-
-.nav a:hover {
-  color: var(--text);
-  border-color: rgba(148,163,184,0.6);
-  background: rgba(15,23,42,0.7);
-}
-
-/* Buttons */
-
-.btn {
-  border-radius: var(--radius-pill);
-  padding: .55rem 1.1rem;
-  font-size: .82rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  color: #0b0d1f;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(37,99,235,0.4);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .35rem;
-  text-decoration: none;
-}
-
-.btn:hover {
-  filter: brightness(1.05);
-}
-
-.btn-outline {
-  background: transparent;
-  border-radius: var(--radius-pill);
-  padding: .5rem 1.1rem;
-  font-size: .78rem;
-  border: 1px solid rgba(148,163,184,0.7);
-  color: var(--muted);
-  box-shadow: none;
-}
-
-.btn-outline:hover {
-  background: rgba(15,23,42,0.85);
-  color: var(--text);
-}
-
-/* Hero */
-
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0,1.05fr) minmax(0,1.05fr);
-  gap: 2.4rem;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
-.hero-text h1 {
-  font-size: 2.3rem;
-  letter-spacing: .01em;
-  margin-bottom: .75rem;
-}
-
-.hero-text p {
-  margin: 0;
-  font-size: .96rem;
-  color: var(--muted);
-  max-width: 32rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin: 1.6rem 0 1.1rem;
-}
-
-.hero-note {
-  font-size: .8rem;
-  color: var(--muted);
-  max-width: 26rem;
-}
-
-/* Hero card */
-
-.hero-card {
-  background: radial-gradient(circle at top left, rgba(56,189,248,0.2), transparent 60%),
-              radial-gradient(circle at bottom right, rgba(34,197,94,0.28), transparent 65%),
-              #020617;
-  border-radius: var(--radius-lg);
-  padding: 1.3rem 1.3rem 1.25rem;
-  border: 1px solid rgba(148,163,184,0.35);
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-card::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background:
-    radial-gradient(circle at 10% 0%, rgba(248,250,252,0.06), transparent 50%),
-    radial-gradient(circle at 80% 100%, rgba(8,47,73,0.9), transparent 55%);
-  opacity: .9;
-  mix-blend-mode: soft-light;
-}
-
-.hero-card > * {
-  position: relative;
-}
-
-.card-balance {
-  margin-bottom: 1.2rem;
-}
-
-.card-label {
-  font-size: .75rem;
-  color: var(--muted);
-}
-
-.card-amount {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin: .3rem 0 .15rem;
-}
-
-.card-sub {
-  font-size: .78rem;
-  color: var(--muted);
-}
-
-.card-items {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: .65rem;
-}
-
-.card-item-title {
-  font-weight: 500;
-  font-size: .88rem;
-}
-
-.card-item-text {
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-/* Sections */
-
-.section {
-  max-width: 1120px;
-  margin: 0 auto 2.5rem;
-  padding: 0 1.5rem;
-}
-
-.section h2 {
-  font-size: 1.35rem;
-  margin-bottom: .8rem;
-}
-
-.section p {
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-.section-alt {
-  margin-bottom: 3rem;
-}
-
-/* Grid */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  gap: 1.3rem;
-  margin-top: 1rem;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2,minmax(0,1fr));
-}
-
-/* Feature cards */
-
-.feature {
-  background: rgba(15,23,42,0.9);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(31,41,55,0.9);
-  box-shadow: var(--shadow-soft-2);
-}
-
-.feature h3 {
-  font-size: .96rem;
-  margin-bottom: .35rem;
-}
-
-.feature p {
-  font-size: .84rem;
-}
-
-/* KYC */
-
-.kyc-card {
-  background: rgba(15,23,42,0.95);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(31,41,55,0.85);
-  box-shadow: var(--shadow-soft-2);
-}
-
-.list {
-  padding-left: 1.1rem;
-  margin-top: .8rem;
-  font-size: .86rem;
-  color: var(--muted);
-}
-
-.list li + li {
-  margin-top: .35rem;
-}
-
-.list.small {
-  font-size: .8rem;
-}
-
-.btn-full {
-  width: 100%;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-/* Footer */
-
 .footer {
   margin-top: auto;
-  padding: 1.6rem 1.2rem 1.2rem;
-  font-size: .78rem;
-  color: var(--muted);
+  padding: 1rem;
   text-align: center;
-}
-
-/* ---------------------------
-   APP (tableau de bord)
-----------------------------*/
-.app-layout {
-  display: grid;
-  grid-template-columns: minmax(0,1.05fr) minmax(0,1.35fr);
-  gap: 1.6rem;
-  margin-top: 1.3rem;
-}
-
-.auth-panel,
-.dashboard .panel {
-  background: var(--bg-soft);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.3rem 1.3rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-}
-
-.auth-panel h1 {
-  margin-top: 0;
-  font-size: 1.3rem;
-}
-
-label {
-  font-size: .8rem;
+  font-size: 0.85rem;
   color: var(--muted);
-}
-
-/* (il y a probablement d’autres règles pour .dashboard, .tx-history, etc. dans ton fichier original.
-   Elles sont conservées ici) */
-
-/* Responsive */
-
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: minmax(0,1fr);
-  }
-  .app-layout {
-    grid-template-columns: minmax(0,1fr);
-  }
-  .dashboard-header {
-    flex-direction: column;
-  }
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* ======================================================
-   AJOUTS LEGERS POUR MOT DE PASSE + MOBILE (OPTION B)
-   (Ne change pas ton design général)
-====================================================== */
-
-/* Champ mot de passe avec œil */
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-wrapper input {
-  padding-right: 2.3rem;
-}
-
-.btn-eye {
-  position: absolute;
-  right: .7rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  color: var(--muted);
-}
-
-.btn-eye:hover {
-  color: var(--text);
-}
-
-/* Ajustements légers sur mobile pour que le bloc connexion respire mieux */
-@media (max-width: 600px) {
-  #authPanel {
-    margin-top: .75rem;
-  }
-  #authPanel .panel,
-  #authPanel.panel {
-    padding: 1rem 1.1rem 1.2rem;
-  }
-}
-/* Fix overflow of feature cards on mobile */
-@media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-/* ---- Mise en page propre du bloc Connexion / Création de compte ---- */
-
-#authPanel {
-  max-width: 420px;
-  margin: 2.5rem auto 3rem;   /* centre le bloc sur la page */
-}
-
-/* Labels l'un au-dessus de l'autre */
-#authPanel label {
-  display: block;
-  margin-top: 0.9rem;
-  margin-bottom: 0.25rem;
-  font-size: 0.88rem;
-}
-
-/* Champs email + mot de passe en pleine largeur */
-#authPanel input[type="email"],
-#authPanel input[type="password"] {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-}
-
-/* Bloc mot de passe + œil */
-#authPanel .password-wrapper {
-  position: relative;
-  display: block;
-}
-
-#authPanel .password-wrapper input {
-  width: 100%;
-  padding-right: 2.4rem;  /* place pour l'œil à droite */
-}
-
-#authPanel .btn-eye {
-  position: absolute;
-  right: 0.7rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Boutons : même texte, mais bien alignés et centrés */
-#authPanel .row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 1.1rem;
-}
-
-#authPanel .btn,
-#authPanel .btn-outline {
-  width: 100%;
-  justify-content: center;
-}
-/* Enlever le logo rond à gauche */
-.logo::before {
-  display: none !important;
 }
