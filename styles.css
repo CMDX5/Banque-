@@ -213,22 +213,17 @@ body {
 }
 
 /************ Responsive ************/
-
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
   }
-  .hero-card {
-    order: -1;
-  }
-}
 
-@media (max-width: 640px) {
-  .topbar {
-    flex-wrap: wrap;
-    gap: 0.6rem;
+  /* On laisse l'ordre normal : le texte d'abord, la carte ensuite */
+  .hero-card {
+    order: 0;
   }
-  .grid-3, .grid-2 {
-    grid-template-columns: 1fr;
+
+  .topbar {
+    padding-top: 1rem;
   }
 }
