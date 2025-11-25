@@ -1,76 +1,29 @@
 /* -------------------------------------------------------
-   PALETTE ET VARIABLES
+   RESET + BASE
 --------------------------------------------------------*/
-:root {
-  --primary: #3b82f6;
-  --primary-dark: #1d4ed8;
-  --bg: #020617;
-  --bg-soft: #0f172a;
-  --muted: #9ca3af;
-  --text: #f1f5f9;
-  --radius: 12px;
-  --shadow: 0 4px 20px rgba(0,0,0,0.4);
-  --shadow-card: 0 6px 30px rgba(0,0,0,0.5);
-  --danger: #f97373;
-  --success: #22c55e;
-}
-
-/* -------------------------------------------------------
-   GLOBAL
---------------------------------------------------------*/
-html, body {
+* {
   margin: 0;
   padding: 0;
-  height: 100%;
-  min-height: 100%;
-  background: radial-gradient(circle at top left, #1e293b, #020617 60%);
-  background-color: #020617;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--text);
-  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-/* Désactiver la sélection de texte partout */
 body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Réautoriser la sélection dans les champs */
-input, select, textarea {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-body.app, body.landing {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 4rem;
-  flex: 1;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0f172a;
+  color: #fff;
+  overflow-x: hidden;
 }
 
 /* -------------------------------------------------------
    TOPBAR
 --------------------------------------------------------*/
 .topbar {
-  width: 100%;
-  padding: 1rem;
-  background: rgba(15,23,42,0.7);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #141f33;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo {
@@ -78,234 +31,159 @@ main {
   font-weight: 600;
 }
 
-.nav a {
+nav a {
+  color: #fff;
   margin-left: 1rem;
   text-decoration: none;
-  color: var(--text);
-  opacity: .8;
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
-.nav a:hover {
+nav a:hover {
   opacity: 1;
+}
+
+/* -------------------------------------------------------
+   PAGE LAYOUT
+--------------------------------------------------------*/
+.container,
+.app-layout {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  padding: 1rem;
 }
 
 /* -------------------------------------------------------
    PANELS
 --------------------------------------------------------*/
 .panel {
-  background: rgba(15,23,42,0.8);
-  padding: 1.4rem;
-  border-radius: var(--radius);
-  margin-bottom: 1.6rem;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: #16233b;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+  margin-bottom: 1rem;
 }
 
 /* -------------------------------------------------------
-   TEXT
+   TEXTES
 --------------------------------------------------------*/
-h2 {
-  margin-top: 0;
+h1, h2 {
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .muted {
-  color: var(--muted);
-}
-
-.message {
-  margin-top: .5rem;
-  font-size: .9rem;
+  color: #94a3b8;
 }
 
 /* -------------------------------------------------------
    INPUTS
 --------------------------------------------------------*/
 label {
-  font-size: .9rem;
+  font-size: 0.9rem;
+  margin-top: 0.7rem;
   display: block;
-  margin-top: .9rem;
-  margin-bottom: .25rem;
 }
 
 input, select {
   width: 100%;
-  height: 44px;
-  padding: .55rem .75rem;
+  padding: 0.75rem;
+  margin-top: 0.35rem;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: #0f172a;
-  color: var(--text);
-  font-size: 16px;
-  appearance: none;
+  border: none;
+  background: #1e2b45;
+  color: #fff;
+  font-size: 0.95rem;
 }
 
 /* -------------------------------------------------------
-   MOT DE PASSE – Bouton Œil 👁
+   MOT DE PASSE : ŒIL 👁
 --------------------------------------------------------*/
 .password-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .password-wrapper input {
-  padding-right: 2.5rem;
+  padding-right: 2.3rem;
 }
 
 .btn-eye {
   position: absolute;
-  right: .7rem;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  color: #fff;
+  opacity: 0.7;
   cursor: pointer;
-  color: var(--muted);
 }
 
 .btn-eye:hover {
-  color: var(--text);
+  opacity: 1;
 }
 
 /* -------------------------------------------------------
-   BUTTONS
+   BOUTONS
 --------------------------------------------------------*/
-.btn {
-  padding: .7rem 1.3rem;
-  border-radius: 12px;
+.btn,
+.btn-outline {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  margin-top: 0.6rem;
+  font-size: 1rem;
   cursor: pointer;
-  font-size: .95rem;
-  border: none;
+  text-align: center;
 }
 
-.btn-primary {
-  background: var(--primary);
+.btn {
+  background: #3b82f6;
+  border: none;
   color: white;
 }
 
-.btn-primary:hover {
-  background: var(--primary-dark);
+.btn:hover {
+  background: #2563eb;
 }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--text);
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
 }
 
 .btn-outline:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.row {
-  display: flex;
-  gap: 1rem;
+  background: rgba(59, 130, 246, 0.1);
 }
 
 /* -------------------------------------------------------
-   CARTE VIRTUELLE
+   RESPONSIVE TABLETTE + PC
 --------------------------------------------------------*/
-.virtual-card-box {
-  min-height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.virtual-card {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 16px;
-  padding: 1.2rem;
-  background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
-  border: 1px solid rgba(129,140,248,0.6);
-  box-shadow: var(--shadow-card);
-  color: #fff;
-}
-
-.virtual-card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.virtual-card-status {
-  padding: .15rem .7rem;
-  border-radius: 999px;
-  font-size: .8rem;
-  border: 1px solid #ddd;
-}
-
-.virtual-card-status.active {
-  color: #22c55e;
-  border-color: #22c55e;
-}
-
-.virtual-card-status.frozen {
-  color: #f97373;
-  border-color: #f97373;
-}
-
-.virtual-card-pan {
-  margin-top: 1rem;
-  letter-spacing: .2em;
-  font-size: 1.1rem;
-}
-
-/* -------------------------------------------------------
-   RESPONSIVE
---------------------------------------------------------*/
-@media (max-width: 860px) {
-  .panel { padding: 1rem; }
-  .row { flex-direction: column; }
-}
-/* ---------------------------------------------
-   AJUSTEMENT TAILLE FORMULAIRE MOBILE
-----------------------------------------------*/
-
-/* Réduit la largeur du formulaire */
-#authPanel {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 1.3rem;
-}
-
-/* Réduit la hauteur des champs */
-#authPanel input {
-  height: 42px;
-  font-size: 15px;
-}
-
-/* Réduit la taille du panel */
-.panel {
-  padding: 1.2rem;
-}
-
-/* Réduit l'espace entre les sections */
-.app-layout {
-  padding-top: 0.5rem;
-}
-
-/* Le formulaire ne prend plus trop de place */
-.password-wrapper input {
-  height: 42px;
-  font-size: 15px;
-}
-
-/* Boutons plus compactes */
-.btn {
-  padding: 0.65rem 1rem;
-  font-size: 15px;
-}
-
-/* Colle tout au-dessus sur petit écran */
-@media (max-width: 480px) {
-  .topbar {
-    padding: 0.8rem;
+@media (min-width: 600px) {
+  .container,
+  .app-layout {
+    max-width: 600px;
   }
-  #authPanel {
-    margin-top: 0.5rem;
+
+  nav a {
+    font-size: 1rem;
+  }
+
+  .panel {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .container,
+  .app-layout {
+    max-width: 750px;
+  }
+
+  h1, h2 {
+    font-size: 1.6rem;
   }
 }
