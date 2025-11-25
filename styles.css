@@ -256,3 +256,20 @@ body.app {
 .app-layout {
   flex: 1;
 }
+/* Meilleure barre du haut sur mobile */
+@media (max-width: 480px) {
+  .topbar {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .logo {
+    font-size: 1rem;
+    white-space: nowrap;     /* Garde "Banque Digitale Africaine" sur une seule ligne */
+  }
+
+  .nav {
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
