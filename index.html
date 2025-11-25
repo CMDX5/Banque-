@@ -142,3 +142,45 @@
 
 </body>
 </html>
+/* =========================
+   FIX DIMENSIONS APP.HTML
+   ========================= */
+
+body.app {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
+}
+
+main {
+  flex: 1 0 auto !important;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.2rem 2rem;
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+}
+
+.footer {
+  margin-top: auto !important;
+}
+
+/* Sur mobile : éviter le zoom moche et les coupures */
+@media (max-width: 600px) {
+  .auth-panel {
+    padding: 1.4rem 1rem 1.6rem;
+  }
+
+  body.app .topbar {
+    padding: 1rem !important;
+  }
+
+  body.app .nav {
+    gap: .6rem;
+  }
+}
