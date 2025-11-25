@@ -1,126 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Banque Digitale Africaine — Espace Client</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="app.js"></script>
+  <meta charset="UTF-8" />
+  <title>Banque Digitale Africaine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-
-<body class="app">
-
-  <!-- TOPBAR -->
+<body class="landing">
   <header class="topbar">
-    <div class="logo">Banque<br>Digitale<br>Africaine</div>
-
+    <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
-      <a href="index.html">Accueil</a>
-      <button id="logoutBtn" class="btn btn-outline">Déconnexion</button>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#kyc">Sécurité & KYC</a>
+      <a href="app.html" class="btn btn-outline">Se connecter</a>
+      <a href="app.html" class="btn btn-primary">Créer un compte</a>
     </nav>
   </header>
 
-  <!-- AUTH PANEL -->
-  <main id="authPanel" class="auth-panel">
-    <h1>Connexion</h1>
-    <p class="muted">Accédez à votre espace sécurisé.</p>
-
-    <label for="email">Adresse e-mail</label>
-    <input type="email" id="email" placeholder="exemple@mail.com">
-
-    <label for="password">Mot de passe</label>
-    <div class="password-wrapper">
-      <input type="password" id="password" placeholder="Votre mot de passe">
-      <button type="button" class="btn-eye" id="togglePassword">👁️</button>
-    </div>
-
-    <div class="auth-actions">
-      <button id="loginBtn" class="btn btn-primary">Se connecter</button>
-      <button id="registerBtn" class="btn btn-outline">Créer un compte</button>
-    </div>
-
-    <div id="authMessage" class="message"></div>
-  </main>
-
-  <!-- DASHBOARD -->
-  <main id="dashboard" class="app-layout" style="display:none">
-
-    <div class="dashboard-header">
-      <h1>Mon Espace</h1>
-      <span class="muted small">Bienvenue dans votre espace sécurisé</span>
-    </div>
-
-    <!-- SECTION: OPERATIONS -->
-    <div class="panel">
-      <h2>Nouvelle opération interne</h2>
-
-      <label for="opLabel">Libellé</label>
-      <select id="opLabel">
-        <option value="">Choisissez un libellé</option>
-        <option value="Transfert interne">Transfert interne</option>
-        <option value="Dépôt">Dépôt</option>
-        <option value="Paiement">Paiement</option>
-      </select>
-
-      <label for="opAmount">Montant (XAF)</label>
-      <input type="number" id="opAmount" placeholder="0">
-
-      <button id="saveOpBtn" class="btn btn-primary btn-full">Enregistrer l’opération</button>
-
-      <div id="opMessage" class="message"></div>
-    </div>
-
-    <!-- SECTION: KYC -->
-    <div class="panel">
-      <h2>Vérification d’identité (KYC)</h2>
-
-      <label for="docType">Type de document</label>
-      <select id="docType">
-        <option value="">Choisissez</option>
-        <option value="Passeport">Passeport</option>
-        <option value="Carte nationale">Carte nationale</option>
-        <option value="Permis">Permis de conduire</option>
-      </select>
-
-      <label for="docFile">Photo du document</label>
-      <input type="file" id="docFile" accept="image/*">
-
-      <label for="selfieFile">Selfie</label>
-      <input type="file" id="selfieFile" accept="image/*">
-
-      <button id="sendKycBtn" class="btn btn-primary btn-full">Envoyer mon dossier KYC</button>
-
-      <div id="kycMessage" class="message"></div>
-    </div>
-
-    <!-- SECTION: HISTORIQUE -->
-    <div class="panel">
-      <h2>Historique des transactions</h2>
-      <div id="historyList" class="tx-history empty">
-        Aucun mouvement pour le moment.
+  <main class="hero">
+    <section class="hero-text">
+      <h1>La banque digitale Africaine pour tous</h1>
+      <p>
+        Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
+        tout en restant conforme aux exigences KYC &amp; réglementaires.
+      </p>
+      <div class="hero-actions">
+        <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
+        <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
       </div>
-    </div>
+      <p class="hero-note">
+        Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
+      </p>
+    </section>
 
-    <!-- SECTION: CARTE VIRTUELLE -->
-    <div class="panel">
-      <h2>Carte virtuelle</h2>
-
-      <div class="virtual-card">
-        <div class="virtual-card-row">
-          <span class="virtual-card-brand">VIRTUAL</span>
-          <span class="virtual-card-status active">Active</span>
+    <section class="hero-card">
+      <div class="card-balance">
+        <div class="card-label">Solde disponible</div>
+        <div class="card-amount">1 250 000 XAF</div>
+        <div class="card-sub">Dernière opération : +75 000 XAF (Cash-in mobile money)</div>
+      </div>
+      <div class="card-items">
+        <div class="card-item">
+          <span class="card-item-title">Compte 100 % en ligne</span>
+          <span class="card-item-text">Ouverture de compte sans agence, avec validation KYC.</span>
         </div>
+        <div class="card-item">
+          <span class="card-item-title">Carte & paiements</span>
+          <span class="card-item-text">Carte virtuelle, paiements marchands et transferts.</span>
+        </div>
+        <div class="card-item">
+          <span class="card-item-title">Sécurité</span>
+          <span class="card-item-text">Données chiffrées, surveillance temps réel, conformité.</span>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="virtual-card-holder">Nom du Titulaire</div>
-        <div class="virtual-card-pan">•••• •••• •••• 1234</div>
+  <section id="features" class="section">
+    <h2>Ce que nous offrons dès aujourd'hui</h2>
+    <div class="grid">
+      <article class="feature">
+        <h3>Compte courant numérique</h3>
+        <p>Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.</p>
+      </article>
+      <article class="feature">
+        <h3>Wallet &amp; sous-comptes</h3>
+        <p>Un wallet principal + la possibilité de créer des poches dédiées : épargne, projet, business.</p>
+      </article>
+      <article class="feature">
+        <h3>Historique &amp; suivi</h3>
+        <p>Chaque opération est enregistrée dans un journal de transactions structuré.</p>
+      </article>
+      <article class="feature">
+        <h3>Infrastructure Firebase</h3>
+        <p>Auth sécurisée, Firestore pour les données, Storage pour les documents KYC.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="kyc" class="section section-alt">
+    <h2>KYC &amp; conformité intégrés</h2>
+    <div class="grid grid-2">
+      <div>
+        <p>
+          Dès l'ouverture du compte, nous collectons les informations nécessaires
+          pour rester conformes aux exigences KYC (Know Your Customer).
+        </p>
+        <ul class="list">
+          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none/pending/approved</strong>.</li>
+          <li>Collecte de document d'identité + selfie via Firebase Storage.</li>
+          <li>Suivi de l'état KYC dans Firestore, prêt pour un back-office conformité.</li>
+        </ul>
+      </div>
+      <div class="kyc-card">
+        <h3>Exemple de dossier KYC</h3>
+        <ul class="list small">
+          <li>Type de document : Passeport</li>
+          <li>Fichiers stockés : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
+          <li>Statut : <strong>pending</strong> (en attente de validation)</li>
+          <li>Assignation future : analyste conformité / partenaire bancaire</li>
+        </ul>
+        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
       </div>
     </div>
-
-  </main>
+  </section>
 
   <footer class="footer">
-    © 2025 Banque Digitale Africaine — Espace client.
+    <p>&copy; 2025 Banque Digitale Africaine &mdash; Pilote technique, prêt pour l'industrialisation.</p>
   </footer>
-
 </body>
 </html>
