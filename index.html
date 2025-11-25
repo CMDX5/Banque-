@@ -142,29 +142,3 @@
 
 </body>
 </html>
-/* =========================
-   FIX DIMENSIONS APP.HTML
-   ========================= */
-
-/* Mise en page du contenu uniquement pour les pages APP
-   (connexion + tableau de bord) */
-body.app main {
-  flex: 1 0 auto;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 1.2rem 2rem;
-}
-/* Sur mobile : éviter le zoom moche et les coupures */
-@media (max-width: 600px) {
-  .auth-panel {
-    padding: 1.4rem 1rem 1.6rem;
-  }
-
-  body.app .topbar {
-    padding: 1rem !important;
-  }
-
-  body.app .nav {
-    gap: .6rem;
-  }
-}
