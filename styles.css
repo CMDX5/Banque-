@@ -1,22 +1,30 @@
-:root {
-  --bg: #060714;
-  --bg-soft: #0b0d1f;
-  --bg-softer: #101327;
-  --accent: #3b82f6;
-  --accent-soft: rgba(59,130,246,0.12);
-  --accent-strong: #1d4ed8;
-  --text: #f9fafb;
-  --muted: #9ca3af;
-  --danger: #f97373;
-  --success: #22c55e;
-  --border-subtle: #1f2937;
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-pill: 999px;
-  --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
-}
+/* =========================
+   VARIABLES & RESET
+   ========================= */
 
-/* Reset & base */
+:root {
+  --bg-main: #020617;
+  --bg-soft: rgba(15,23,42,0.9);
+  --bg-softer: rgba(15,23,42,0.7);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #2563eb;
+  --accent-soft: #1d4ed8;
+  --accent-outline: rgba(148,163,184,0.4);
+  --success: #22c55e;
+  --danger: #ef4444;
+  --border-subtle: rgba(31,41,55,0.9);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-soft: 0 18px 45px rgba(15,23,42,0.85);
+  --shadow-card: 0 14px 28px rgba(15,23,42,0.85);
+
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
 
 *,
 *::before,
@@ -28,59 +36,80 @@
 
 html,
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 85%);
   color: var(--text);
-  background: radial-gradient(circle at top left, #1f2937, #020617 55%);
-  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Layout global landing */
+/* =========================
+   LAYOUT COMMUN
+   ========================= */
 
-body.landing {
-  display: flex;
-  flex-direction: column;
-}
-
+body.landing,
 body.app {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at top left, #1f2937, #020617 55%);
 }
 
 main {
   flex: 1 0 auto;
 }
 
-/* links */
-
-a {
-  color: inherit;
+.footer {
+  flex-shrink: 0;
+  padding: 1.3rem 1.5rem 1.6rem;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(31,41,55,0.8);
+  background: linear-gradient(to top,rgba(15,23,42,1),rgba(15,23,42,0));
 }
 
-/* Topbar */
+/* =========================
+   TOPBAR – HEADER
+   ========================= */
 
 .topbar {
-  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.2rem 1.5rem 0.5rem;
+  padding: .9rem 1.5rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
+/* Logo horizontal par défaut (app.html) */
 .logo {
   font-weight: 700;
-  letter-spacing: .02em;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
+
+/* Logo vertical spécialement pour la landing (3 lignes) */
+body.landing .logo {
+  position: relative;
+  font-size: 0; /* on masque le texte original visuellement */
+}
+
+body.landing .logo::before {
+  content: "Banque\A Digitale\A Africaine";
+  white-space: pre;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Navigation générique */
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: .9rem;
 }
 
 .nav a {
@@ -90,66 +119,183 @@ a {
 }
 
 .nav a:hover {
-  color: var(--text);
+  color: #f9fafb;
 }
 
-.nav .btn {
+/* =========================
+   TOPBAR – VARIANTE LANDING
+   ========================= */
+
+body.landing .topbar {
+  align-items: flex-start;
+}
+
+/* nav qui se place à droite et s’adapte sur mobile */
+body.landing .nav {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .9rem;
+}
+
+/* liens simples (Fonctionnalités / Sécurité & KYC) */
+body.landing .nav a:not(.btn) {
+  font-size: .92rem;
+}
+
+/* bouton Se connecter */
+body.landing .nav .btn.btn-outline {
+  padding-inline: 1.4rem;
+}
+
+/* bouton Créer un compte : prend toute la ligne sur mobile */
+body.landing .nav .btn.btn-primary {
+  flex-basis: 100%;
+  max-width: 260px;
+  margin-top: .3rem;
+}
+
+/* =========================
+   TOPBAR – VARIANTE APP
+   (Connexion + Dashboard)
+   ========================= */
+
+body.app .topbar {
+  max-width: 1120px;
+  padding: .9rem 1.5rem;
+  align-items: center;
+}
+
+body.app .nav {
+  margin-left: auto;
+  gap: 1rem;
+}
+
+/* le lien “Accueil” en haut à droite */
+body.app .nav a {
   font-size: .9rem;
 }
 
-/* Hero landing */
+/* bouton Déconnexion dans app.html */
+body.app .nav .btn {
+  padding-inline: 1.2rem;
+}
+
+/* =========================
+   BOUTONS
+   ========================= */
+
+.btn {
+  border-radius: 999px;
+  padding: .55rem 1.1rem;
+  font-size: .9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform .08s ease, box-shadow .12s ease, background .15s ease,
+    border-color .15s ease, color .15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: #f9fafb;
+  box-shadow: 0 12px 30px rgba(37,99,235,0.7);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg,#1d4ed8,#1d4ed8);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #e5e7eb;
+  border-color: rgba(148,163,184,0.5);
+}
+
+.btn-outline:hover {
+  border-color: rgba(248,250,252,0.9);
+  background: rgba(15,23,42,0.8);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* petit bouton oeil mot de passe */
+
+.password-wrapper {
+  position: relative;
+}
+
+.btn-eye {
+  position: absolute;
+  right: .6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* =========================
+   HERO – PAGE D’ACCUEIL
+   ========================= */
 
 .hero {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 2.5rem;
+  padding: 1.4rem 1.5rem 2.5rem;
   display: grid;
-  grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-  gap: 1.75rem;
-  align-items: stretch;
+  grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+  gap: 1.6rem;
 }
 
 .hero-text h1 {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   line-height: 1.15;
-  margin-bottom: 0.8rem;
+  margin-bottom: .9rem;
 }
 
 .hero-text p {
   color: var(--muted);
-  max-width: 480px;
+  max-width: 32rem;
 }
 
 .hero-actions {
+  margin: 1.3rem 0;
   display: flex;
+  gap: .75rem;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.2rem;
 }
 
 .hero-note {
-  font-size: .85rem;
+  font-size: .8rem;
   color: var(--muted);
-  margin-top: 0.9rem;
-  max-width: 520px;
 }
 
-/* Hero card (solde) */
+/* Hero card de droite */
 
 .hero-card {
-  background: radial-gradient(circle at top left, #1d2537, #020617 60%);
-  border-radius: 24px;
-  padding: 1.4rem 1.5rem 1.2rem;
-  border: 1px solid rgba(148,163,184,0.35);
+  background: radial-gradient(circle at top,#1d4ed8,#020617 75%);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
   box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  border: 1px solid rgba(148,163,184,0.4);
 }
 
 .card-balance {
-  padding-bottom: 0.6rem;
-  border-bottom: 1px dashed rgba(148,163,184,0.45);
+  background: rgba(15,23,42,0.7);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .card-label {
@@ -158,80 +304,44 @@ a {
 }
 
 .card-amount {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  margin: 0.2rem 0;
+  margin: .3rem 0 .15rem;
 }
 
 .card-sub {
-  font-size: .8rem;
+  font-size: .75rem;
   color: var(--muted);
 }
 
 .card-items {
   display: grid;
-  gap: 0.6rem;
+  grid-template-columns: 1fr;
+  gap: .6rem;
+}
+
+.card-item {
+  background: rgba(15,23,42,0.8);
+  border-radius: 14px;
+  padding: .7rem .9rem;
+  border: 1px solid rgba(148,163,184,0.3);
 }
 
 .card-item-title {
+  display: block;
   font-size: .85rem;
   font-weight: 600;
 }
 
 .card-item-text {
-  font-size: .8rem;
+  display: block;
+  font-size: .78rem;
   color: var(--muted);
 }
 
-/* Buttons */
-
-.btn {
-  border-radius: var(--radius-pill);
-  border: 1px solid transparent;
-  padding: 0.65rem 1.25rem;
-  font-size: .9rem;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.12s ease, filter 0.12s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg,var(--accent),var(--accent-strong));
-  border-color: var(--accent-strong);
-  box-shadow: 0 12px 30px rgba(37,99,235,0.6);
-}
-
-#sendKycBtn {
-  background: linear-gradient(135deg,var(--accent),var(--accent-strong));
-  border-color: var(--accent-strong);
-  color: #fff;
-  box-shadow: 0 12px 30px rgba(37,99,235,0.6);
-}
-
-.btn-outline {
-  background: transparent;
-  border-color: rgba(148,163,184,0.7);
-}
-
-.btn-primary:hover {
-  filter: brightness(1.05);
-}
-
-.btn-outline:hover {
-  background: rgba(15,23,42,0.85);
-  border-color: rgba(148,163,184,0.9);
-}
-
-.btn-full {
-  width: 100%;
-}
-
-/* Sections */
+/* =========================
+   SECTIONS D’ACCUEIL
+   ========================= */
 
 .section {
   max-width: 1120px;
@@ -245,32 +355,39 @@ a {
 }
 
 .section-alt {
-  background: radial-gradient(circle at top right, #020617, #020617 58%);
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 80%);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2.5rem;
 }
+
+/* Grilles génériques */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .grid-2 {
-  display: grid;
-  grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2,minmax(0,1fr));
 }
 
+.grid.stretch > * {
+  align-self: stretch;
+}
+
+/* cartes de fonctionnalités */
+
 .feature {
-  background: linear-gradient(145deg,#020617,#020617);
-  border-radius: 18px;
-  padding: 1rem;
-  border: 1px solid rgba(148,163,184,0.35);
-  box-shadow: 0 14px 38px rgba(0,0,0,0.55);
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
 }
 
 .feature h3 {
+  margin-top: 0;
   font-size: 1rem;
-  margin-bottom: 0.4rem;
 }
 
 .feature p {
@@ -278,345 +395,291 @@ a {
   color: var(--muted);
 }
 
-/* KYC card */
+/* KYC section */
 
 .kyc-card {
-  background: linear-gradient(145deg,#020617,#020617);
-  border-radius: 18px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
   padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(148,163,184,0.35);
-  box-shadow: 0 14px 38px rgba(0,0,0,0.55);
-}
-
-.kyc-card h3 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
 }
 
 .list {
-  list-style: disc;
-  margin-left: 1.1rem;
-  font-size: .86rem;
-  color: var(--muted);
-}
-
-.list.small {
-  list-style: none;
-  margin-left: 0;
-}
-
-.list li + li {
-  margin-top: 0.3rem;
-}
-
-/* Footer */
-
-.footer {
-  width: 100%;
-  max-width: 1120px;
-  margin: auto auto 0;
-  padding: 1.1rem 1.5rem 1.6rem;
-  font-size: .78rem;
-  color: var(--muted);
-}
-
-/* Responsive */
-
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: minmax(0,1fr);
-  }
-  .app-layout {
-    grid-template-columns: minmax(0,1fr);
-  }
-  .dashboard-header {
-    flex-direction: column;
-  }
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 860px) {
-  body.app .topbar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  body.app .nav {
-    flex-wrap: nowrap;
-    gap: 0.75rem;
-  }
-}
-
-/* ----- Ajustements layout & mobile ----- */
-html, body {
-  min-height: 100%;
-  background-color: #020617;
-  overflow-x: hidden;
-}
-
-body.landing, body.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-/* Layout app (dashboard) */
-
-.app-layout {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.3rem 1.5rem 2.2rem;
-  display: grid;
-  grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-  gap: 1.2rem;
-}
-
-.dashboard-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .8rem;
-  margin-bottom: .8rem;
-}
-
-.dashboard-header h1 {
-  font-size: 1.4rem;
-}
-
-.dashboard-header .status {
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.18rem 0.6rem;
-  border-radius: 999px;
-  font-size: .8rem;
-  border: 1px solid rgba(148,163,184,0.6);
-}
-
-/* Panel (dashboard cards) */
-
-.panel {
-  background: linear-gradient(145deg,#020617,#020617);
-  border-radius: 18px;
-  padding: 1.2rem 1.4rem 1.3rem;
-  border: 1px solid rgba(148,163,184,0.35);
-  box-shadow: 0 16px 44px rgba(0,0,0,0.65);
-}
-
-.panel h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-}
-
-.panel p {
-  font-size: .85rem;
-  color: var(--muted);
-  margin-bottom: 0.8rem;
-}
-
-.panel + .panel {
-  margin-top: 0.9rem;
-}
-
-/* Form styles */
-
-label {
-  font-size: .85rem;
-  color: var(--muted);
-}
-
-input,
-select,
-button {
-  font-family: inherit;
-}
-
-input,
-select {
-  background: #020617;
-  border: 1px solid rgba(148,163,184,0.6);
-  border-radius: 999px;
-  padding: 0.55rem 0.9rem;
-  color: var(--text);
-  font-size: .9rem;
-}
-
-input::placeholder {
-  color: rgba(148,163,184,0.85);
-}
-
-select {
-  appearance: none;
-}
-
-/* Row helpers */
-
-.row {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-}
-
-/* KYC inputs */
-
-input[type="file"] {
-  background: transparent;
-  padding: 0.45rem 0.7rem;
-}
-
-/* Errors & infos */
-
-.error {
-  color: var(--danger);
-  font-size: .8rem;
-  margin-top: 0.4rem;
-}
-
-.success {
-  color: var(--success);
-  font-size: .8rem;
-  margin-top: 0.4rem;
-}
-
-/* Connexion / Création de compte (auth panel) */
-
-.auth-panel {
-  max-width: 520px;
-  margin: 1.8rem auto 2.4rem;
-  background: radial-gradient(circle at top left, #020617, #020617 55%);
-  border-radius: 22px;
-  padding: 1.5rem 1.5rem 1.6rem;
-  border: 1px solid rgba(148,163,184,0.4);
-  box-shadow: 0 20px 46px rgba(0,0,0,0.7);
-}
-
-.auth-panel h1 {
-  font-size: 1.4rem;
-  margin-bottom: 0.6rem;
-}
-
-.auth-panel p {
-  font-size: .9rem;
-  color: var(--muted);
-  margin-bottom: 1.1rem;
-}
-
-.auth-panel label {
-  display: block;
-  margin-top: 0.4rem;
-  margin-bottom: 0.25rem;
-}
-
-.auth-panel input[type="email"],
-.auth-panel input[type="password"] {
-  width: 100%;
-  border-radius: 14px;
-  background: #020617;
-  border: 1px solid rgba(148,163,184,0.65);
-  padding: 0.65rem 0.9rem;
-  font-size: .9rem;
-  margin-bottom: 0.55rem;
-}
-
-/* Password visibility toggle */
-
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-wrapper input {
-  padding-right: 2.5rem;
-}
-
-.btn-eye {
-  position: absolute;
-  right: 0.55rem;
-  background: none;
-  border: none;
-  color: rgba(148,163,184,0.95);
-  cursor: pointer;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-eye:focus {
-  outline: none;
-}
-
-/* Boutons auth */
-
-.auth-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
-}
-
-.auth-actions .btn {
-  width: 100%;
-}
-
-/* Carte virtuelle (section inférieure) */
-
-.virtual-card {
-  margin-top: 0.9rem;
-}
-
-.virtual-card .panel-title {
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
-}
-
-.virtual-card ul {
-  list-style: disc;
   padding-left: 1.1rem;
   font-size: .86rem;
   color: var(--muted);
 }
 
-/* Responsive complémentaire */
-
-@media (max-width: 860px) {
-  .grid-2 {
-    grid-template-columns: 1fr !important;
-  }
-  .panel {
-    padding: 1rem;
-  }
-  input,
-  select {
-    width: 100%;
-  }
+.list.small {
+  font-size: .8rem;
 }
 
-/* Mise en forme du dashboard : champs bien alignés */
-.dashboard .panel .row {
-  flex-wrap: wrap;
+/* =========================
+   FORMULAIRES (APP)
+   ========================= */
+
+.auth-panel,
+.dashboard .panel {
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.3rem 1.3rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.auth-panel h1 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+label {
+  font-size: .82rem;
+  color: var(--muted);
+  display: block;
+  margin-top: .8rem;
+  margin-bottom: .18rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: .55rem .65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(31,41,55,0.9);
+  background: #020617;
+  color: var(--text);
+  font-size: .86rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(37,99,235,0.7);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row.gap {
+  gap: .6rem;
+  margin-top: .9rem;
+}
+
+.message {
+  margin-top: .6rem;
+  font-size: .8rem;
+  min-height: 1.2rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.muted.small {
+  font-size: .78rem;
+}
+
+/* =========================
+   APP LAYOUT & DASHBOARD
+   ========================= */
+
+.app-layout {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* bloc login + dashboard */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
-@media (max-width: 860px) {
-  .dashboard .panel .row {
+.balance-card {
+  background: radial-gradient(circle at top,var(--accent),#020617 75%);
+  border-radius: 18px;
+  padding: .7rem 1rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(129,140,248,0.6);
+}
+
+.balance-card .label {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.balance-card .amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .1rem .6rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  border: 1px solid transparent;
+  margin-left: .3rem;
+}
+
+.badge-kyc {
+  background: rgba(148,163,184,0.1);
+  border-color: rgba(148,163,184,0.5);
+}
+
+/* Historique transactions */
+
+.tx-history {
+  font-size: .82rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(55,65,81,0.7);
+  padding: .8rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.tx-history .tx-item {
+  display: flex;
+  justify-content: space-between;
+  padding: .35rem .1rem;
+}
+
+.tx-history .tx-label {
+  color: var(--muted);
+}
+
+.tx-history .tx-amount {
+  font-weight: 600;
+}
+
+.tx-history .tx-amount.pos {
+  color: var(--success);
+}
+
+.tx-history .tx-amount.neg {
+  color: var(--danger);
+}
+
+.tx-history .tx-date {
+  font-size: .7rem;
+  color: var(--muted);
+}
+
+/* Carte virtuelle */
+
+.virtual-card-box {
+  margin-top: .6rem;
+}
+
+.virtual-card {
+  border-radius: 18px;
+  padding: 1rem 1.2rem;
+  background: radial-gradient(circle at top left,#1d4ed8,#020617 70%);
+  border: 1px solid rgba(129,140,248,0.6);
+  box-shadow: var(--shadow-card);
+  font-size: .86rem;
+}
+
+.virtual-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.virtual-card-brand {
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(191,219,254,0.95);
+}
+
+.virtual-card-holder {
+  margin-top: .15rem;
+  font-size: .9rem;
+}
+
+.virtual-card-pan {
+  margin-top: .9rem;
+  font-size: 1.1rem;
+  letter-spacing: .22em;
+}
+
+.virtual-card-status {
+  padding: .15rem .65rem;
+  border-radius: 999px;
+  font-size: .72rem;
+}
+
+.virtual-card-status.active {
+  background: rgba(22,163,74,0.18);
+  color: #bbf7d0;
+}
+
+.virtual-card-status.frozen {
+  background: rgba(239,68,68,0.18);
+  color: #fecaca;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card {
+    order: -1;
+  }
+
+  .topbar {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  body.landing .topbar {
+    flex-direction: row;
+  }
+
+  body.landing .logo::before {
+    font-size: 1rem;
+  }
+
+  body.landing .nav {
+    justify-content: flex-end;
+  }
+
+  .hero-text h1 {
+    font-size: 1.7rem;
+  }
+
+  .section {
+    padding-inline: 1.1rem;
+  }
+
+  .app-layout {
+    padding-inline: 1.1rem;
+  }
+
+  .dashboard-header {
     flex-direction: column;
-    align-items: flex-start;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
 }
