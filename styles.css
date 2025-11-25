@@ -187,3 +187,43 @@ input, select {
     font-size: 1.6rem;
   }
 }
+/* Corrige l'affichage de la topbar sur iPhone */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0.6rem 1rem !important;
+  background: #141f33;
+}
+
+/* Réduit l'espace avant le bloc Connexion */
+#authPanel {
+  margin-top: 0.3rem !important;
+}
+
+/* Réduit aussi la hauteur interne du panel */
+#authPanel.panel,
+#authPanel .panel {
+  padding: 1rem !important;
+}
+
+/* Sur petit écran (iPhone) on compresse encore plus */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .panel {
+    padding: 1rem !important;
+  }
+
+  input, select {
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .btn, .btn-outline {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+}
