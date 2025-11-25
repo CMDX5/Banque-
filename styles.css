@@ -250,26 +250,28 @@ a {
   color: var(--muted);
 }
 
-/* KYC CARD */
+/* =========================
+   KYC
+========================= */
 
 .kyc-card {
   background: var(--bg-panel);
-  padding: 1.4rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.05);
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.06);
   box-shadow: var(--shadow);
 }
 
 .list {
-  margin-top: 0.7rem;
+  margin-top: .8rem;
   padding-left: 1.2rem;
+  font-size: .88rem;
   color: var(--muted);
-  font-size: 0.9rem;
 }
 
 .list.small {
+  font-size: .82rem;
   padding-left: 1rem;
-  font-size: 0.85rem;
 }
 
 /* =========================
@@ -278,55 +280,167 @@ a {
 
 .footer {
   max-width: 1120px;
-  margin: 2rem auto 1rem;
+  margin: 2.5rem auto 1rem;
   text-align: center;
+  font-size: .85rem;
   color: var(--muted);
-  font-size: 0.85rem;
 }
 
 /* =========================
-   PAGE APP (connexion + dashboard)
-   ========================= */
+   PAGE APP (Connexion / Dashboard)
+========================= */
 
 body.app {
   min-height: 100vh !important;
   display: flex !important;
   flex-direction: column !important;
-  background: radial-gradient(circle at top,#020617,#020617 50%,#000 85%);
+  background: radial-gradient(circle at top left,#0d1528,#020617 70%) !important;
 }
 
-/* Mise en page du contenu UNIQUEMENT pour les pages APP */
+/* Seulement la page app */
 body.app main {
   flex: 1 0 auto;
   display: flex;
   justify-content: center;
-  padding: 1rem 1.2rem 2rem;
+  padding: 1.4rem 1rem 2rem;
 }
 
-/* Carte de connexion / panneaux du tableau de bord */
-.auth-panel,
-.dashboard .panel {
+.auth-panel {
   width: 100%;
-  max-width: 480px;
-  margin: auto;
+  max-width: 460px;      /* TAILLE EXACTE DE TON ANCIEN CSS */
+  background: var(--bg-panel);
+  padding: 1.4rem 1.3rem 1.6rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: var(--shadow);
 }
 
-/* Footer collé en bas sans énorme page blanche */
-.footer {
-  margin-top: auto !important;
+/* Inputs */
+.auth-panel input {
+  width: 100%;
+  margin-top: .25rem;
+  padding: .78rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0a1220;
+  color: var(--text);
 }
 
-/* Sur mobile : éviter le zoom moche et garder de beaux espacements */
+/* Oeil mot de passe */
+.password-wrapper {
+  position: relative;
+}
+
+.btn-eye {
+  position: absolute;
+  right: .9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.app-layout {
+  max-width: 1120px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--bg-panel);
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow);
+}
+
+/* Historique */
+.tx-history {
+  border: 1px dashed rgba(255,255,255,0.1);
+  padding: .9rem;
+  border-radius: 14px;
+  max-height: 250px;
+  overflow-y: auto;
+  font-size: .86rem;
+}
+
+/* Carte virtuelle */
+.virtual-card {
+  background: radial-gradient(circle at top left, var(--accent-strong), #020617 70%);
+  border-radius: 18px;
+  padding: 1.3rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: var(--shadow);
+}
+
+.virtual-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.virtual-card-status {
+  padding: .2rem .75rem;
+  border-radius: 999px;
+  background: rgba(25,150,70,0.25);
+  color: #fff;
+  font-size: .78rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: .5rem;
+  }
+
+  .hero-card {
+    margin-top: 1rem;
+  }
+
+  .topbar {
+    padding-top: .6rem;
+  }
+}
+
 @media (max-width: 600px) {
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.65rem;
+  }
+
   body.app main {
-    padding: 1.4rem 1rem 1.6rem;
+    padding: 1rem .8rem 2rem;
   }
 
-  body.app .topbar {
-    padding: 1rem !important;
+  .auth-panel {
+    padding: 1.1rem 1rem 1.4rem;
   }
 
-  body.app .nav {
-    gap: .6rem;
+  .app-layout {
+    padding-inline: .7rem;
   }
 }
