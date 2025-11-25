@@ -30,7 +30,22 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Containers */
+/* Désactiver la sélection de texte partout */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Réautoriser la sélection dans les champs */
+input, select, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 body.app, body.landing {
   min-height: 100vh;
   display: flex;
@@ -43,14 +58,6 @@ main {
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
   flex: 1;
-}
-
-.footer {
-  margin-top: auto;
-  padding: 1rem;
-  text-align: center;
-  font-size: .8rem;
-  color: var(--muted);
 }
 
 /* -------------------------------------------------------
@@ -130,12 +137,12 @@ input, select {
   border: 1px solid rgba(255,255,255,0.08);
   background: #0f172a;
   color: var(--text);
-  font-size: 16px;   /* empêche le zoom iPhone */
+  font-size: 16px;
   appearance: none;
 }
 
 /* -------------------------------------------------------
-   MOT DE PASSE – Bouton Œil
+   MOT DE PASSE – Bouton Œil 👁
 --------------------------------------------------------*/
 .password-wrapper {
   position: relative;
@@ -248,7 +255,7 @@ input, select {
 }
 
 /* -------------------------------------------------------
-   RESPONSIVE MOBILE
+   RESPONSIVE
 --------------------------------------------------------*/
 @media (max-width: 860px) {
   .panel { padding: 1rem; }
