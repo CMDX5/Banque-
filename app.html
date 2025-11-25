@@ -1,147 +1,126 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Application - Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Chemin corrigé pour GitHub Pages -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Firebase (CDN) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
-
-  <!-- Fichiers de ton projet à la racine -->
-  <script src="firebase-config.js"></script>
+  <meta charset="UTF-8">
+  <title>Banque Digitale Africaine — Espace Client</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
   <script defer src="app.js"></script>
 </head>
 
 <body class="app">
+
+  <!-- TOPBAR -->
   <header class="topbar">
-    <div class="logo">Banque Digitale Africaine</div>
+    <div class="logo">Banque<br>Digitale<br>Africaine</div>
+
     <nav class="nav">
       <a href="index.html">Accueil</a>
-      <button id="logoutBtn" class="btn btn-outline small" style="display:none;">Déconnexion</button>
+      <button id="logoutBtn" class="btn btn-outline">Déconnexion</button>
     </nav>
   </header>
 
-  <main class="app-layout">
-    <!-- PANEL CONNEXION -->
-    <section class="auth-panel" id="authPanel">
-      <h1>Connexion / Création de compte</h1>
-      <p class="muted">Crée ton compte pour accéder à ton tableau de bord.</p>
+  <!-- AUTH PANEL -->
+  <main id="authPanel" class="auth-panel">
+    <h1>Connexion</h1>
+    <p class="muted">Accédez à votre espace sécurisé.</p>
 
-      <label>Email</label>
-      <input id="emailInput" type="email" placeholder="ex: toi@mail.com" />
+    <label for="email">Adresse e-mail</label>
+    <input type="email" id="email" placeholder="exemple@mail.com">
 
-      <label>Mot de passe</label>
-      <div class="password-wrapper">
-        <input id="passwordInput" type="password" placeholder="Minimum 6 caractères" />
-        <button type="button" id="togglePassword" class="btn-eye" aria-label="Afficher ou masquer le mot de passe">
-          👁
-        </button>
+    <label for="password">Mot de passe</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Votre mot de passe">
+      <button type="button" class="btn-eye" id="togglePassword">👁️</button>
+    </div>
+
+    <div class="auth-actions">
+      <button id="loginBtn" class="btn btn-primary">Se connecter</button>
+      <button id="registerBtn" class="btn btn-outline">Créer un compte</button>
+    </div>
+
+    <div id="authMessage" class="message"></div>
+  </main>
+
+  <!-- DASHBOARD -->
+  <main id="dashboard" class="app-layout" style="display:none">
+
+    <div class="dashboard-header">
+      <h1>Mon Espace</h1>
+      <span class="muted small">Bienvenue dans votre espace sécurisé</span>
+    </div>
+
+    <!-- SECTION: OPERATIONS -->
+    <div class="panel">
+      <h2>Nouvelle opération interne</h2>
+
+      <label for="opLabel">Libellé</label>
+      <select id="opLabel">
+        <option value="">Choisissez un libellé</option>
+        <option value="Transfert interne">Transfert interne</option>
+        <option value="Dépôt">Dépôt</option>
+        <option value="Paiement">Paiement</option>
+      </select>
+
+      <label for="opAmount">Montant (XAF)</label>
+      <input type="number" id="opAmount" placeholder="0">
+
+      <button id="saveOpBtn" class="btn btn-primary btn-full">Enregistrer l’opération</button>
+
+      <div id="opMessage" class="message"></div>
+    </div>
+
+    <!-- SECTION: KYC -->
+    <div class="panel">
+      <h2>Vérification d’identité (KYC)</h2>
+
+      <label for="docType">Type de document</label>
+      <select id="docType">
+        <option value="">Choisissez</option>
+        <option value="Passeport">Passeport</option>
+        <option value="Carte nationale">Carte nationale</option>
+        <option value="Permis">Permis de conduire</option>
+      </select>
+
+      <label for="docFile">Photo du document</label>
+      <input type="file" id="docFile" accept="image/*">
+
+      <label for="selfieFile">Selfie</label>
+      <input type="file" id="selfieFile" accept="image/*">
+
+      <button id="sendKycBtn" class="btn btn-primary btn-full">Envoyer mon dossier KYC</button>
+
+      <div id="kycMessage" class="message"></div>
+    </div>
+
+    <!-- SECTION: HISTORIQUE -->
+    <div class="panel">
+      <h2>Historique des transactions</h2>
+      <div id="historyList" class="tx-history empty">
+        Aucun mouvement pour le moment.
       </div>
+    </div>
 
-      <div class="row gap">
-        <button id="signupBtn" class="btn btn-primary">Créer un compte</button>
-        <button id="loginBtn" class="btn btn-outline">Connexion</button>
+    <!-- SECTION: CARTE VIRTUELLE -->
+    <div class="panel">
+      <h2>Carte virtuelle</h2>
+
+      <div class="virtual-card">
+        <div class="virtual-card-row">
+          <span class="virtual-card-brand">VIRTUAL</span>
+          <span class="virtual-card-status active">Active</span>
+        </div>
+
+        <div class="virtual-card-holder">Nom du Titulaire</div>
+        <div class="virtual-card-pan">•••• •••• •••• 1234</div>
       </div>
+    </div>
 
-      <p id="authMessage" class="message"></p>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section class="dashboard" id="dashboard" style="display:none;">
-      <div class="dashboard-header">
-        <div>
-          <h1>Tableau de bord</h1>
-          <p class="muted">
-            Bienvenue, <span id="userEmail"></span>
-          </p>
-          <p class="muted">
-            Rôle : <span id="userRole">client</span> &mdash;
-            Statut KYC :
-            <span id="userKycStatus" class="badge badge-kyc">none</span>
-          </p>
-        </div>
-
-        <div class="balance-card">
-          <span class="label">Solde principal</span>
-          <span class="amount"><span id="walletBalance">0</span> XAF</span>
-        </div>
-      </div>
-
-      <div class="grid grid-2 stretch">
-        <!-- Nouvelle opération interne -->
-        <section class="panel">
-          <h2>Nouvelle opération interne</h2>
-
-          <label>Libellé</label>
-          <select id="txLabel">
-            <option value="">-- Sélectionne un libellé --</option>
-            <option value="Cash-in mobile money">Cash-in mobile money</option>
-            <option value="Virement interne">Virement interne</option>
-            <option value="Paiement marchand">Paiement marchand</option>
-          </select>
-
-          <label>Montant (XAF)</label>
-          <input id="txAmount" type="number" step="100" placeholder="Ex: 5000" />
-
-          <button id="addTxBtn" class="btn btn-primary btn-full">Enregistrer l’opération</button>
-          <p id="txMessage" class="message"></p>
-        </section>
-
-        <!-- KYC -->
-        <section class="panel" id="kycPanel">
-          <h2>Vérification d’identité (KYC)</h2>
-
-          <label>Type de document</label>
-          <select id="kycDocType">
-            <option value="cni">Carte Nationale d’Identité</option>
-            <option value="passport">Passeport</option>
-            <option value="permis">Permis de conduire</option>
-          </select>
-
-          <label>Document d’identité (photo / scan)</label>
-          <input id="kycDocFile" type="file" accept="image/*,.pdf" />
-
-          <label>Selfie de vérification</label>
-          <input id="kycSelfieFile" type="file" accept="image/*" />
-
-          <button id="sendKycBtn" class="btn btn-outline btn-full">Envoyer mon dossier KYC</button>
-          <p id="kycMessage" class="message"></p>
-        </section>
-      </div>
-
-      <!-- Carte virtuelle -->
-      <section class="panel">
-        <h2>Carte virtuelle</h2>
-        <div id="virtualCardBox" class="virtual-card-box">
-          <p class="muted small">Aucune carte virtuelle créée pour l’instant.</p>
-        </div>
-
-        <div class="row gap" style="margin-top: .8rem;">
-          <button id="createVirtualCardBtn" class="btn btn-primary">Générer une carte</button>
-          <button id="toggleVirtualCardStatusBtn" class="btn btn-outline">Geler / Dégeler</button>
-        </div>
-
-        <p id="virtualCardMessage" class="message"></p>
-      </section>
-
-      <!-- Historique -->
-      <section class="panel">
-        <h2>Historique des opérations</h2>
-        <div id="txHistory" class="tx-history empty">
-          <p class="muted small">Aucune opération pour l’instant.</p>
-        </div>
-      </section>
-    </section>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine — version pilote.</p>
+    © 2025 Banque Digitale Africaine — Espace client.
   </footer>
+
 </body>
 </html>
