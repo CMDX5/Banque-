@@ -443,3 +443,9 @@ label {
     padding: 1rem 1.1rem 1.2rem;
   }
 }
+/* Fix overflow of feature cards on mobile */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
