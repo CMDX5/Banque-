@@ -2,111 +2,112 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Banque Digitale Africaine</title>
+  <title>Application - Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+  <script src="assets/js/firebase-config.js"></script>
+  <script defer src="assets/js/app.js"></script>
 </head>
-<body class="landing">
+<body class="app">
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
-      <a href="#features">Fonctionnalités</a>
-      <a href="#kyc">Sécurité & KYC</a>
-      <a href="app.html" class="btn btn-outline">Se connecter</a>
-      <a href="app.html" class="btn btn-primary">Créer un compte</a>
+      <a href="index.html">Accueil</a>
+      <button id="logoutBtn" class="btn btn-outline small" style="display:none;">Déconnexion</button>
     </nav>
   </header>
 
-  <main class="hero">
-    <section class="hero-text">
-      <h1>La banque digitale Africaine pour tous</h1>
-      <p>
-        Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
-        tout en restant conforme aux exigences KYC &amp; réglementaires.
-      </p>
-      <div class="hero-actions">
-        <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
-        <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
+  <main class="app-layout">
+    <section class="auth-panel" id="authPanel">
+      <h1>Connexion / Création de compte</h1>
+      <p class="muted">Crée ton compte pour accéder à ton tableau de bord.</p>
+
+      <label>Email</label>
+      <input id="emailInput" type="email" placeholder="ex: toi@mail.com" />
+
+      <label>Mot de passe</label>
+      <input id="passwordInput" type="password" placeholder="Minimum 6 caractères" />
+
+      <div class="row gap">
+        <button id="signupBtn" class="btn btn-primary">Créer un compte</button>
+        <button id="loginBtn" class="btn btn-outline">Connexion</button>
       </div>
-      <p class="hero-note">
-        Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
-      </p>
+
+      <p id="authMessage" class="message"></p>
     </section>
 
-    <section class="hero-card">
-      <div class="card-balance">
-        <div class="card-label">Solde disponible</div>
-        <div class="card-amount">1 250 000 XAF</div>
-        <div class="card-sub">Dernière opération : +75 000 XAF (Cash-in mobile money)</div>
-      </div>
-      <div class="card-items">
-        <div class="card-item">
-          <span class="card-item-title">Compte 100 % en ligne</span>
-          <span class="card-item-text">Ouverture de compte sans agence, avec validation KYC.</span>
+    <section class="dashboard" id="dashboard" style="display:none;">
+      <div class="dashboard-header">
+        <div>
+          <h1>Tableau de bord</h1>
+          <p class="muted">Bienvenue, <span id="userEmail"></span></p>
+          <p class="muted">Rôle : <span id="userRole">client</span> &mdash;
+            Statut KYC : <span id="userKycStatus" class="badge badge-kyc">none</span>
+          </p>
         </div>
-        <div class="card-item">
-          <span class="card-item-title">Carte & paiements</span>
-          <span class="card-item-text">Carte virtuelle, paiements marchands et transferts.</span>
-        </div>
-        <div class="card-item">
-          <span class="card-item-title">Sécurité</span>
-          <span class="card-item-text">Données chiffrées, surveillance temps réel, conformité.</span>
+        <div class="balance-card">
+          <span class="label">Solde principal</span>
+          <span class="amount"><span id="walletBalance">0</span> XAF</span>
         </div>
       </div>
+
+      <div class="grid grid-2 stretch">
+        <section class="panel">
+          <h2>Nouvelle opération interne</h2>
+          <label>Libellé</label>
+          <select id="txLabel">
+            <option value="">-- Sélectionne un libellé --</option>
+            <option value="Cash-in mobile money">Cash-in mobile money</option>
+            <option value="Virement interne">Virement interne</option>
+            <option value="Paiement marchand">Paiement marchand</option>
+            <option value="Retrait espèces">Retrait espèces</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <label>Montant (XAF)</label>
+          <input id="txAmount" type="number" step="100" placeholder="Ex: 5000" />
+          <button id="addTxBtn" class="btn btn-primary btn-full">Enregistrer l’opération</button>
+          <p id="txMessage" class="message"></p>
+        </section>
+
+        <section class="panel" id="kycPanel">
+          <h2>Vérification d’identité (KYC)</h2>
+          <p class="muted small">
+            Ces informations sont stockées dans Firebase Storage et Firestore, prêtes à être traitées
+            par un futur back-office conformité.
+          </p>
+          <label>Type de document</label>
+          <select id="kycDocType">
+            <option value="cni">Carte Nationale d’Identité</option>
+            <option value="passport">Passeport</option>
+            <option value="permis">Permis de conduire</option>
+          </select>
+
+          <label>Document d’identité (photo / scan)</label>
+          <input id="kycDocFile" type="file" accept="image/*,.pdf" />
+
+          <label>Selfie de vérification</label>
+          <input id="kycSelfieFile" type="file" accept="image/*" />
+
+          <button id="sendKycBtn" class="btn btn-outline btn-full">Envoyer mon dossier KYC</button>
+          <p id="kycMessage" class="message"></p>
+        </section>
+      </div>
+
+      <section class="panel">
+        <h2>Historique des opérations</h2>
+        <div id="txHistory" class="tx-history empty">
+          <p class="muted small">Aucune opération pour l’instant.</p>
+        </div>
+      </section>
     </section>
   </main>
 
-  <section id="features" class="section">
-    <h2>Ce que nous offrons dès aujourd'hui</h2>
-    <div class="grid">
-      <article class="feature">
-        <h3>Compte courant numérique</h3>
-        <p>Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.</p>
-      </article>
-      <article class="feature">
-        <h3>Wallet &amp; sous-comptes</h3>
-        <p>Un wallet principal + la possibilité de créer des poches dédiées : épargne, projet, business.</p>
-      </article>
-      <article class="feature">
-        <h3>Historique &amp; suivi</h3>
-        <p>Chaque opération est enregistrée dans un journal de transactions structuré.</p>
-      </article>
-      <article class="feature">
-        <h3>Infrastructure Firebase</h3>
-        <p>Auth sécurisée, Firestore pour les données, Storage pour les documents KYC.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="kyc" class="section section-alt">
-    <h2>KYC &amp; conformité intégrés</h2>
-    <div class="grid grid-2">
-      <div>
-        <p>
-          Dès l'ouverture du compte, nous collectons les informations nécessaires
-          pour rester conformes aux exigences KYC (Know Your Customer).
-        </p>
-        <ul class="list">
-          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none/pending/approved</strong>.</li>
-          <li>Collecte de document d'identité + selfie via Firebase Storage.</li>
-          <li>Suivi de l'état KYC dans Firestore, prêt pour un back-office conformité.</li>
-        </ul>
-      </div>
-      <div class="kyc-card">
-        <h3>Exemple de dossier KYC</h3>
-        <ul class="list small">
-          <li>Type de document : Passeport</li>
-          <li>Fichiers stockés : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
-          <li>Statut : <strong>pending</strong> (en attente de validation)</li>
-          <li>Assignation future : analyste conformité / partenaire bancaire</li>
-        </ul>
-        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
-      </div>
-    </div>
-  </section>
-
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine &mdash; Pilote technique, prêt pour l'industrialisation.</p>
+    <p>&copy; 2025 Banque Digitale Africaine — version pilote.</p>
   </footer>
 </body>
 </html>
