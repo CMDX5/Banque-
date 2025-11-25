@@ -285,81 +285,48 @@ a {
 }
 
 /* =========================
-   APP (connexion + dashboard)
-========================= */
+   PAGE APP (connexion + dashboard)
+   ========================= */
 
-.auth-panel {
-  max-width: 420px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: var(--bg-panel);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.05);
-  box-shadow: var(--shadow);
+body.app {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: radial-gradient(circle at top,#020617,#020617 50%,#000 85%);
 }
 
-.auth-panel input {
-  width: 100%;
-  margin-top: 0.3rem;
-  padding: 0.8rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: #0b1220;
-  color: var(--text);
-}
-
-.password-wrapper {
-  position: relative;
-}
-
-.btn-eye {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 1.2rem;
-}
-
-/* DASHBOARD */
-
-.app-layout {
-  max-width: 1120px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  display: grid;
-  gap: 1.5rem;
-}
-
-.dashboard-header {
+/* Mise en page du contenu UNIQUEMENT pour les pages APP */
+body.app main {
+  flex: 1 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.2rem 2rem;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 860px) {
-  .grid-3,
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .topbar {
-    flex-direction: row;
-  }
-
-  .nav {
-    align-items: flex-end;
-  }
+/* Carte de connexion / panneaux du tableau de bord */
+.auth-panel,
+.dashboard .panel {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
 }
 
+/* Footer collé en bas sans énorme page blanche */
+.footer {
+  margin-top: auto !important;
+}
+
+/* Sur mobile : éviter le zoom moche et garder de beaux espacements */
 @media (max-width: 600px) {
-  .hero-text h1 {
-    font-size: 1.6rem;
+  body.app main {
+    padding: 1.4rem 1rem 1.6rem;
+  }
+
+  body.app .topbar {
+    padding: 1rem !important;
+  }
+
+  body.app .nav {
+    gap: .6rem;
   }
 }
