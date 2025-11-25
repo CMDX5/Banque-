@@ -320,3 +320,32 @@ main {
 .footer {
   margin-top: auto !important;
 }
+/* --- Mise en ordre du tableau de bord sur mobile & desktop --- */
+
+/* On empile proprement les éléments des panneaux du dashboard */
+.dashboard .panel label {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard .panel input,
+.dashboard .panel select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* On évite que tout soit sur une seule ligne */
+.dashboard .panel h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* Sur mobile, les deux colonnes (opération / KYC) passent l'une sous l'autre */
+@media (max-width: 860px) {
+  .dashboard .grid-2,
+  .dashboard .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
