@@ -43,7 +43,7 @@
       <p class="message" id="loginMessage"></p>
     </section>
 
-    <!-- DASHBOARD -->
+    <!-- TABLEAU DE BORD -->
     <section class="dashboard" id="dashboard" style="display:none;">
 
       <div class="dashboard-header">
@@ -129,39 +129,8 @@
   </footer>
 
   <!-- SCRIPT -->
-  <script>
-    function togglePassword() {
-      const p = document.getElementById("password");
-      p.type = p.type === "password" ? "text" : "password";
-    }
-
-    function login() {
-      document.getElementById("login-panel").style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
-      document.getElementById("userEmail").textContent =
-        document.getElementById("email").value;
-    }
-
-    function createAccount() {
-      alert("Création de compte non simulée ici.");
-    }
-
-    function addTransaction() {
-      document.getElementById("txMessage").textContent =
-        "Opération enregistrée (simulation).";
-    }
-
-    function submitKYC() {
-      document.getElementById("kycMessage").textContent =
-        "Dossier KYC envoyé (simulation).";
-      document.getElementById("kycStatus").textContent = "pending";
-    }
-
-    document.getElementById("logoutBtn").onclick = function () {
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("login-panel").style.display = "block";
-    };
-  </script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
