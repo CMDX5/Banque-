@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <title>Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- IMPORTANT : CSS dans le même dossier -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Chemin corrigé pour GitHub Pages -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body class="landing">
+
   <header class="topbar">
     <div class="logo">Banque Digitale Africaine</div>
     <nav class="nav">
@@ -19,36 +20,114 @@
     </nav>
   </header>
 
-  <section id="kyc" class="section">
-    <div class="section-inner">
-      <div class="kyc-text">
-        <h2>Sécurité &amp; KYC</h2>
+  <main class="hero">
+    <section class="hero-text">
+      <h1>La banque digitale d'Afrique pour tous</h1>
+      <p>
+        Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
+        tout en restant conforme aux exigences KYC & réglementaires.
+      </p>
+
+      <div class="hero-actions">
+        <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
+        <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
+      </div>
+
+      <p class="hero-note">
+        Projet pilote lancé au Congo-Brazzaville, pensé pour s'étendre sur tout le continent,
+        coordinateur du projet Monsieur Prince Emmanuel.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <div class="card-balance">
+        <div class="card-label">Solde disponible</div>
+        <div class="card-amount">1 250 000 XAF</div>
+        <div class="card-sub">Dernière opération : +75 000 XAF (Cash-in mobile money)</div>
+      </div>
+
+      <div class="card-items">
+        <div class="card-item">
+          <span class="card-item-title">Compte 100 % en ligne</span>
+          <span class="card-item-text">Ouverture de compte sans agence, avec validation KYC.</span>
+        </div>
+
+        <div class="card-item">
+          <span class="card-item-title">Carte & paiements</span>
+          <span class="card-item-text">Carte virtuelle, paiements marchands et transferts.</span>
+        </div>
+
+        <div class="card-item">
+          <span class="card-item-title">Sécurité</span>
+          <span class="card-item-text">Données chiffrées, surveillance temps réel, conformité.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="features" class="section">
+    <h2>Ce que nous offrons dès aujourd'hui</h2>
+
+    <div class="grid">
+      <article class="feature">
+        <h3>Compte courant numérique</h3>
+        <p>Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.</p>
+      </article>
+
+      <article class="feature">
+        <h3>Wallet & sous-comptes</h3>
+        <p>Un wallet principal + la possibilité de créer des poches dédiées : épargne, projet, business.</p>
+      </article>
+
+      <article class="feature">
+        <h3>Historique & suivi</h3>
+        <p>Chaque opération est enregistrée dans un journal de transactions structuré.</p>
+      </article>
+
+      <article class="feature">
+        <h3>Infrastructure bancaire sécurisée</h3>
         <p>
-          Dès l’ouverture du compte, nous collectons les informations nécessaires
-          pour rester conformes aux exigences KYC.
+          Authentification sécurisée, stockage de documents KYC, conformité et traitement opérationnel.
         </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="kyc" class="section section-alt">
+    <h2>KYC & conformité intégrés</h2>
+
+    <div class="grid grid-2">
+      <div>
+        <p>
+          Dès l'ouverture du compte, nous collectons les informations nécessaires pour rester conformes
+          aux exigences KYC (Know Your Customer).
+        </p>
+
         <ul class="list">
-          <li>Statut KYC : <strong>none → pending → approved</strong></li>
-          <li>Documents : pièce d’identité + selfie</li>
-          <li>Suivi automatique</li>
+          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none/pending/approved</strong>.</li>
+          <li>Collecte sécurisée du document d'identité + selfie.</li>
+          <li>Suivi du statut KYC pour validation conformité.</li>
         </ul>
       </div>
 
       <div class="kyc-card">
-        <h3>Exemple de dossier</h3>
+        <h3>Exemple de dossier KYC</h3>
+
         <ul class="list small">
-          <li>Passeport</li>
-          <li>Stockage sécurisé Firebase</li>
+          <li>Type de document : Passeport</li>
+          <li>Pièces stockées : document + selfie</li>
           <li>Statut : <strong>pending</strong></li>
-          <li>Contrôle conformité</li>
+          <li>Assignation future : analyste conformité / partenaire bancaire</li>
         </ul>
-        <a href="app.html" class="btn btn-primary btn-full">Commencer</a>
+
+        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <p>&copy; 2025 Banque Digitale Africaine</p>
+    <p>&copy; 2025 Banque Digitale Africaine — Version pilote.</p>
   </footer>
+
 </body>
 </html>
