@@ -213,3 +213,128 @@ body.landing .nav {
     align-items: flex-start;
   }
 }
+/* =========================
+   SECTIONS D’ACCUEIL
+   ========================= */
+
+.section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2.8rem;
+}
+
+.section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+/* Variante avec fond légèrement différent (KYC) */
+.section-alt {
+  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 80%);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Grilles génériques */
+
+.grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3,minmax(0,1fr));
+}
+
+.grid.stretch > * {
+  align-self: stretch;
+}
+
+/* Cartes de fonctionnalités */
+
+.feature {
+  background: var(--bg-soft);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.feature h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.feature p {
+  font-size: .86rem;
+  color: var(--muted);
+}
+
+/* Bloc KYC */
+
+.kyc-card {
+  background: var(--bg-soft);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.list {
+  padding-left: 1.1rem;
+  font-size: .86rem;
+  color: var(--muted);
+}
+
+.list.small {
+  font-size: .8rem;
+}
+
+/* Bouton KYC aligné et en bleu comme les autres */
+
+.kyc-cta {
+  margin-top: 1.4rem;
+}
+
+.kyc-cta .btn-primary {
+  width: 100%;
+  max-width: 260px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.4rem 1.5rem 1.8rem;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(31,41,55,0.8);
+}
+ 
+/* =========================
+   RESPONSIVE SECTIONS
+   ========================= */
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-inline: 1.1rem;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
