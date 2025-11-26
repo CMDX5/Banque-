@@ -1,31 +1,14 @@
-/* =========================
-   RESET & FOND GLOBAL
-   ========================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  background: #020617;        /* évite les bandes blanches en haut / bas */
-}
-
+/* GLOBAL */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background: #020617;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
-/* =========================
-   TOPBAR
-   ========================= */
-
+/* TOPBAR */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -35,80 +18,48 @@ body {
   margin: auto;
 }
 
+/* LOGO */
 .logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-  line-height: 1.6rem;
-  letter-spacing: 0.02em;
-}
-/* Nav = liens textes + groupe de boutons à droite */
-.nav {
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.25em; /* FIXE L’ESPACEMENT ENTRE LES 3 LIGNES */
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
 }
 
-/* liens texte (Fonctionnalités / Sécurité & KYC) */
-.nav > a {
+/* NAVIGATION */
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.nav a {
   text-decoration: none;
   color: #cbd5e1;
   font-size: 0.95rem;
 }
 
-/* petit effet hover */
-.nav > a:hover {
-  color: #ffffff;
-}
-
-/* bloc à droite pour les 2 boutons */
-.topbar-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* =========================
-   BOUTONS
-   ========================= */
-
+/* BUTTONS */
 .btn {
-  padding: 0.55rem 1.1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 999px;
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
 }
-
 .btn-primary {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #fff;
   box-shadow: 0px 12px 30px rgba(37, 99, 235, 0.45);
 }
-
 .btn-outline {
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #e2e8f0;
-  background: transparent;
 }
 
-.btn-primary:hover {
-  filter: brightness(1.05);
-}
-
-.btn-outline:hover {
-  background: rgba(15, 23, 42, 0.7);
-}
-
-/* =========================
-   HERO
-   ========================= */
-
+/* HERO */
 .hero {
   max-width: 1200px;
   margin: auto;
@@ -117,18 +68,14 @@ body {
   grid-template-columns: 1.1fr 1fr;
   gap: 1.5rem;
 }
-
 .hero-text h1 {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
 }
-
 .hero-text p {
   max-width: 460px;
   color: #cbd5e1;
 }
-
 .hero-actions {
   margin: 1.3rem 0;
   display: flex;
@@ -136,16 +83,7 @@ body {
   flex-wrap: wrap;
 }
 
-.hero-note {
-  font-size: 0.8rem;
-  color: #9ca3af;
-  margin-top: 0.4rem;
-}
-
-/* =========================
-   CARTE SOLDE
-   ========================= */
-
+/* CARD */
 .hero-card {
   background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
   padding: 1.3rem;
@@ -161,22 +99,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.card-label {
-  color: #94a3b8;
-  font-size: 0.85rem;
-}
-
-.card-amount {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.card-sub {
-  color: #94a3b8;
-  font-size: 0.75rem;
-}
-
 .card-items {
   display: flex;
   flex-direction: column;
@@ -190,190 +112,35 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.card-item-title {
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.card-item-text {
-  font-size: 0.78rem;
-  color: #a7b2c3;
-}
-
-/* =========================
-   SECTIONS
-   ========================= */
-
+/* SECTIONS */
 .section {
   max-width: 1200px;
   margin: auto;
   padding: 2rem 1.5rem;
 }
 
-.section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1.2rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.feature {
-  background: rgba(15, 23, 42, 0.85);
-  padding: 1rem 1.1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-}
-
-.feature h3 {
-  font-size: 1rem;
-}
-
-.feature p {
-  font-size: 0.86rem;
-  color: #94a3b8;
-}
-
-/* =========================
-   KYC CARD
-   ========================= */
-
-.kyc-card {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 1.2rem;
-  border-radius: 14px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-}
-
-.list {
-  padding-left: 1.1rem;
-  color: #a7b2c3;
-}
-
-.list.small {
-  font-size: 0.82rem;
-}
-
-.btn-full {
-  width: 100%;
-  margin-top: 0.8rem;
-}
-
-/* =========================
-   FOOTER
-   ========================= */
-
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 1.6rem 1rem;
   color: #64748b;
   font-size: 0.8rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/************ Responsive ************/
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
   }
-
-  .topbar {
-    padding-top: 1rem;
-  }
-
-  /* on laisse le texte en haut et la carte en bas sur mobile */
   .hero-card {
+    order: 1;
+  }
+  .hero-text {
     order: 0;
   }
-}
-
-/* petit ajustement sur très petits écrans */
-@media (max-width: 640px) {
   .topbar {
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    padding: 1rem;
   }
-
-  .nav {
-    width: 100%;
-    justify-content: flex-end;
-    gap: 0.8rem;
-  }
-}
-/* Regroupement des boutons d'authentification */
-.nav-auth {
-  display: flex;
-  flex-direction: row;
-  gap: 0.8rem;
-  align-items: center;
-}
-
-/* VERSION MOBILE : le bouton "Créer un compte" passe en dessous */
-@media (max-width: 640px) {
-  .nav-auth {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
-  }
-
-  .nav-auth .btn {
-    width: 160px;
-    text-align: center;
-  }
-}
-/* ========= FIX TOPBAR MOBILE =========== */
-
-.topbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-}
-
-/* Bouton "Se connecter" */
-.nav a.btn-outline {
-    order: 1;
-}
-
-/* Bouton "Créer un compte" → toujours sous Se connecter */
-.nav a.btn-primary {
-    order: 2;
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
-}
-
-/* Forcer le comportement sur petits écrans */
-@media (max-width: 768px) {
-    .nav {
-        width: 100%;
-        justify-content: flex-end;
-    }
-
-    .nav a.btn-outline {
-        order: 1;
-    }
-
-    .nav a.btn-primary {
-        order: 2;
-        width: 100%;
-    }
 }
