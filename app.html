@@ -121,3 +121,21 @@
 
 </body>
 </html>
+<section id="login-panel" class="auth-panel">
+  <h1>Connexion</h1>
+
+  <label>Adresse email</label>
+  <input id="email" type="email" placeholder="exemple@mail.com">
+
+  <label>Mot de passe</label>
+  <div class="password-wrapper">
+    <input id="password" type="password" placeholder="Votre mot de passe">
+    <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
+  </div>
+
+  <button class="btn btn-primary" onclick="login()">Se connecter</button>
+
+  <p class="muted">
+    Pas encore de compte ? <a href="#" onclick="showRegister()">Créer un compte</a>
+  </p>
+</section>
