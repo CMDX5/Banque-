@@ -274,10 +274,11 @@ body.landing .nav .btn-primary {
 /* KYC bloc */
 
 .section-alt {
-  border-top: 1px solid rgba(31,41,55,0.9);
-  padding-top: 2.4rem;
+  background: linear-gradient(to bottom, #020617 0%, #020617 40%, #000 100%);
+  border-top: 1px solid rgba(31,41,55,0.8);
+  padding-top: 2.5rem;
+  padding-bottom: 3rem; /* IMPORTANT : empêche le trou blanc */
 }
-
 .kyc-card {
   background: rgba(15,23,42,0.95);
   border-radius: 16px;
