@@ -85,16 +85,16 @@ main {
   gap: 1.2rem;
 }
 
-/* Logo horizontal par défaut (app.html) */
+/* Logo horizontal (app, par défaut) */
 .logo {
   font-weight: 700;
   font-size: 1.05rem;
 }
 
-/* Logo vertical spécialement pour la landing (3 lignes) */
+/* Logo vertical pour la landing (3 lignes) */
 body.landing .logo {
   position: relative;
-  font-size: 0; /* on masque le texte original visuellement */
+  font-size: 0;
 }
 
 body.landing .logo::before {
@@ -130,7 +130,6 @@ body.landing .topbar {
   align-items: flex-start;
 }
 
-/* nav qui se place à droite et s’adapte sur mobile */
 body.landing .nav {
   flex: 1;
   display: flex;
@@ -139,17 +138,14 @@ body.landing .nav {
   gap: .9rem;
 }
 
-/* liens simples (Fonctionnalités / Sécurité & KYC) */
 body.landing .nav a:not(.btn) {
   font-size: .92rem;
 }
 
-/* bouton Se connecter */
 body.landing .nav .btn.btn-outline {
   padding-inline: 1.4rem;
 }
 
-/* bouton Créer un compte : prend toute la ligne sur mobile */
 body.landing .nav .btn.btn-primary {
   flex-basis: 100%;
   max-width: 260px;
@@ -158,7 +154,6 @@ body.landing .nav .btn.btn-primary {
 
 /* =========================
    TOPBAR – VARIANTE APP
-   (Connexion + Dashboard)
    ========================= */
 
 body.app .topbar {
@@ -172,12 +167,10 @@ body.app .nav {
   gap: 1rem;
 }
 
-/* le lien “Accueil” en haut à droite */
 body.app .nav a {
   font-size: .9rem;
 }
 
-/* bouton Déconnexion dans app.html */
 body.app .nav .btn {
   padding-inline: 1.2rem;
 }
@@ -228,7 +221,7 @@ body.app .nav .btn {
   width: 100%;
 }
 
-/* petit bouton oeil mot de passe */
+/* bouton oeil mot de passe */
 
 .password-wrapper {
   position: relative;
@@ -281,7 +274,7 @@ body.app .nav .btn {
   color: var(--muted);
 }
 
-/* Hero card de droite */
+/* Hero card droite */
 
 .hero-card {
   background: radial-gradient(circle at top,#1d4ed8,#020617 75%);
@@ -320,11 +313,6 @@ body.app .nav .btn {
   gap: .6rem;
 }
 
-.card-item {
-  background: rgba(15,23,42,0.8);
-  border-radius: 14px;
-  padding: .7rem .9rem;
-  border: 1px solid rgba(148
 .card-item {
   background: rgba(15,23,42,0.8);
   border-radius: 14px;
@@ -437,6 +425,8 @@ body.app .nav .btn {
   padding: 1.1rem 1.3rem 1.3rem;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
+  max-width: 520px;
+  margin: 1.6rem auto;
 }
 
 .auth-panel h1 {
