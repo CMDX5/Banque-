@@ -19,8 +19,8 @@
   --radius-md: 14px;
   --radius-lg: 22px;
 
-  --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
-  --shadow-card: 0 12px 35px rgba(15,23,42,0.9);
+  --shadow-soft: 0 18px 45px rgba(15,23,42,0.85);
+  --shadow-card: 0 14px 28px rgba(15,23,42,0.85);
 
   --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
@@ -324,6 +324,11 @@ body.app .nav .btn {
   background: rgba(15,23,42,0.8);
   border-radius: 14px;
   padding: .7rem .9rem;
+  border: 1px solid rgba(148
+.card-item {
+  background: rgba(15,23,42,0.8);
+  border-radius: 14px;
+  padding: .7rem .9rem;
   border: 1px solid rgba(148,163,184,0.3);
 }
 
@@ -501,8 +506,6 @@ select:focus {
   flex-direction: column;
   gap: 1.6rem;
 }
-
-/* bloc login + dashboard */
 
 .dashboard-header {
   display: flex;
@@ -688,81 +691,4 @@ select:focus {
   .grid-2 {
     grid-template-columns: 1fr;
   }
-}
-/* PANEL D'AUTHENTIFICATION */
-.auth-panel {
-  max-width: 95%;
-  width: 480px;          /* → Taille élargie comme ta 2e photo */
-  margin: 2rem auto;
-  padding: 2rem;
-  background: rgba(15, 23, 42, 0.65);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-}
-
-/* TITRE */
-.auth-panel h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-/* INPUTS */
-.auth-panel input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(15, 23, 42, 0.85);
-  color: white;
-  margin-bottom: 1rem;
-}
-
-/* WRAPPER DU PASSWORD */
-.password-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.password-wrapper input {
-  padding-right: 3rem;
-}
-.btn-eye {
-  position: absolute;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  cursor: pointer;
-  color: #ddd;
-}
-
-/* BOUTON PRINCIPAL */
-.auth-panel .btn-primary {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 12px;
-  margin-top: 0.5rem;
-}
-
-/* BOUTON OUTLINE */
-.auth-panel .btn-outline {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  margin-top: 0.7rem;
-}
-
-/* LIEN BAS DE PAGE */
-.auth-panel .muted {
-  margin-top: 1rem;
-  text-align: center;
-  color: #94a3b8;
-}
-.auth-panel a {
-  color: #7dd3fc;
 }
