@@ -333,3 +333,48 @@ body {
     text-align: center;
   }
 }
+/* ========= FIX TOPBAR MOBILE =========== */
+
+.topbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Bouton "Se connecter" */
+.nav a.btn-outline {
+    order: 1;
+}
+
+/* Bouton "Créer un compte" → toujours sous Se connecter */
+.nav a.btn-primary {
+    order: 2;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+}
+
+/* Forcer le comportement sur petits écrans */
+@media (max-width: 768px) {
+    .nav {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .nav a.btn-outline {
+        order: 1;
+    }
+
+    .nav a.btn-primary {
+        order: 2;
+        width: 100%;
+    }
+}
