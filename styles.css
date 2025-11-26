@@ -218,7 +218,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  /* ordre forcé : d'abord le texte, ensuite la carte */
+  /* ordre forcé : texte d'abord, carte ensuite */
   .hero-text {
     order: 0;
   }
@@ -229,5 +229,21 @@ body {
 
   .topbar {
     padding-top: 1rem;
+  }
+}
+
+/* Pleine largeur sur téléphones */
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .topbar,
+  .hero,
+  .section {
+    max-width: 100%;
+    margin: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
