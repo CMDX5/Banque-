@@ -312,3 +312,24 @@ body {
     gap: 0.8rem;
   }
 }
+/* Conteneur pour regrouper Se connecter + Créer un compte */
+.nav-auth {
+  display: flex;
+  flex-direction: row;
+  gap: .7rem;
+  align-items: center;
+}
+
+/* Sur téléphone → Créer un compte passe en dessous */
+@media (max-width: 640px) {
+  .nav-auth {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .4rem;
+  }
+
+  .btn-create {
+    width: 160px;
+    text-align: center;
+  }
+}
