@@ -259,3 +259,36 @@ main {
     padding-top: 1rem;
   }
 }
+/* ======== FIX ANTI PAGE BLANCHE (haut et bas iOS) ======== */
+
+/* Assure que le fond bleu nuit couvre TOUT l'écran, y compris le rebond */
+html, body {
+  background: #020617;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Le footer ne laisse plus d'espace vide en bas */
+.footer {
+  background: #020617;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 2rem; /* pour éviter les marges iPhone */
+}
+
+/* Supprime les marges fantômes de Safari */
+body::after {
+  content: "";
+  display: block;
+  height: 0;
+  background: #020617;
+}
+
+/* Et une sécurité supplémentaire pour le rebond iOS */
+@supports (-webkit-touch-callout: none) {
+  html {
+    background-color: #020617;
+  }
+  body {
+    background-color: #020617;
+  }
+}
