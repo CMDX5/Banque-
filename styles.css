@@ -30,27 +30,6 @@ body {
   align-items: center;
 }
 
-/* === Ajustements pour ne plus couper "Créer un compte" === */
-body.landing .nav {
-  flex-wrap: wrap;              /* permet de passer sur 2 lignes si besoin */
-  justify-content: flex-end;
-}
-
-body.landing .nav a {
-  font-size: 0.85rem;
-}
-
-body.landing .nav .btn {
-  margin-top: 0.15rem;
-}
-
-/* "Créer un compte" prend toute la ligne sur mobile */
-body.landing .nav .btn-primary {
-  flex-basis: 100%;
-  max-width: 260px;
-  text-align: center;
-}
-
 .nav a {
   text-decoration: none;
   color: #cbd5e1;
@@ -239,8 +218,13 @@ body.landing .nav .btn-primary {
     grid-template-columns: 1fr;
   }
 
+  /* ordre forcé : texte d'abord, carte ensuite */
+  .hero-text {
+    order: 0;
+  }
+
   .hero-card {
-    order: 0; /* texte d'abord, carte ensuite */
+    order: 1;
   }
 
   .topbar {
@@ -248,27 +232,18 @@ body.landing .nav .btn-primary {
   }
 }
 
-/* Petits écrans : réduire un peu les tailles pour tout faire rentrer */
-@media (max-width: 600px) {
-  .topbar {
-    padding-inline: 1rem;
+/* Pleine largeur sur téléphones */
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
   }
 
-  .logo {
-    font-size: 1.1rem;
-    line-height: 1.1rem;
-  }
-
-  .nav {
-    gap: 0.6rem;
-  }
-
-  .nav a {
-    font-size: 0.8rem;
-  }
-
-  .btn {
-    padding: 0.45rem 0.9rem;
-    font-size: 0.85rem;
+  .topbar,
+  .hero,
+  .section {
+    max-width: 100%;
+    margin: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
