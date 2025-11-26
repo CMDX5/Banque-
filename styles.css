@@ -292,3 +292,29 @@ body::after {
     background-color: #020617;
   }
 }
+/* === Repositionner "Créer un compte" sous "Se connecter" === */
+.topbar-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* Ajustement du bouton */
+.btn-topbar {
+  width: 170px;       /* taille parfaite iPhone */
+  text-align: center;
+}
+
+/* Version mobile : bien centrer */
+@media (max-width: 640px) {
+  .topbar-buttons {
+    width: 100%;
+    align-items: flex-end;
+  }
+
+  .btn-topbar {
+    width: auto;
+    max-width: 260px;
+  }
+}
