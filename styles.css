@@ -389,3 +389,18 @@ body.landing .nav .btn-primary {
     text-align: center;
   }
 }
+/* Empêcher la grande zone blanche en bas de page */
+body.landing,
+body.app {
+  min-height: 100vh;        /* le body prend au moins toute la hauteur de l'écran */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;           /* le contenu principal prend la place disponible */
+}
+
+.footer {
+  margin-top: auto;         /* pousse le footer vers le bas sans laisser de trou blanc */
+}
