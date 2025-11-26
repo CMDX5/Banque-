@@ -1,21 +1,49 @@
-/* Global styles for the Banque Digitale Africaine landing & app */
+/* =========================
+   BASE : fond plein écran
+   ========================= */
+
+html {
+  /* Très important : le fond de la page entière (y compris le "rebond" iOS) */
+  background: #020617;
+}
 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  /* La page fait au minimum la hauteur de l'écran */
+  min-height: 100vh;
   background: #020617;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Layout Containers */
+/* Pour que le contenu prenne la hauteur, le footer reste collé
+   et qu'il n'y ait plus de gros bloc blanc en bas */
+main {
+  flex: 0 0 auto;
+}
+
+.section {
+  flex: 0 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+/* =========================
+   LAYOUT TOPBAR / HERO
+   ========================= */
+
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  max-width: 1200px;
-  margin: auto;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .logo {
@@ -58,10 +86,11 @@ body {
   background: transparent;
 }
 
-/* Hero Section */
+/* HERO */
+
 .hero {
-  max-width: 1200px;
-  margin: auto;
+  max-width: 1120px;
+  margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -139,10 +168,13 @@ body {
   color: #a7b2c3;
 }
 
-/* Sections */
+/* =========================
+   SECTIONS
+   ========================= */
+
 .section {
-  max-width: 1200px;
-  margin: auto;
+  max-width: 1120px;
+  margin: 0 auto;
   padding: 2rem 1.5rem;
 }
 
@@ -180,7 +212,8 @@ body {
   color: #94a3b8;
 }
 
-/* KYC Card */
+/* KYC card */
+
 .kyc-card {
   background: rgba(15, 23, 42, 0.9);
   padding: 1.2rem;
@@ -202,13 +235,13 @@ body {
   margin-top: 0.8rem;
 }
 
-/* Footer */
+/* FOOTER */
+
 .footer {
   text-align: center;
   padding: 1.6rem 1rem;
   color: #64748b;
   font-size: 0.8rem;
-  margin-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -218,7 +251,6 @@ body {
     grid-template-columns: 1fr;
   }
 
-  /* On laisse l'ordre normal : le texte d'abord, la carte ensuite */
   .hero-card {
     order: 0;
   }
@@ -226,12 +258,4 @@ body {
   .topbar {
     padding-top: 1rem;
   }
-}
-
-/************ FIX ANTI-PAGE-BLANCHE ************/
-.section-alt {
-  background: linear-gradient(to bottom, #020617 0%, #020617 40%, #000 100%);
-  border-top: 1px solid rgba(31,41,55,0.8);
-  padding-top: 2.5rem;
-  padding-bottom: 3rem; /* empêche le trou blanc  */
 }
