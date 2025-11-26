@@ -78,11 +78,11 @@ body::after {
 }
 
 
-
 /* =========================
-   TOPBAR
+   TOPBAR + NAV + BOUTONS
    ========================= */
 
+/* barre du haut */
 .topbar {
   max-width: 1120px;
   margin: 0 auto;
@@ -93,39 +93,36 @@ body::after {
   gap: 1.2rem;
 }
 
-/* Logo vertical */
+/* logo à gauche */
 .logo {
   font-weight: 700;
   font-size: 1.05rem;
   line-height: 1.1rem;
 }
 
+/* liens + boutons à droite */
 .nav {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;             /* permet de passer sur 2 lignes proprement */
+  justify-content: flex-end;
 }
 
-/* BLOC POUR SE CONNECTER + CRÉER UN COMPTE (NOUVEAU) */
-.topbar-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: .45rem;
+.nav a {
+  font-size: .9rem;
+  color: #cbd5e1;
+  text-decoration: none;
 }
 
-.btn-topbar {
-  width: 150px;
-  text-align: center;
+.nav a:hover {
+  color: #f9fafb;
 }
 
-
-/* =========================
-   BOUTONS
-   ========================= */
-
+/* style commun boutons */
 .btn {
   border-radius: 999px;
-  padding: .55rem 1.1rem;
+  padding: .55rem 1.2rem;
   font-size: .9rem;
   font-weight: 500;
   border: 1px solid transparent;
@@ -134,6 +131,7 @@ body::after {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -148,100 +146,29 @@ body::after {
   border-color: rgba(148,163,184,0.5);
 }
 
-
-
 /* =========================
-   HERO
-   ========================= */
-
-.hero {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.4rem 1.5rem 2.5rem;
-  display: grid;
-  grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
-  gap: 1.6rem;
-}
-
-.hero-text h1 {
-  font-size: 2.1rem;
-  margin-bottom: .9rem;
-}
-
-.hero-actions {
-  margin: 1.3rem 0;
-  display: flex;
-  gap: .75rem;
-  flex-wrap: wrap;
-}
-
-
-
-/* HERO CARD */
-
-.hero-card {
-  background: radial-gradient(circle at top,#1d4ed8,#020617 75%);
-  border-radius: var(--radius-lg);
-  padding: 1.4rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(148,163,184,0.4);
-}
-
-.card-balance {
-  background: rgba(15,23,42,0.7);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  margin-bottom: 1rem;
-}
-
-
-
-/* =========================
-   SECTIONS
-   ========================= */
-
-.section {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 1.5rem 2.5rem;
-}
-
-.section-alt {
-  background: radial-gradient(circle at top left,#020617,#020617 50%,#000 80%);
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 2.5rem;
-}
-
-
-
-/* =========================
-   RESPONSIVE
+   RESPONSIVE TOPBAR
    ========================= */
 
 @media (max-width: 900px) {
-
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card {
-    order: -1;
-  }
-
-  .topbar-buttons {
-    flex-direction: column;
-    gap: .35rem;
+  .topbar {
+    padding-top: 1rem;
   }
 }
 
 @media (max-width: 640px) {
-
-  .logo {
-    font-size: 1rem;
+  .topbar {
+    align-items: flex-start;
   }
 
-  .hero-text h1 {
-    font-size: 1.7rem;
+  .nav {
+    gap: .6rem;
+    justify-content: flex-end;
   }
 
+  /* sur petit écran, on laisse les deux boutons l’un à côté de l’autre
+     et, si ça ne tient pas, ils passent proprement sur la ligne du dessous */
+  .nav .btn {
+    padding-inline: 1rem;
+  }
 }
