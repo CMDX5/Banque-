@@ -35,13 +35,12 @@ body {
   margin: auto;
 }
 
-/* Logo empilé à gauche */
 .logo {
   font-size: 1.4rem;
   font-weight: bold;
-  line-height: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.02em;
 }
-
 /* Nav = liens textes + groupe de boutons à droite */
 .nav {
   display: flex;
