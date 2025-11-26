@@ -380,3 +380,24 @@ main {
     grid-template-columns: 1fr;
   }
 }
+html, body {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow-x: hidden;
+}
+
+body {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+section, footer, main {
+  min-height: auto !important;
+}
+.landing {
+  min-height: auto !important;
+}
+
+* {
+  max-width: 100%;
+}
