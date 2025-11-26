@@ -2,18 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Espace Client – Banque Digitale Africaine</title>
+  <title>Connexion – Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+
   <script defer src="firebase-config.js"></script>
   <script defer src="app.js"></script>
 </head>
 
-<body class="app">
+<body>
 
-  <!-- HEADER -->
+  <!-- TOPBAR IDENTIQUE -->
   <header class="topbar">
-    <div class="logo">Banque Digitale Africaine</div>
+    <div class="logo">
+      Banque<br>Digitale<br>Africaine
+    </div>
 
     <nav class="nav">
       <a href="index.html">Accueil</a>
@@ -21,85 +24,83 @@
     </nav>
   </header>
 
-  <!-- PAGE CONTENU -->
-  <main class="app-layout">
+  <!-- CONTENU CENTRÉ -->
+  <main class="section" style="max-width:460px; margin:auto; margin-top:2rem;">
 
-    <!-- SECTION LOGIN -->
-    <section id="login-panel" class="auth-panel">
-      <h1>Connexion</h1>
+    <!-- PANEL LOGIN -->
+    <section id="login-panel" class="hero-card" style="display:block;">
 
-      <label for="email">Adresse email</label>
-      <input id="email" type="email" placeholder="exemple@mail.com">
+      <h2 style="margin-bottom:1rem;">Connexion / Création de compte</h2>
 
-      <label for="password">Mot de passe</label>
-      <div class="password-wrapper">
-        <input id="password" type="password" placeholder="Votre mot de passe">
-        <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
-      </div>
-
-      <div class="row gap">
-        <button class="btn btn-primary" onclick="login()">Se connecter</button>
-      </div>
-
-      <p class="message" id="login-message"></p>
-
-      <p class="muted small">
-        Pas encore de compte ?
-        <a href="#" onclick="showRegister()">Créer un compte</a>
+      <p class="card-sub" style="margin-bottom:1.2rem;">
+        Connectez-vous pour accéder à votre espace bancaire sécurisé.
       </p>
+
+      <label class="card-label">Adresse email</label>
+      <input id="email" type="email" class="input-field" style="margin-bottom:1rem;" placeholder="exemple@mail.com">
+
+      <label class="card-label">Mot de passe</label>
+      <input id="password" type="password" class="input-field" placeholder="Votre mot de passe">
+
+      <button class="btn btn-primary btn-full" style="margin-top:1.3rem;" onclick="register()">
+        Créer un compte
+      </button>
+
+      <button class="btn btn-outline btn-full" style="margin-top:0.7rem;" onclick="login()">
+        Connexion
+      </button>
+
+      <p class="message" id="login-message" style="margin-top:1rem;"></p>
+
     </section>
 
-    <!-- SECTION REGISTER (INSCRIPTION) -->
-    <section id="register-panel" class="auth-panel" style="display:none;">
-      <h1>Créer un compte</h1>
+    <!-- PANEL INSCRIPTION -->
+    <section id="register-panel" class="hero-card" style="display:none;">
 
-      <label for="reg-email">Adresse email</label>
-      <input id="reg-email" type="email">
+      <h2 style="margin-bottom:1rem;">Créer un compte</h2>
 
-      <label for="reg-password">Mot de passe</label>
-      <input id="reg-password" type="password">
+      <label class="card-label">Adresse email</label>
+      <input id="reg-email" type="email" class="input-field" style="margin-bottom:1rem;">
 
-      <div class="row gap">
-        <button class="btn btn-primary" onclick="register()">Créer un compte</button>
-      </div>
+      <label class="card-label">Mot de passe</label>
+      <input id="reg-password" type="password" class="input-field">
 
-      <p class="message" id="register-message"></p>
+      <button class="btn btn-primary btn-full" style="margin-top:1.3rem;" onclick="register()">
+        Créer un compte
+      </button>
 
-      <p class="muted small">
-        Vous avez déjà un compte ?
-        <a href="#" onclick="showLogin()">Se connecter</a>
+      <p class="message" id="register-message" style="margin-top:1rem;"></p>
+
+      <p class="card-sub" style="margin-top:1.2rem; text-align:center;">
+        Déjà un compte ? <a href="#" onclick="showLogin()">Se connecter</a>
       </p>
+
     </section>
 
-    <!-- SECTION DASHBOARD -->
-    <section id="dashboard" class="dashboard" style="display:none;">
+    <!-- DASHBOARD -->
+    <section id="dashboard" style="display:none;">
 
-      <div class="dashboard-header">
-        <div class="balance-card">
-          <div class="label">Solde actuel</div>
-          <div class="amount" id="userBalance">0 XAF</div>
-        </div>
+      <div class="hero-card" style="margin-bottom:1.5rem;">
+        <div class="label">Solde disponible</div>
+        <div class="amount" id="userBalance">0 XAF</div>
 
-        <div>
+        <div style="margin-top:1rem;">
           <strong>Statut KYC :</strong>
           <span id="kycStatus" class="badge badge-kyc">none</span>
         </div>
       </div>
 
-      <!-- Historique transactions -->
-      <div class="panel">
+      <div class="hero-card" style="margin-bottom:1.5rem;">
         <h3>Historique des transactions</h3>
-
-        <div class="tx-history" id="txList">
-          <p class="muted">Aucune transaction pour le moment.</p>
-        </div>
+        <p id="txList" class="card-sub" style="margin-top:0.5rem;">
+          Aucune transaction disponible.
+        </p>
       </div>
 
-      <!-- Carte virtuelle -->
-      <div class="panel virtual-card-box">
+      <div class="hero-card">
         <h3>Carte virtuelle</h3>
 
-        <div class="virtual-card">
+        <div class="virtual-card" style="margin-top:1rem;">
           <div class="virtual-card-row">
             <div class="virtual-card-brand">VIRTUAL CARD</div>
             <span class="virtual-card-status active">Active</span>
@@ -114,7 +115,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
