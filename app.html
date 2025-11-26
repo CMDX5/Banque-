@@ -2,131 +2,121 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Espace Client – Banque Digitale Africaine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="firebase-config.js"></script>
+  <script defer src="app.js"></script>
 </head>
 
-<body class="landing">
+<body class="app">
 
-  <!-- HEADER / TOPBAR -->
+  <!-- HEADER -->
   <header class="topbar">
-    <div class="logo">Banque<br>Digitale<br>Africaine</div>
+    <div class="logo">Banque Digitale Africaine</div>
 
     <nav class="nav">
-      <a href="#features">Fonctionnalités</a>
-      <a href="#kyc">Sécurité & KYC</a>
-
-      <a href="app.html" class="btn btn-outline">Se connecter</a>
-      <a href="app.html" class="btn btn-primary">Créer un compte</a>
+      <a href="index.html">Accueil</a>
+      <a id="logoutBtn" class="btn btn-outline" style="display:none;">Déconnexion</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <main class="hero">
+  <!-- PAGE CONTENU -->
+  <main class="app-layout">
 
-    <section class="hero-text">
-      <h1>La banque digitale Africaine pour tous</h1>
-      <p>
-        Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
-        tout en restant conforme aux exigences KYC & réglementaires.
-      </p>
+    <!-- SECTION LOGIN -->
+    <section id="login-panel" class="auth-panel">
+      <h1>Connexion</h1>
 
-      <div class="hero-actions">
-        <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
-        <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
+      <label for="email">Adresse email</label>
+      <input id="email" type="email" placeholder="exemple@mail.com">
+
+      <label for="password">Mot de passe</label>
+      <div class="password-wrapper">
+        <input id="password" type="password" placeholder="Votre mot de passe">
+        <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
       </div>
 
-      <p class="hero-note">
-        Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
+      <div class="row gap">
+        <button class="btn btn-primary" onclick="login()">Se connecter</button>
+      </div>
+
+      <p class="message" id="login-message"></p>
+
+      <p class="muted small">
+        Pas encore de compte ?
+        <a href="#" onclick="showRegister()">Créer un compte</a>
       </p>
     </section>
 
-    <section class="hero-card">
-      <div class="card-balance">
-        <div class="card-label">Solde disponible</div>
-        <div class="card-amount">1 250 000 XAF</div>
-        <div class="card-sub">Dernière opération : +75 000 XAF (Dépôt Mobile Money)</div>
+    <!-- SECTION REGISTER (INSCRIPTION) -->
+    <section id="register-panel" class="auth-panel" style="display:none;">
+      <h1>Créer un compte</h1>
+
+      <label for="reg-email">Adresse email</label>
+      <input id="reg-email" type="email">
+
+      <label for="reg-password">Mot de passe</label>
+      <input id="reg-password" type="password">
+
+      <div class="row gap">
+        <button class="btn btn-primary" onclick="register()">Créer un compte</button>
       </div>
 
-      <div class="card-items">
-        <div class="card-item">
-          <span class="card-item-title">Compte 100% en ligne</span>
-          <span class="card-item-text">Ouverture rapide et validation instantanée.</span>
+      <p class="message" id="register-message"></p>
+
+      <p class="muted small">
+        Vous avez déjà un compte ?
+        <a href="#" onclick="showLogin()">Se connecter</a>
+      </p>
+    </section>
+
+    <!-- SECTION DASHBOARD -->
+    <section id="dashboard" class="dashboard" style="display:none;">
+
+      <div class="dashboard-header">
+        <div class="balance-card">
+          <div class="label">Solde actuel</div>
+          <div class="amount" id="userBalance">0 XAF</div>
         </div>
 
-        <div class="card-item">
-          <span class="card-item-title">Carte & paiements</span>
-          <span class="card-item-text">Carte virtuelle, transferts, paiements marchands.</span>
-        </div>
-
-        <div class="card-item">
-          <span class="card-item-title">Sécurité bancaire</span>
-          <span class="card-item-text">Chiffrement des données & conformité.</span>
+        <div>
+          <strong>Statut KYC :</strong>
+          <span id="kycStatus" class="badge badge-kyc">none</span>
         </div>
       </div>
+
+      <!-- Historique transactions -->
+      <div class="panel">
+        <h3>Historique des transactions</h3>
+
+        <div class="tx-history" id="txList">
+          <p class="muted">Aucune transaction pour le moment.</p>
+        </div>
+      </div>
+
+      <!-- Carte virtuelle -->
+      <div class="panel virtual-card-box">
+        <h3>Carte virtuelle</h3>
+
+        <div class="virtual-card">
+          <div class="virtual-card-row">
+            <div class="virtual-card-brand">VIRTUAL CARD</div>
+            <span class="virtual-card-status active">Active</span>
+          </div>
+
+          <div class="virtual-card-holder" id="cardHolder">Client</div>
+          <div class="virtual-card-pan" id="cardPan">**** **** **** 0000</div>
+        </div>
+      </div>
+
     </section>
 
   </main>
 
-  <!-- FEATURES (Version SANS Firebase) -->
-  <section id="features" class="section">
-    <h2>Ce que nous offrons dès aujourd'hui</h2>
-
-    <div class="grid">
-      <article class="feature">
-        <h3>Compte courant numérique</h3>
-        <p>Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.</p>
-      </article>
-
-      <article class="feature">
-        <h3>Wallet & sous-comptes</h3>
-        <p>Créez plusieurs poches : épargne, projet, business.</p>
-      </article>
-
-      <article class="feature">
-        <h3>Historique & suivi</h3>
-        <p>Toutes vos opérations consultables de manière claire et structurée.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- KYC SECTION -->
-  <section id="kyc" class="section section-alt">
-    <h2>KYC & conformité intégrés</h2>
-
-    <div class="grid grid-2">
-      <div>
-        <p>
-          Dès l'ouverture du compte, nous collectons les informations nécessaires
-          pour rester conformes aux exigences KYC (Know Your Customer).
-        </p>
-
-        <ul class="list">
-          <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none → pending → approved</strong>.</li>
-          <li>Document + selfie requis.</li>
-          <li>Processus sécurisé & automatisé.</li>
-        </ul>
-      </div>
-
-      <div class="kyc-card">
-        <h3>Exemple de dossier KYC</h3>
-
-        <ul class="list small">
-          <li>Type : Passeport</li>
-          <li>Fichiers fournis : ID + selfie</li>
-          <li>Statut : <strong>en attente</strong> (pending)</li>
-        </ul>
-
-        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
-      </div>
-    </div>
-
-  </section>
-
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2025 Banque Digitale Africaine — Projet pilote.</p>
+    © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
 
 </body>
