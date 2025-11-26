@@ -9,46 +9,54 @@
   <script defer src="app.js"></script>
 </head>
 
-<body class="app">
+<body class="app-page">
+
   <!-- HEADER -->
   <header class="topbar">
-    <div class="logo">Banque Digitale Africaine</div>
+    <div class="logo">
+      Banque<br>
+      Digitale<br>
+      Africaine
+    </div>
 
     <nav class="nav">
       <a href="index.html">Accueil</a>
-      <a id="logoutBtn" class="btn btn-outline" style="display:none;">Déconnexion</a>
     </nav>
   </header>
 
   <!-- CONTENU -->
   <main class="app-layout">
 
-    <!-- FORMULAIRE UNIQUE -->
-    <section id="auth-panel" class="auth-panel">
-      <h1>Connexion / Création de compte</h1>
-      <p class="muted" style="margin-top:.4rem;margin-bottom:.9rem;">
-        Crée ton compte pour accéder à ton tableau de bord sécurisé,
-        ou connecte-toi si tu as déjà un compte.
-      </p>
+    <!-- CARTE CONNEXION / CREATION (gros cadran bleu) -->
+    <section class="auth-wrapper">
+      <div class="auth-card">
+        <h1>Connexion / Création de compte</h1>
+        <p class="auth-subtitle">
+          Connectez-vous pour accéder à votre espace bancaire sécurisé.
+        </p>
 
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="exemple@mail.com">
+        <label for="email">Adresse email</label>
+        <input id="email" type="email" placeholder="exemple@mail.com">
 
-      <label for="password">Mot de passe</label>
-      <div class="password-wrapper">
-        <input id="password" type="password" placeholder="Votre mot de passe">
-        <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
+        <label for="password">Mot de passe</label>
+        <div class="password-wrapper">
+          <input id="password" type="password" placeholder="Votre mot de passe">
+          <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
+        </div>
+
+        <button class="btn btn-primary auth-btn-main" onclick="register()">
+          Créer un compte
+        </button>
+
+        <button class="btn btn-outline auth-btn-secondary" onclick="login()">
+          Connexion
+        </button>
+
+        <p class="message" id="auth-message"></p>
       </div>
-
-      <div class="row gap" style="flex-direction:column;align-items:stretch;margin-top:1.1rem;">
-        <button class="btn btn-primary btn-full" onclick="register()">Créer un compte</button>
-        <button class="btn btn-outline btn-full" onclick="login()">Connexion</button>
-      </div>
-
-      <p class="message" id="login-message"></p>
     </section>
 
-    <!-- DASHBOARD -->
+    <!-- DASHBOARD (caché tant que l'utilisateur n'est pas connecté) -->
     <section id="dashboard" class="dashboard" style="display:none;">
 
       <div class="dashboard-header">
@@ -77,17 +85,20 @@
             <div class="virtual-card-brand">VIRTUAL CARD</div>
             <span class="virtual-card-status active">Active</span>
           </div>
+
           <div class="virtual-card-holder" id="cardHolder">Client</div>
           <div class="virtual-card-pan" id="cardPan">**** **** **** 0000</div>
         </div>
       </div>
 
     </section>
+
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
+
 </body>
 </html>
