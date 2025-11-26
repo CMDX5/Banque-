@@ -8,130 +8,138 @@
 </head>
 
 <body class="landing">
+
   <!-- TOPBAR -->
   <header class="topbar">
-    <div class="logo">
-      Banque<br>Digitale<br>Africaine
-    </div>
+    <div class="logo">Banque<br>Digitale<br>Africaine</div>
 
     <nav class="nav">
-      <a href="#features" class="nav-link">Fonctionnalités</a>
-      <a href="#kyc" class="nav-link">Sécurité &amp; KYC</a>
-
+      <a href="#features">Fonctionnalités</a>
+      <a href="#kyc">Sécurité & KYC</a>
       <a href="app.html" class="btn btn-outline">Se connecter</a>
       <a href="app.html" class="btn btn-primary">Créer un compte</a>
     </nav>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1>La banque digitale Africaine pour tous</h1>
-        <p>
-          Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
-          tout en restant conforme aux exigences KYC &amp; réglementaires.
-        </p>
+  <!-- HERO -->
+  <main class="hero">
 
-        <div class="hero-actions">
-          <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
-          <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
-        </div>
+    <section class="hero-text">
+      <h1>La banque digitale Africaine pour tous</h1>
 
-        <p class="hero-note">
-          Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
-        </p>
+      <p>
+        Ouvrez votre compte en ligne, gérez votre argent, envoyez et recevez des paiements,
+        tout en restant conforme aux exigences KYC & réglementaires.
+      </p>
+
+      <div class="hero-actions">
+        <a href="app.html" class="btn btn-primary">Ouvrir mon compte</a>
+        <a href="#features" class="btn btn-outline">Découvrir les fonctionnalités</a>
       </div>
 
-      <!-- CARTE SOLDE -->
-      <div class="hero-card">
-        <div class="card-balance">
-          <div class="card-label">Solde disponible</div>
-          <div class="card-amount">1 250 000 XAF</div>
-          <div class="card-sub">Dernière opération : +75 000 XAF (Dépôt Mobile Money)</div>
+      <p class="hero-note">
+        Projet pilote lancé au Congo-Brazzaville, coordinateur du projet Monsieur Prince Emmanuel.
+      </p>
+    </section>
+
+    <!-- HERO CARD -->
+    <section class="hero-card">
+      <div class="card-balance">
+        <div class="card-label">Solde disponible</div>
+        <div class="card-amount">1 250 000 XAF</div>
+        <div class="card-sub">Dernière opération : +75 000 XAF (Dépôt Mobile Money)</div>
+      </div>
+
+      <div class="card-items">
+
+        <div class="card-item">
+          <span class="card-item-title">Compte 100% en ligne</span>
+          <span class="card-item-text">Ouverture rapide et validation instantanée.</span>
         </div>
 
-        <div class="card-items">
-          <div class="card-item">
-            <span class="card-item-title">Compte 100% en ligne</span>
-            <span class="card-item-text">Ouverture rapide et validation instantanée.</span>
-          </div>
-
-          <div class="card-item">
-            <span class="card-item-title">Carte &amp; paiements</span>
-            <span class="card-item-text">Carte virtuelle, transferts, paiements marchands.</span>
-          </div>
-
-          <div class="card-item">
-            <span class="card-item-title">Sécurité bancaire</span>
-            <span class="card-item-text">Chiffrement des données &amp; conformité.</span>
-          </div>
+        <div class="card-item">
+          <span class="card-item-title">Carte & paiements</span>
+          <span class="card-item-text">Carte virtuelle, transferts, paiements marchands.</span>
         </div>
+
+        <div class="card-item">
+          <span class="card-item-title">Sécurité bancaire</span>
+          <span class="card-item-text">Chiffrement des données & conformité.</span>
+        </div>
+
       </div>
     </section>
 
-    <!-- FONCTIONNALITÉS -->
-    <section id="features" class="section">
-      <h2>Ce que nous offrons dès aujourd'hui</h2>
-
-      <div class="grid grid-3">
-        <article class="feature">
-          <h3>Compte courant numérique</h3>
-          <p>Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.</p>
-        </article>
-
-        <article class="feature">
-          <h3>Wallet &amp; sous-comptes</h3>
-          <p>Créez plusieurs poches : épargne, projet, business.</p>
-        </article>
-
-        <article class="feature">
-          <h3>Historique &amp; suivi</h3>
-          <p>Toutes vos opérations consultables de manière claire et structurée.</p>
-        </article>
-
-        <article class="feature">
-          <h3>Infrastructure Firebase</h3>
-          <p>Auth sécurisée, Firestore pour les données, Storage pour les documents KYC.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- KYC -->
-    <section id="kyc" class="section section-alt">
-      <h2>KYC &amp; conformité intégrés</h2>
-
-      <div class="grid grid-2">
-        <div>
-          <p>
-            Dès l'ouverture du compte, nous collectons les informations nécessaires
-            pour rester conformes aux exigences KYC (Know Your Customer).
-          </p>
-          <ul class="list">
-            <li>Rôle par défaut : <strong>client</strong> avec statut KYC <strong>none / pending / approved</strong>.</li>
-            <li>Collecte de document d'identité + selfie via Firebase Storage.</li>
-            <li>Suivi de l'état KYC dans Firestore, prêt pour un back-office conformité.</li>
-          </ul>
-        </div>
-
-        <div class="kyc-card">
-          <h3>Exemple de dossier KYC</h3>
-          <ul class="list small">
-            <li>Type de document : Passeport</li>
-            <li>Fichiers stockés : <code>kyc/&lt;uid&gt;/document</code>, <code>kyc/&lt;uid&gt;/selfie</code></li>
-            <li>Statut : <strong>en attente</strong> (pending)</li>
-            <li>Assignation future : analyste conformité / partenaire bancaire</li>
-          </ul>
-          <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- PIED DE PAGE -->
+  <!-- SECTION FONCTIONNALITÉS -->
+  <section id="features" class="section">
+    <h2>Ce que nous offrons dès aujourd'hui</h2>
+
+    <div class="grid-3">
+
+      <article class="feature">
+        <h3>Compte courant numérique</h3>
+        <p>
+          Un compte multi-usage pour recevoir salaire, paiements clients ou transferts familiaux.
+        </p>
+      </article>
+
+      <article class="feature">
+        <h3>Wallet & sous-comptes</h3>
+        <p>
+          Créez plusieurs poches : épargne, projet, business.
+        </p>
+      </article>
+
+      <article class="feature">
+        <h3>Historique & suivi</h3>
+        <p>
+          Toutes vos opérations consultables de manière claire et structurée.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SECTION KYC -->
+  <section id="kyc" class="section">
+    <h2>KYC & conformité intégrés</h2>
+
+    <div class="grid-2">
+
+      <div>
+        <p>
+          Dès l'ouverture du compte, nous collectons les informations nécessaires
+          pour rester conformes aux exigences KYC (Know Your Customer).
+        </p>
+
+        <ul class="list">
+          <li>Statut KYC : none → pending → approved</li>
+          <li>Documents requis : pièce d'identité + selfie</li>
+          <li>Processus sécurisé & automatisé</li>
+        </ul>
+      </div>
+
+      <div class="kyc-card">
+        <h3>Exemple de dossier KYC</h3>
+
+        <ul class="list small">
+          <li>Type : Passeport</li>
+          <li>Fichiers requis : ID + selfie</li>
+          <li>Statut : en attente</li>
+        </ul>
+
+        <a href="app.html" class="btn btn-primary btn-full">Commencer mon KYC</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
+
 </body>
 </html>
