@@ -1,66 +1,84 @@
-/* Fond global */
-html,
+/* Global styles for the Banque Digitale Africaine landing & app */
+
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  font-family: var(--font-sans);
-  background: radial-gradient(circle at top left, #1e293b, #020617 55%);
-  background-color: #020617;
-  color: var(--text);
-  overflow-x: hidden;
+  background: #020617;
+  color: #ffffff;
 }
 
-/* Layouts de base */
-body.landing,
-body.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.5rem 1.5rem 3rem;
-  flex: 1 0 auto;
-}
-
-/* Topbar */
+/* Layout Containers */
 .topbar {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1.2rem 1.5rem 0.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .logo {
-  font-weight: 700;
-  letter-spacing: .02em;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 1.2rem;
 }
 
 .nav {
   display: flex;
+  gap: 1rem;
   align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+}
+
+/* === Ajustements pour ne plus couper "Créer un compte" === */
+body.landing .nav {
+  flex-wrap: wrap;              /* permet de passer sur 2 lignes si besoin */
+  justify-content: flex-end;
+}
+
+body.landing .nav a {
+  font-size: 0.85rem;
+}
+
+body.landing .nav .btn {
+  margin-top: 0.15rem;
+}
+
+/* "Créer un compte" prend toute la ligne sur mobile */
+body.landing .nav .btn-primary {
+  flex-basis: 100%;
+  max-width: 260px;
+  text-align: center;
 }
 
 .nav a {
-  font-size: .9rem;
-  color: var(--muted);
   text-decoration: none;
+  color: #cbd5e1;
+  font-size: 0.95rem;
 }
 
-.nav a:hover {
-  color: var(--text);
+.btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0px 12px 30px rgba(37, 99, 235, 0.45);
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #e2e8f0;
+  background: transparent;
+}
+
 /* Hero Section */
 .hero {
   max-width: 1200px;
@@ -221,13 +239,8 @@ main {
     grid-template-columns: 1fr;
   }
 
-  /* ordre forcé : texte d'abord, carte ensuite */
-  .hero-text {
-    order: 0;
-  }
-
   .hero-card {
-    order: 1;
+    order: 0; /* texte d'abord, carte ensuite */
   }
 
   .topbar {
@@ -235,18 +248,27 @@ main {
   }
 }
 
-/* Pleine largeur sur téléphones */
-@media (max-width: 640px) {
-  body {
-    overflow-x: hidden;
+/* Petits écrans : réduire un peu les tailles pour tout faire rentrer */
+@media (max-width: 600px) {
+  .topbar {
+    padding-inline: 1rem;
   }
 
-  .topbar,
-  .hero,
-  .section {
-    max-width: 100%;
-    margin: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .logo {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+  }
+
+  .nav {
+    gap: 0.6rem;
+  }
+
+  .nav a {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
   }
 }
