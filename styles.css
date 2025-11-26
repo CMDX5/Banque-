@@ -353,3 +353,39 @@ body.landing .nav .btn-primary {
     grid-template-columns: 1fr;
   }
 }
+/* ====== FIX TAILLE & DIMENSION HEADER MOBILE ====== */
+
+@media (max-width: 480px) {
+
+  /* Le topbar prend toute la largeur et ne déborde plus */
+  .topbar {
+    flex-wrap: wrap;
+    padding-top: .8rem;
+    gap: .7rem;
+  }
+
+  /* Le logo se met sur 1 ligne sans casser */
+  .logo {
+    font-size: 1rem;
+    line-height: 1.1rem;
+    max-width: 140px;
+  }
+
+  /* Le menu s’adapte correctement */
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: .6rem;
+  }
+
+  .nav a {
+    font-size: .8rem;
+  }
+
+  /* Le bouton "Créer un compte" reste toujours visible */
+  .nav .btn-primary {
+    flex-basis: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+}
