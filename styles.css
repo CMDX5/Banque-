@@ -1,4 +1,15 @@
-
+/* Fond global */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top left, #1e293b, #020617 55%);
+  background-color: #020617;
+  color: var(--text);
+  overflow-x: hidden;
+}
 
 /* Layout Containers */
 .topbar {
