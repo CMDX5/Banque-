@@ -13,16 +13,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
   max-width: 1200px;
   margin: auto;
 }
 
-/* LOGO FIX: meilleur espacement + hauteur auto */
+/* LOGO – version 3 lignes plus espacées */
 .logo {
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  line-height: 1.33em;   /* ← ESPACEMENT PARFAIT */
+  line-height: 1.28em;
   display: flex;
   flex-direction: column;
 }
@@ -32,7 +32,6 @@ body {
   display: flex;
   gap: 1rem;
   align-items: center;
-  flex-wrap: wrap; /* ← PERMET L’AFFICHAGE PROPRE SUR MOBILE */
 }
 
 .nav a {
@@ -41,7 +40,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* BOUTONS */
+/* BUTTONS */
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
@@ -58,24 +57,10 @@ body {
   box-shadow: 0px 12px 30px rgba(37, 99, 235, 0.45);
 }
 
-/* Bouton "Créer un compte" placé sous "Se connecter" sur mobile */
-@media (max-width: 640px) {
-  .nav {
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-  }
-
-  .btn-primary {
-    width: 100%;
-    text-align: center;
-    margin-top: 0.4rem;
-  }
-}
-
 .btn-outline {
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #e2e8f0;
+  background: transparent;
 }
 
 /* HERO */
@@ -105,10 +90,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* CARTE */
-.hero-card {
-  background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
-/* CARD */
+/* HERO CARD */
 .hero-card {
   background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
   padding: 1.3rem;
@@ -124,6 +106,21 @@ body {
   margin-bottom: 1rem;
 }
 
+.card-label {
+  font-size: .85rem;
+  color: #94a3b8;
+}
+
+.card-amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.card-sub {
+  font-size: .75rem;
+  color: #94a3b8;
+}
+
 .card-items {
   display: flex;
   flex-direction: column;
@@ -137,11 +134,66 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.card-item-title {
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+.card-item-text {
+  font-size: .8rem;
+  color: #a7b2c3;
+}
+
 /* SECTIONS */
 .section {
   max-width: 1200px;
   margin: auto;
   padding: 2rem 1.5rem;
+}
+
+.section h2 {
+  margin-bottom: 1rem;
+}
+
+/* FEATURES */
+.feature {
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  margin: 0 0 .4rem 0;
+}
+
+.feature p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: .9rem;
+}
+
+/* LIST */
+.list {
+  padding-left: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #cbd5e1;
+  font-size: .9rem;
+}
+
+/* KYC CARD */
+.kyc-card {
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.btn-full {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 /* FOOTER */
@@ -150,21 +202,35 @@ body {
   padding: 1.6rem 1rem;
   color: #64748b;
   font-size: 0.8rem;
-  margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE — MOBILE */
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
   }
+
   .hero-card {
     order: 1;
   }
+
   .hero-text {
     order: 0;
   }
+
+  /* IMPORTANT POUR LE HEADER MOBILE */
+  .nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
   .topbar {
     padding: 1rem;
   }
