@@ -1,18 +1,4 @@
-/* =========================
-   RESET & FOND GLOBAL
-   ========================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  background: #020617;        /* évite les bandes blanches en haut / bas */
-}
+/* Global styles for the Banque Digitale Africaine landing & app */
 
 body {
   font-family: Arial, sans-serif;
@@ -22,10 +8,7 @@ body {
   color: #ffffff;
 }
 
-/* =========================
-   TOPBAR
-   ========================= */
-
+/* Layout Containers */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -35,42 +18,25 @@ body {
   margin: auto;
 }
 
-/* Logo empilé à gauche */
 .logo {
   font-size: 1.4rem;
   font-weight: bold;
   line-height: 1.2rem;
 }
 
-/* Nav = liens textes + groupe de boutons à droite */
 .nav {
   display: flex;
+  gap: 1rem;
   align-items: center;
-  gap: 1.5rem;
 }
 
-/* liens texte (Fonctionnalités / Sécurité & KYC) */
-.nav > a {
+.nav a {
   text-decoration: none;
   color: #cbd5e1;
   font-size: 0.95rem;
 }
 
-/* petit effet hover */
-.nav > a:hover {
-  color: #ffffff;
-}
-
-/* bloc à droite pour les 2 boutons */
-.topbar-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* =========================
-   BOUTONS
-   ========================= */
+/* Buttons */
 
 .btn {
   padding: 0.55rem 1.1rem;
@@ -80,10 +46,6 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
 }
 
 .btn-primary {
@@ -98,17 +60,7 @@ body {
   background: transparent;
 }
 
-.btn-primary:hover {
-  filter: brightness(1.05);
-}
-
-.btn-outline:hover {
-  background: rgba(15, 23, 42, 0.7);
-}
-
-/* =========================
-   HERO
-   ========================= */
+/* Hero Section */
 
 .hero {
   max-width: 1200px;
@@ -122,7 +74,6 @@ body {
 .hero-text h1 {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
 }
 
 .hero-text p {
@@ -136,16 +87,6 @@ body {
   gap: 0.8rem;
   flex-wrap: wrap;
 }
-
-.hero-note {
-  font-size: 0.8rem;
-  color: #9ca3af;
-  margin-top: 0.4rem;
-}
-
-/* =========================
-   CARTE SOLDE
-   ========================= */
 
 .hero-card {
   background: radial-gradient(circle at top, #1d4ed8, #020617 80%);
@@ -201,9 +142,7 @@ body {
   color: #a7b2c3;
 }
 
-/* =========================
-   SECTIONS
-   ========================= */
+/* Sections */
 
 .section {
   max-width: 1200px;
@@ -245,9 +184,7 @@ body {
   color: #94a3b8;
 }
 
-/* =========================
-   KYC CARD
-   ========================= */
+/* KYC Card */
 
 .kyc-card {
   background: rgba(15, 23, 42, 0.9);
@@ -270,9 +207,7 @@ body {
   margin-top: 0.8rem;
 }
 
-/* =========================
-   FOOTER
-   ========================= */
+/* Footer */
 
 .footer {
   text-align: center;
@@ -289,26 +224,12 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .topbar {
-    padding-top: 1rem;
-  }
-
-  /* on laisse le texte en haut et la carte en bas sur mobile */
+  /* On laisse l'ordre normal : le texte d'abord, la carte ensuite */
   .hero-card {
     order: 0;
   }
-}
 
-/* petit ajustement sur très petits écrans */
-@media (max-width: 640px) {
   .topbar {
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-
-  .nav {
-    width: 100%;
-    justify-content: flex-end;
-    gap: 0.8rem;
+    padding-top: 1rem;
   }
 }
