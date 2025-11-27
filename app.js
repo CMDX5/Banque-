@@ -323,11 +323,16 @@ if (sendKycBtn) {
 // =====================================================
 // MOT DE PASSE : ŒIL
 // =====================================================
-if (togglePasswordBtn && passwordInput) {
-  togglePasswordBtn.addEventListener('click', () => {
-    const isPassword = passwordInput.type === 'password';
-    passwordInput.type = isPassword ? 'text' : 'password';
-    togglePasswordBtn.textContent = isPassword ? '🙈' : '👁';
+ // Nouveau système : Afficher / Masquer
+const passwordInput = document.getElementById("password");
+const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+
+if (passwordInput && togglePasswordBtn) {
+  togglePasswordBtn.addEventListener("click", () => {
+    const isHidden = passwordInput.type === "password";
+
+    passwordInput.type = isHidden ? "text" : "password";
+    togglePasswordBtn.textContent = isHidden ? "Masquer" : "Afficher";
   });
 }
 
@@ -486,18 +491,4 @@ if (toggleVirtualCardStatusBtn) {
     if (!user) return;
     toggleVirtualCardStatus(user.uid);
   });
-}
-function togglePassword(inputId, btnId) {
-  const input = document.getElementById(inputId);
-  const btn   = document.getElementById(btnId);
-
-  if (!input || !btn) return;
-
-  if (input.type === "password") {
-    input.type = "text";
-    btn.textContent = "Masquer";
-  } else {
-    input.type = "password";
-    btn.textContent = "Afficher";
-  }
 }
