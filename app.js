@@ -323,14 +323,12 @@ if (sendKycBtn) {
 // =====================================================
 // MOT DE PASSE : ŒIL
 // =====================================================
- // Nouveau système : Afficher / Masquer
-const passwordInput = document.getElementById("password");
-const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+  const passwordInput = document.getElementById("password");
+const togglePasswordBtn = document.getElementById("passwordToggle");
 
 if (passwordInput && togglePasswordBtn) {
   togglePasswordBtn.addEventListener("click", () => {
     const isHidden = passwordInput.type === "password";
-
     passwordInput.type = isHidden ? "text" : "password";
     togglePasswordBtn.textContent = isHidden ? "Masquer" : "Afficher";
   });
