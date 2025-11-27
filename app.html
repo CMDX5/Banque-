@@ -45,26 +45,24 @@
       </div>
 
       <!-- Mot de passe + Afficher/Masquer -->
-      <div class="field-group">
-        <label for="password">Mot de passe</label>
+      
+// ================================
+//  MOT DE PASSE : Afficher / Masquer
+// ================================
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleBtn     = document.getElementById("passwordToggle");
 
-        <div class="password-wrapper">
-          <input
-            id="password"
-            type="password"
-            placeholder="Votre mot de passe"
-          />
-          <button
-            type="button"
-            id="passwordToggle"
-            class="password-toggle"
-            onclick="togglePassword()"
-          >
-            Afficher
-          </button>
-        </div>
-      </div>
+  if (!passwordInput || !toggleBtn) return;
 
+  const isHidden = passwordInput.type === "password";
+
+  // change le type
+  passwordInput.type = isHidden ? "text" : "password";
+
+  // change le texte du bouton
+  toggleBtn.textContent = isHidden ? "Masquer" : "Afficher";
+}
       <!-- Boutons -->
       <div class="auth-buttons">
         <button
