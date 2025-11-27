@@ -1,13 +1,17 @@
-// Sélecteurs de base
-const emailInput = document.getElementById('emailInput');
-const passwordInput = document.getElementById('passwordInput');
-const togglePasswordBtn = document.getElementById('togglePassword');
+// =====================================================
+// SÉLECTEURS DE BASE
+// (adaptés à ton app.html : email / password / passwordToggle)
+// =====================================================
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const togglePasswordBtn = document.getElementById('passwordToggle');
+
 const signupBtn = document.getElementById('signupBtn');
 const loginBtn = document.getElementById('loginBtn');
 const logoutBtn = document.getElementById('logoutBtn');
-const authPanel = document.getElementById('authPanel');
+const authPanel = document.getElementById('authPanel') || document.getElementById('login-panel');
 const dashboard = document.getElementById('dashboard');
-const authMessage = document.getElementById('authMessage');
+const authMessage = document.getElementById('authMessage') || document.getElementById('login-message');
 
 const walletBalanceEl = document.getElementById('walletBalance');
 const userEmailEl = document.getElementById('userEmail');
@@ -31,7 +35,9 @@ const createVirtualCardBtn = document.getElementById('createVirtualCardBtn');
 const toggleVirtualCardStatusBtn = document.getElementById('toggleVirtualCardStatusBtn');
 const virtualCardMessage = document.getElementById('virtualCardMessage');
 
-// Helpers
+// =====================================================
+// HELPERS
+// =====================================================
 function showMessage(el, text, type = 'info') {
   if (!el) return;
   el.textContent = text;
@@ -117,7 +123,7 @@ if (loginBtn) {
     try {
       await auth.signInWithEmailAndPassword(email, pass);
       showMessage(authMessage, '');
-  } catch (err) {
+    } catch (err) {
       console.error(err);
       showMessage(authMessage, formatError(err, 'Connexion impossible.'), 'error');
     }
@@ -136,8 +142,8 @@ if (logoutBtn) {
 // =====================================================
 auth.onAuthStateChanged(async (user) => {
   if (user) {
-    authPanel.style.display = 'none';
-    dashboard.style.display = 'block';
+    if (authPanel) authPanel.style.display = 'none';
+    if (dashboard) dashboard.style.display = 'block';
     if (logoutBtn) logoutBtn.style.display = 'inline-flex';
 
     if (userEmailEl) userEmailEl.textContent = user.email;
@@ -162,8 +168,8 @@ auth.onAuthStateChanged(async (user) => {
     // Charger carte virtuelle
     loadVirtualCard(user.uid);
   } else {
-    authPanel.style.display = 'block';
-    dashboard.style.display = 'none';
+    if (authPanel) authPanel.style.display = 'block';
+    if (dashboard) dashboard.style.display = 'none';
     if (logoutBtn) logoutBtn.style.display = 'none';
     if (walletBalanceEl) walletBalanceEl.textContent = '0';
     if (txHistoryEl) {
@@ -321,17 +327,23 @@ if (sendKycBtn) {
 }
 
 // =====================================================
-// MOT DE PASSE : ŒIL
+// MOT DE PASSE : AFFICHER / MASQUER
+// (compatible avec le bouton "Afficher" de ta carte bleue)
 // =====================================================
-  const passwordInput = document.getElementById("password");
-const togglePasswordBtn = document.getElementById("passwordToggle");
+function handleTogglePassword() {
+  if (!passwordInput || !togglePasswordBtn) return;
 
-if (passwordInput && togglePasswordBtn) {
-  togglePasswordBtn.addEventListener("click", () => {
-    const isHidden = passwordInput.type === "password";
-    passwordInput.type = isHidden ? "text" : "password";
-    togglePasswordBtn.textContent = isHidden ? "Masquer" : "Afficher";
-  });
+  const isHidden = passwordInput.type === 'password';
+  passwordInput.type = isHidden ? 'text' : 'password';
+  togglePasswordBtn.textContent = isHidden ? 'Masquer' : 'Afficher';
+}
+
+// si tu utilises onclick="togglePassword()" dans app.html :
+window.togglePassword = handleTogglePassword;
+
+// et on attache aussi l’event au bouton directement :
+if (togglePasswordBtn) {
+  togglePasswordBtn.addEventListener('click', handleTogglePassword);
 }
 
 // =====================================================
