@@ -1,93 +1,202 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Espace Client – Banque Digitale Africaine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="firebase-config.js"></script>
-  <script defer src="app.js"></script>
-</head>
+/* =========================================================
+   INITIALISATION FIREBASE
+========================================================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-<body class="app">
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="logo">
-      <span>Banque</span>
-      <span>Digitale</span>
-      <span>Africaine</span>
-    </div>
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    <nav class="nav">
-      <a href="index.html">Accueil</a>
-    </nav>
-  </header>
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-  <!-- CONTENU APP -->
-  <main class="app-layout">
+// Configuration Firebase
+import { firebaseConfig } from "./firebase-config.js";
 
-    <!-- CARTE CONNEXION / CREATION -->
-    <section class="auth-card-large">
-      <h1>Connexion / Création de compte</h1>
-      <p class="auth-subtitle">
-        Connectez-vous pour accéder à votre espace bancaire sécurisé,
-        ou créez un compte si vous êtes nouveau.
-      </p>
+// Initialisation Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-      <!-- Email -->
-      <div class="field-group">
-        <label for="email">Adresse email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="exemple@mail.com"
-        />
-      </div>
-// ================================
-//  MOT DE PASSE : Afficher / Masquer
-// ================================
-function togglePassword() {
-  const passwordInput = document.getElementById("password");
-  const toggleBtn     = document.getElementById("passwordToggle");
 
-  if (!passwordInput || !toggleBtn) return;
+/* =========================================================
+   ELEMENTS DU DOM
+========================================================= */
+const loginPanel = document.getElementById("login-panel");
+const registerPanel = document.getElementById("register-panel");
+const dashboard = document.getElementById("dashboard");
 
-  const isHidden = passwordInput.type === "password";
+const logoutBtn = document.getElementById("logoutBtn");
 
-  // change le type
-  passwordInput.type = isHidden ? "text" : "password";
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
 
-  // change le texte du bouton
-  toggleBtn.textContent = isHidden ? "Masquer" : "Afficher";
+const regEmail = document.getElementById("reg-email");
+const regPassword = document.getElementById("reg-password");
+
+const loginMessage = document.getElementById("login-message");
+const registerMessage = document.getElementById("register-message");
+
+const passwordToggleBtn = document.getElementById("passwordToggle");
+
+
+/* =========================================================
+   AFFICHAGE / MASQUER LES PANNEAUX
+========================================================= */
+function showLogin() {
+  loginPanel.style.display = "block";
+  registerPanel.style.display = "none";
 }
 
-      <!-- Boutons -->
-      <div class="auth-buttons">
-        <button
-          class="auth-btn auth-btn-primary"
-          onclick="register()"
-        >
-          Créer un compte
-        </button>
+function showRegister() {
+  loginPanel.style.display = "none";
+  registerPanel.style.display = "block";
+}
 
-        <button
-          class="auth-btn auth-btn-outline"
-          onclick="login()"
-        >
-          Connexion
-        </button>
-      </div>
+window.showLogin = showLogin;
+window.showRegister = showRegister;
 
-      <!-- Message d’erreur / info -->
-      <p id="auth-message" class="message"></p>
-    </section>
 
-  </main>
+/* =========================================================
+   CREATION DE COMPTE
+========================================================= */
+async function register() {
+  registerMessage.textContent = "";
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    © 2025 Banque Digitale Africaine — Projet pilote.
-  </footer>
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      regEmail.value,
+      regPassword.value
+    );
 
-</body>
-</html>
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      balance: 0,
+      kycStatus: "none"
+    });
+
+    registerMessage.style.color = "#4ade80";
+    registerMessage.textContent = "Compte créé avec succès !";
+
+    setTimeout(showLogin, 900);
+
+  } catch (error) {
+    registerMessage.style.color = "#f87171";
+    registerMessage.textContent = error.message;
+  }
+}
+
+window.register = register;
+
+
+/* =========================================================
+   CONNEXION
+========================================================= */
+async function login() {
+  loginMessage.textContent = "";
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      emailInput.value,
+      passwordInput.value
+    );
+
+    loginMessage.style.color = "#4ade80";
+    loginMessage.textContent = "Connexion réussie !";
+
+    setTimeout(() => {
+      loginPanel.style.display = "none";
+      dashboard.style.display = "block";
+    }, 600);
+
+  } catch (error) {
+    loginMessage.style.color = "#f87171";
+    loginMessage.textContent = error.message;
+  }
+}
+
+window.login = login;
+
+
+/* =========================================================
+   DECONNEXION
+========================================================= */
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  dashboard.style.display = "none";
+  loginPanel.style.display = "block";
+});
+
+
+/* =========================================================
+   TOGGLE PASSWORD (AFFICHER / MASQUER)
+========================================================= */
+function togglePassword() {
+  const input = document.getElementById("password");
+  const btn = document.getElementById("passwordToggle");
+
+  if (!input || !btn) return;
+
+  const isHidden = input.type === "password";
+
+  input.type = isHidden ? "text" : "password";
+  btn.textContent = isHidden ? "Masquer" : "Afficher";
+}
+
+window.togglePassword = togglePassword;
+
+
+/* =========================================================
+   SURVEILLANCE DE L’ETAT D’AUTHENTIFICATION
+========================================================= */
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    logoutBtn.style.display = "inline-block";
+  } else {
+    logoutBtn.style.display = "none";
+  }
+});
+
+
+/* =========================================================
+   DASHBOARD : LECTURE DES DONNÉES
+========================================================= */
+async function loadUserData(uid) {
+  const ref = doc(db, "users", uid);
+  const snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    const data = snap.data();
+    document.getElementById("userBalance").textContent =
+      data.balance + " XAF";
+
+    document.getElementById("kycStatus").textContent =
+      data.kycStatus || "none";
+  }
+}
+
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    await loadUserData(user.uid);
+  }
+});
