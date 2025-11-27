@@ -15,7 +15,7 @@
 
 <body class="app">
 
-  <!-- TOPBAR -->
+  <!-- HEADER -->
   <header class="topbar">
     <div class="logo">Banque<br>Digitale<br>Africaine</div>
 
@@ -24,43 +24,50 @@
     </nav>
   </header>
 
-  <!-- CONTENU -->
+  <!-- CONTENU APP -->
   <main class="app-layout">
-
-    <!-- PANNEAU AUTH -->
     <section class="auth-card-large">
-
       <h1>Connexion / Création de compte</h1>
-
       <p class="auth-subtitle">
-        Connectez-vous pour accéder à votre espace bancaire sécurisé,
+        Connectez-vous pour accéder à votre espace bancaire sécurisé, 
         ou créez un compte si vous êtes nouveau.
       </p>
 
-      <!-- EMAIL -->
-      <label for="email">Adresse email</label>
-      <input id="email" type="email" placeholder="exemple@mail.com">
-
-      <!-- MOT DE PASSE -->
-      <label for="password">Mot de passe</label>
-      <div class="password-wrapper">
-        <input id="password" type="password" placeholder="Votre mot de passe">
-        <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
+      <div class="field-group">
+        <label for="email">Adresse email</label>
+        <input id="email" type="email" placeholder="exemple@mail.com">
       </div>
 
-      <!-- BOUTONS -->
-      <button class="btn btn-primary auth-btn" onclick="register()">Créer un compte</button>
-      <button class="btn btn-outline auth-btn" onclick="login()">Connexion</button>
+      <div class="field-group">
+        <label for="password">Mot de passe</label>
+        <div class="password-wrapper">
+          <input id="password" type="password" placeholder="Votre mot de passe">
+          <button type="button"
+                  id="password-toggle"
+                  class="password-toggle"
+                  onclick="togglePassword('password','password-toggle')">
+            Afficher
+          </button>
+        </div>
+      </div>
 
-      <p id="auth-message" class="message"></p>
+      <div class="auth-buttons">
+        <button class="auth-btn auth-btn-primary" onclick="register()">
+          Créer un compte
+        </button>
+        <button class="auth-btn auth-btn-outline" onclick="login()">
+          Connexion
+        </button>
+      </div>
 
+      <p id="login-message" class="message"></p>
     </section>
-
   </main>
 
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
 
+  <script src="firebase-config.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
-</html>
