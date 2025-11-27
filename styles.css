@@ -249,12 +249,14 @@ body {
 }
 
 /* =========================================================
-   ZONE APP / CONNEXION  — Design IDENTIQUE à ton rendu validé
+   ZONE APP / CONNEXION  (on garde ton rendu actuel)
    ========================================================= */
 
 body.app {
   background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 85%);
 }
+
+/* même topbar que l’accueil, on ne change rien */
 
 /* Conteneur global de la page app */
 .app-layout {
@@ -303,6 +305,14 @@ body.app {
   color: #6b7280;
 }
 
+/* ligne bouton */
+.row.gap {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+/* bouton de l’œil */
 .password-wrapper {
   position: relative;
 }
@@ -332,6 +342,7 @@ body.app {
   font-size: 0.8rem;
 }
 
+/* petit ajustement mobile app */
 @media (max-width: 600px) {
   .app-layout {
     margin-top: 1.5rem;
