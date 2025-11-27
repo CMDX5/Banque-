@@ -487,3 +487,17 @@ if (toggleVirtualCardStatusBtn) {
     toggleVirtualCardStatus(user.uid);
   });
 }
+function togglePassword(inputId, btnId) {
+  const input = document.getElementById(inputId);
+  const btn   = document.getElementById(btnId);
+
+  if (!input || !btn) return;
+
+  if (input.type === "password") {
+    input.type = "text";
+    btn.textContent = "Masquer";
+  } else {
+    input.type = "password";
+    btn.textContent = "Afficher";
+  }
+}
