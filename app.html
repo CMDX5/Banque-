@@ -2,22 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Espace Client – Banque Digitale Africaine</title>
+  <title>Connexion – Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Ton CSS principal -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Firebase + App -->
   <script defer src="firebase-config.js"></script>
   <script defer src="app.js"></script>
 </head>
 
-<body class="app-page">
+<body class="app">
 
-  <!-- HEADER -->
+  <!-- TOPBAR -->
   <header class="topbar">
-    <div class="logo">
-      Banque<br>
-      Digitale<br>
-      Africaine
-    </div>
+    <div class="logo">Banque<br>Digitale<br>Africaine</div>
 
     <nav class="nav">
       <a href="index.html">Accueil</a>
@@ -27,75 +27,37 @@
   <!-- CONTENU -->
   <main class="app-layout">
 
-    <!-- CARTE CONNEXION / CREATION (gros cadran bleu) -->
-    <section class="auth-wrapper">
-      <div class="auth-card">
-        <h1>Connexion / Création de compte</h1>
-        <p class="auth-subtitle">
-          Connectez-vous pour accéder à votre espace bancaire sécurisé.
-        </p>
+    <!-- PANNEAU AUTH -->
+    <section class="auth-card-large">
 
-        <label for="email">Adresse email</label>
-        <input id="email" type="email" placeholder="exemple@mail.com">
+      <h1>Connexion / Création de compte</h1>
 
-        <label for="password">Mot de passe</label>
-        <div class="password-wrapper">
-          <input id="password" type="password" placeholder="Votre mot de passe">
-          <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
-        </div>
+      <p class="auth-subtitle">
+        Connectez-vous pour accéder à votre espace bancaire sécurisé,
+        ou créez un compte si vous êtes nouveau.
+      </p>
 
-        <button class="btn btn-primary auth-btn-main" onclick="register()">
-          Créer un compte
-        </button>
+      <!-- EMAIL -->
+      <label for="email">Adresse email</label>
+      <input id="email" type="email" placeholder="exemple@mail.com">
 
-        <button class="btn btn-outline auth-btn-secondary" onclick="login()">
-          Connexion
-        </button>
-
-        <p class="message" id="auth-message"></p>
-      </div>
-    </section>
-
-    <!-- DASHBOARD (caché tant que l'utilisateur n'est pas connecté) -->
-    <section id="dashboard" class="dashboard" style="display:none;">
-
-      <div class="dashboard-header">
-        <div class="balance-card">
-          <div class="label">Solde actuel</div>
-          <div class="amount" id="userBalance">0 XAF</div>
-        </div>
-
-        <div>
-          <strong>Statut KYC :</strong>
-          <span id="kycStatus" class="badge badge-kyc">none</span>
-        </div>
+      <!-- MOT DE PASSE -->
+      <label for="password">Mot de passe</label>
+      <div class="password-wrapper">
+        <input id="password" type="password" placeholder="Votre mot de passe">
+        <button type="button" class="btn-eye" onclick="togglePassword()">👁️</button>
       </div>
 
-      <div class="panel">
-        <h3>Historique des transactions</h3>
-        <div class="tx-history" id="txList">
-          <p class="muted">Aucune transaction pour le moment.</p>
-        </div>
-      </div>
+      <!-- BOUTONS -->
+      <button class="btn btn-primary auth-btn" onclick="register()">Créer un compte</button>
+      <button class="btn btn-outline auth-btn" onclick="login()">Connexion</button>
 
-      <div class="panel virtual-card-box">
-        <h3>Carte virtuelle</h3>
-        <div class="virtual-card">
-          <div class="virtual-card-row">
-            <div class="virtual-card-brand">VIRTUAL CARD</div>
-            <span class="virtual-card-status active">Active</span>
-          </div>
-
-          <div class="virtual-card-holder" id="cardHolder">Client</div>
-          <div class="virtual-card-pan" id="cardPan">**** **** **** 0000</div>
-        </div>
-      </div>
+      <p id="auth-message" class="message"></p>
 
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
