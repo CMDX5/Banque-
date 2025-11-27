@@ -249,14 +249,13 @@ body {
 }
 
 /* =========================================================
-   ZONE APP / CONNEXION  (on garde ton rendu actuel)
+   ZONE APP / CONNEXION
    ========================================================= */
 
+/* Fond spécial pour la page app */
 body.app {
   background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 85%);
 }
-
-/* même topbar que l’accueil, on ne change rien */
 
 /* Conteneur global de la page app */
 .app-layout {
@@ -265,103 +264,21 @@ body.app {
   padding: 0 1.5rem;
 }
 
-/* Bloc Connexion / Création de compte */
-.auth-panel {
-  background: rgba(15, 23, 42, 0.98);
-  border-radius: 20px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  padding: 1.6rem 1.3rem 1.8rem;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
-  max-width: 640px;
-  margin: 0 auto 2rem;
-}
-
-.auth-panel h1 {
-  font-size: 1.6rem;
-  margin-top: 0;
-  margin-bottom: 0.7rem;
-}
-
-.auth-panel label {
-  display: block;
-  font-size: 0.85rem;
-  margin-top: 0.9rem;
-  margin-bottom: 0.2rem;
-  color: #cbd5e1;
-}
-
-.auth-panel input {
-  width: 100%;
-  padding: 0.75rem 0.9rem;
-  border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: #020617;
-  color: #e5e7eb;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-.auth-panel input::placeholder {
-  color: #6b7280;
-}
-
-/* ligne bouton */
-.row.gap {
-  display: flex;
-  gap: 0.8rem;
-  margin-top: 1.2rem;
-}
-
-/* bouton de l’œil */
-.password-wrapper {
-  position: relative;
-}
-
-.btn-eye {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-/* messages */
-.message {
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  color: #f97373;
-}
-
-.muted {
-  color: #94a3b8;
-}
-.small {
-  font-size: 0.8rem;
-}
-
-/* petit ajustement mobile app */
-@media (max-width: 600px) {
-  .app-layout {
-    margin-top: 1.5rem;
-  }
-
-  .auth-panel {
-    padding: 1.4rem 1.1rem 1.6rem;
-  }
-}
-/* === PAGE APP === */
-
+/* Carte principale Connexion / Création de compte */
 .auth-card-large {
   max-width: 520px;
   margin: 2rem auto;
-  padding: 1.6rem;
-  background: radial-gradient(circle at top, #1d4ed8 10%, #0a1127 85%);
+  padding: 1.8rem 1.6rem 2rem;
+  background: radial-gradient(circle at top, #1d4ed8 12%, #0a1127 82%);
   border-radius: 22px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+}
+
+/* Titre et sous-titre */
+.auth-card-large h1 {
+  font-size: 1.55rem;
+  margin: 0 0 .6rem;
 }
 
 .auth-subtitle {
@@ -370,42 +287,90 @@ body.app {
   margin-bottom: 1.2rem;
 }
 
+/* Champs du formulaire */
+.field-group {
+  margin-top: .9rem;
+}
+
 .auth-card-large label {
-  margin-top: 1rem;
   display: block;
   font-size: 0.9rem;
   color: #e2e8f0;
+  margin-bottom: .25rem;
 }
 
 .auth-card-large input {
   width: 100%;
-  margin-top: 0.4rem;
-  padding: 0.85rem;
+  padding: 0.85rem 0.9rem;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(255,255,255,0.14);
   color: #fff;
+  font-size: 0.9rem;
 }
 
+/* Mot de passe + bouton Afficher / Masquer */
 .password-wrapper {
   position: relative;
 }
 
-.btn-eye {
+.password-toggle {
   position: absolute;
-  right: 14px;
+  right: 0.9rem;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
   border: none;
-  font-size: 1.1rem;
+  background: transparent;
+  color: #93c5fd;
+  font-size: 0.8rem;
   cursor: pointer;
+  padding: 0;
+}
+
+/* Boutons Créer / Connexion */
+.auth-buttons {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
 .auth-btn {
   width: 100%;
-  margin-top: 1rem;
   padding: 0.9rem;
   font-size: 1rem;
   border-radius: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.auth-btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0px 12px 30px rgba(37, 99, 235, 0.45);
+}
+
+.auth-btn-outline {
+  background: transparent;
+  color: #e2e8f0;
+  border-color: rgba(255,255,255,0.35);
+}
+
+/* Message d’erreur / info */
+.message {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #f97373;
+}
+
+/* Texte en bas (copyright) déjà géré par .footer */
+
+@media (max-width: 600px) {
+  .app-layout {
+    margin-top: 1.5rem;
+  }
+  .auth-card-large {
+    margin: 1.5rem auto 2rem;
+    padding: 1.5rem 1.2rem 1.8rem;
+  }
 }
