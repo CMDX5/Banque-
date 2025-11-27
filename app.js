@@ -328,23 +328,20 @@ if (sendKycBtn) {
 
 // =====================================================
 // MOT DE PASSE : AFFICHER / MASQUER
-// (compatible avec le bouton "Afficher" de ta carte bleue)
 // =====================================================
-function handleTogglePassword() {
-  if (!passwordInput || !togglePasswordBtn) return;
 
-  const isHidden = passwordInput.type === 'password';
-  passwordInput.type = isHidden ? 'text' : 'password';
-  togglePasswordBtn.textContent = isHidden ? 'Masquer' : 'Afficher';
+function togglePassword() {
+  const input = document.getElementById('password');
+  const btn = document.getElementById('passwordToggle');
+  if (!input || !btn) return;
+
+  const isHidden = input.type === 'password';
+  input.type = isHidden ? 'text' : 'password';
+  btn.textContent = isHidden ? 'Masquer' : 'Afficher';
 }
 
-// si tu utilises onclick="togglePassword()" dans app.html :
-window.togglePassword = handleTogglePassword;
-
-// et on attache aussi l’event au bouton directement :
-if (togglePasswordBtn) {
-  togglePasswordBtn.addEventListener('click', handleTogglePassword);
-}
+// pour que onclick="togglePassword()" marche dans app.html
+window.togglePassword = togglePassword;
 
 // =====================================================
 // CARTE VIRTUELLE
