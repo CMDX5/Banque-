@@ -2,22 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Connexion – Banque Digitale Africaine</title>
+  <title>Espace Client – Banque Digitale Africaine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Ton CSS principal -->
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Firebase + App -->
   <script defer src="firebase-config.js"></script>
   <script defer src="app.js"></script>
 </head>
 
 <body class="app">
-
   <!-- HEADER -->
   <header class="topbar">
-    <div class="logo">Banque<br>Digitale<br>Africaine</div>
+    <div class="logo">
+      <span>Banque</span>
+      <span>Digitale</span>
+      <span>Africaine</span>
+    </div>
 
     <nav class="nav">
       <a href="index.html">Accueil</a>
@@ -26,48 +25,73 @@
 
   <!-- CONTENU APP -->
   <main class="app-layout">
+
+    <!-- CARTE CONNEXION / CREATION -->
     <section class="auth-card-large">
       <h1>Connexion / Création de compte</h1>
       <p class="auth-subtitle">
-        Connectez-vous pour accéder à votre espace bancaire sécurisé, 
+        Connectez-vous pour accéder à votre espace bancaire sécurisé,
         ou créez un compte si vous êtes nouveau.
       </p>
 
+      <!-- Email -->
       <div class="field-group">
         <label for="email">Adresse email</label>
-        <input id="email" type="email" placeholder="exemple@mail.com">
+        <input
+          id="email"
+          type="email"
+          placeholder="exemple@mail.com"
+        />
       </div>
 
+      <!-- Mot de passe + Afficher/Masquer -->
       <div class="field-group">
         <label for="password">Mot de passe</label>
+
         <div class="password-wrapper">
-          <input id="password" type="password" placeholder="Votre mot de passe">
-          <button type="button"
-                  id="password-toggle"
-                  class="password-toggle"
-                  onclick="togglePassword('password','password-toggle')">
+          <input
+            id="password"
+            type="password"
+            placeholder="Votre mot de passe"
+          />
+          <button
+            type="button"
+            id="passwordToggle"
+            class="password-toggle"
+            onclick="togglePassword()"
+          >
             Afficher
           </button>
         </div>
       </div>
 
+      <!-- Boutons -->
       <div class="auth-buttons">
-        <button class="auth-btn auth-btn-primary" onclick="register()">
+        <button
+          class="auth-btn auth-btn-primary"
+          onclick="register()"
+        >
           Créer un compte
         </button>
-        <button class="auth-btn auth-btn-outline" onclick="login()">
+
+        <button
+          class="auth-btn auth-btn-outline"
+          onclick="login()"
+        >
           Connexion
         </button>
       </div>
 
-      <p id="login-message" class="message"></p>
+      <!-- Message d’erreur / info -->
+      <p id="auth-message" class="message"></p>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     © 2025 Banque Digitale Africaine — Projet pilote.
   </footer>
 
-  <script src="firebase-config.js" defer></script>
-  <script src="app.js" defer></script>
 </body>
+</html>
